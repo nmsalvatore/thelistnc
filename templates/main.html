@@ -1,0 +1,23 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>the list nc | events in nevada county, ca</title>
+</head>
+<body class="container">
+    <header>
+        <h1>the list nc</h1>
+    </header>
+    <main>
+        {% block event_list %}
+        {% endblock event_list %}
+    </main>
+    <footer>
+        <small>Built by <a href="https://nmsalvatore.com">Nick Salvatore</a>.</small>
+    </footer>
+</body>
+</html>

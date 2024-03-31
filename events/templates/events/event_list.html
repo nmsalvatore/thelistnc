@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+
+{% block event_list %}
+<table>
+    <thead>
+        <th scope="col">Title</th>
+        <th scope="col">Venue</th>
+        <th scope="col">Date & Time</th>
+        <th scope="col">Cost</th>
+    </thead>
+    <tbody>
+
+        {% for event in events %}
+        <tr>
+            <th>{{ event.title }}</th>
+            <td>{{ event.venue }}</td>
+            <td>{{ event.start_date }}</td>
+            
+
+            {% if event.admission_price == 0 %}
+                <td>Free</td>
+            {% elif event.admission_price > 0 %}
+                <td>${{ event.admission_price }}</td>
+            {% else %}
+                <td></td>
+            {% endif %}
+
+        </tr>
+        {% endfor%}
+
+    </tbody>
+</table>
+{% endblock event_list %}
