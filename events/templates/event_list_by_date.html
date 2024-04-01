@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+
+{% block sort_heading %}
+
+    <span>| by date</span>
+
+{% endblock sort_heading %}
+
+
+{% block content %}
+
+    <section class="sort-options">
+        <span>Sort By:</span>
+        <span class="active-sort">Date</span>
+        <a href="{% url 'event_list_by_venue' %}">Venue</a>
+    </section>
+
+    <section>
+    {% for date, events in grouped_events %}
+        <h2>{{ date | date:"M d, Y"}}</h2>
+        <ul>
+        {% for event in events %}
+            <li>{{ event }}, {{ event.venue }} @ {{ event.start_date | date:"g:i A" }}</li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
+    </section>
+
+{% endblock content %}

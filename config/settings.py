@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 
     # Project apps
     'events.apps.EventsConfig',
-    'users.apps.UsersConfig'
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +135,10 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')

@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h2>Send Invitation</h2>
+<form method="POST">
+    {% csrf_token %}
+    <fieldset role="group">
+        <input type="email" palceholder="Email" name="email" required />
+        <input type="submit" value="Send" />
+    </fieldset>
+</form>
+
+{% endblock content %}
