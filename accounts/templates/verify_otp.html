@@ -2,18 +2,19 @@
 
 {% block content %}
 
-<h2>Verify OTP</h2>
+<h1>Verify OTP</h1>
+<p>For your security, a one-time passcode has been sent to <strong>{{ email }}</strong>. The passcode will expire in 5 minutes. Please enter the passcode in the field below and click Verify to complete the verification process.</p>
+
+<div class="content">
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="otp" autocomplete="off" required />
+        <button type="submit">Verify</button>
+    </form>
+</div>
 
 {% if error_message %}
     <p style="color: red;">{{ error_message }}</p>
 {% endif %}
-
-<form method="POST">
-    {% csrf_token %}
-
-    <label for="otp">Enter one-time passcode:</label>
-    <input type="text" name="otp" required>
-    <button type="submit">Verify</button>
-</form>
 
 {% endblock content %}

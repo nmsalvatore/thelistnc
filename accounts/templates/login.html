@@ -2,11 +2,23 @@
 
 {% block content %}
 
-<h2>Login</h2>
-<form method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-</form>
+<h1>Login</h1>
+<p>Please enter your email address in the field below and click Log In. As a security measure, we will send a one-time passcode to your email address. You will need to enter this passcode on the next page to complete the login process.</p>
+
+<div class="content">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset role="group">
+            {{ form.email }}
+            <input type="submit" value="Login" />
+        </fieldset>
+    </form>
+</div>
+
+{% if form.email.errors %}
+    {% for error in form.email.errors %}
+        <p style="color: red;">{{ error }}</p>
+    {% endfor %}
+{% endif %}
 
 {% endblock content %}

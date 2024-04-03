@@ -5,18 +5,27 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from decouple import config
 
-from .models import Invitation
+from accounts.models import Invitation
 
 
 @user_passes_test(lambda u: u.is_superuser)
 def send_invitation(request):
     if request.method == 'POST':
+        # Get email from form
         email = request.POST['email']
+
+        # Check for previous invitations
+        already_invited = Invitation.objects.filter(email=email)
+        if already_invited:
+            error_message = 'User has already received an invitation.'
+            return render(request, 'send_invitation.html', {'error_message': error_message})
+
+        # Create invitation
         invitation = Invitation.objects.create(email=email)
 
-        # Send email with invitation code using Mailgun SMTP
+        # Configure email for Mailgun SMTP
         subject = 'You\'ve been invited to be a moderator for The List NC'
-        registration_url = f'http://localhost:8000/moderator/register?code={invitation.code}'
+        registration_url = f'http://localhost:8000/admin/register?code={invitation.code}'
         context = {
             'email': email,
             'registration_url': registration_url,
@@ -26,14 +35,20 @@ def send_invitation(request):
         from_email = config('VERIFIED_SENDER')
         recipient_list = [email]
 
-        send_mail(
-            subject,
-            plain_message,
-            from_email,
-            recipient_list,
-            html_message=html_message,
-            fail_silently=False,
-        )
+        # Send email using Mailgun SMTP
+        try:
+            send_mail(
+                subject,
+                plain_message,
+                from_email,
+                recipient_list,
+                html_message=html_message,
+                fail_silently=False,
+            )
+        except:
+            error_message = 'User email has not been verified with Mailgun.'
+            invitation.delete()
+            return render(request, 'send_invitation.html', {'error_message': error_message})
 
         return redirect('invitation_sent')
 

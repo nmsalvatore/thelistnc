@@ -1,0 +1,12 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <h1>Volunteer Dashboard</h1>
+    <p>Hello! As a volunteer, you've been granted the ability to create, edit, and delete event listings for The List NC. Wield your power with care and grace. Your contributions and efforts are greatly appreciated!</p>
+{% else %}
+    <h1>Hey, you shouldn't be here!</h1>
+{% endif %}
+
+{% endblock content %}

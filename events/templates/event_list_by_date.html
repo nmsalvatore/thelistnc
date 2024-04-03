@@ -1,29 +1,41 @@
 {% extends 'main.html' %}
 
 
-{% block sort_heading %}
-
-    <span>| by date</span>
-
-{% endblock sort_heading %}
-
-
 {% block content %}
 
+    <h1>Calendar</h1>
+    <p>Explore a wide range of events in Nevada County, California. From community festivals and live performances to art exhibitions and farmer's markets, there's something for everyone to enjoy. Explore our comprehensive event listings to find the perfect activities that suit your interests.</p>
     <section class="sort-options">
-        <span>Sort By:</span>
-        <span class="active-sort">Date</span>
-        <a href="{% url 'event_list_by_venue' %}">Venue</a>
+        <span class="sort-option active">Date</span>
+        <a class="sort-option" href="{% url 'event_list_by_venue' %}">Venue</a>
     </section>
 
     <section>
     {% for date, events in grouped_events %}
-        <h2>{{ date | date:"M d, Y"}}</h2>
-        <ul>
-        {% for event in events %}
-            <li>{{ event }}, {{ event.venue }} @ {{ event.start_date | date:"g:i A" }}</li>
-        {% endfor %}
-        </ul>
+        <table>
+            <thead>
+                <tr>
+                    <th>{{ date | date:"M d, Y"}}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for event in events %}
+                <tr>
+                    <td>{{ event }}</td>
+                    <td>{{ event.venue }}</td>
+                    <td>{{ event.start_date | date:"g:i A" }}</td>
+
+                    {% if event.admission_price == 0 %}
+                        <td>Free</td>
+                    {% elif event.admission_price > 0 %}
+                        <td>${{ event.admission_price }}</td>
+                    {% else %}
+                        <td>?</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     {% endfor %}
     </section>
 

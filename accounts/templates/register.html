@@ -2,11 +2,21 @@
 
 {% block content %}
 
-<h2>Register</h2>
+<h1>Registration</h1>
+<p>You've been invited to volunteer with The List NC! To proceed with registration, please enter your email address in the field below and click Register. As a security measure, we will send a one-time passcode to your email address. The passcode will expire 5 minutes after it is generated, so make sure that you have access to your email inbox before proceeding.</p>
+
 <form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
+    <fieldset role="group">
+        {{ form.email }}
+        <input type="submit" value="Register" />
+    </fieldset>
 </form>
+
+{% if form.email.errors %}
+    {% for error in form.email.errors %}
+        <p style="color: red;">{{ error }}</p>
+    {% endfor %}
+{% endif %}
 
 {% endblock content %}

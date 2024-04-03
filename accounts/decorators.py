@@ -10,5 +10,5 @@ def invitation_required(view_func):
             request.invitation = invitation
             return view_func(request, *args, **kwargs)
         except (Invitation.DoesNotExist, ValueError):
-            return redirect('invitation_required')
+            return redirect('home')
     return wrapper

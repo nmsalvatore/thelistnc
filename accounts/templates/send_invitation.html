@@ -2,13 +2,21 @@
 
 {% block content %}
 
-<h2>Send Invitation</h2>
-<form method="POST">
-    {% csrf_token %}
-    <fieldset role="group">
-        <input type="email" palceholder="Email" name="email" required />
-        <input type="submit" value="Send" />
-    </fieldset>
-</form>
+<h1>Send Invitation</h1>
+<p>Use the form below to send an invitation to volunteers. Enter the recipient's email address and click Send Invitation. The recipient will receive an email with a unique link to create their account.</p>
+
+<div class="content">
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset role="group">
+            <input type="email" placeholder="Email" name="email" autocomplete="off" required />
+            <input type="submit" value="Send" />
+        </fieldset>
+    </form>
+</div>
+
+{% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+{% endif %}
 
 {% endblock content %}
