@@ -11,10 +11,10 @@ urlpatterns = [
     path('send-invitation/', send_invitation, name='send_invitation'),
     path('invitation-sent/', invitation_sent, name='invitation_sent'),
     path('register/', register_view, name='register'),
-    path('registration-success/', registration_success, name='registration_success'),
-    path('verify-register-otp/', verify_register_otp, name='verify_register_otp'),
-    path('verify-login-otp/', verify_login_otp, name='verify_login_otp'),
+    path('register/verify/', verify_register_otp, name='verify_register_otp'),
+    path('register/success/', registration_success, name='registration_success'),
     path('login/', login_view, name='login'),
+    path('login/verify/', verify_login_otp, name='verify_login_otp'),
     path('logout/', logout_view, name='logout'),
     path('', dashboard_view, name='dashboard'),
 ]
