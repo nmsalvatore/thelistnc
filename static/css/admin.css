@@ -5,7 +5,28 @@ form {
         border: none;
     }
 
-    input, button {
+    input {
+        font-size: 1rem;
+        padding: 0.75rem 0;
+        border: none;
+        border-bottom: 1px solid #aaa;
+    }
+
+    input::placeholder {
+        color: #999;
+    }
+
+    input[type='datetime-local'] {
+        font-family: inherit;
+        font-size: inherit;
+    }
+
+    input:focus {
+        outline: none;
+        border-bottom: 1px solid var(--black);
+    }
+
+    button, input[type='submit'] {
         padding: 0.75rem;
         border-radius: 0.25rem;
         border: 1px solid var(--black);
@@ -14,15 +35,40 @@ form {
     input[type='email'],
     input[name='otp'] {
         width: 360px;
+        margin-right: 0.75rem;
     }
 
     input[type='submit'] {
         width: 80px;
     }
+
+    p {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.5rem;
+    }
+
+    p label {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 0.75rem;
+    }
+}
+
+form.event {
+    display: flex;
+    flex-direction: column;
+    margin: 4.5rem 0 3rem;
+
+    input[type='submit'] {
+        margin-top: 1.5rem;
+        width: 160px;
+    }
 }
 
 .content {
-    a.send-invite {
+    a.send-invite,
+    a.new-event {
         display: inline-block;
         padding: 0.75rem 1.5rem;
         background: var(--black);

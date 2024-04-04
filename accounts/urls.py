@@ -5,6 +5,7 @@ from accounts.views.register import register_view, verify_register_otp, registra
 from accounts.views.login import login_view, verify_login_otp
 from accounts.views.logout import logout_view
 from accounts.views.dashboard import dashboard_view
+from accounts.views.event_form import event_form_view
 
 
 urlpatterns = [
@@ -16,5 +17,6 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('login/verify/', verify_login_otp, name='verify_login_otp'),
     path('logout/', logout_view, name='logout'),
+    path('event/new/', event_form_view, name='event_form'),
     path('', dashboard_view, name='dashboard'),
 ]
