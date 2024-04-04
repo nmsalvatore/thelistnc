@@ -23,9 +23,12 @@ def login_view(request):
             try:
                 user = User.objects.get(email=email)
                 otp = str(random.randint(100000, 999999))
+
+                # Initialize session data
                 request.session['email'] = email
                 request.session['otp'] = otp
                 request.session['otp_timestamp'] = time.time()
+                request.session['attempt_count'] = 0
 
                 # Send OTP via email
                 send_mail(
@@ -49,42 +52,75 @@ def verify_login_otp(request):
     """
     Complete user login with one-time passcode
     """
+
+    # Retrieve session data
     email = request.session.get('email')
     otp_timestamp = request.session.get('otp_timestamp')
+    stored_otp = request.session.get('otp')
+    attempt_count = request.session.get('attempt_count')
 
+    # GET request logic
+    if request.method == 'GET':
+        context = {
+            'email': email,
+        }
+        return render(request, 'verify_otp.html', context)
+
+    # POST request logic
     if request.method == 'POST':
-        otp = request.POST.get('otp')
-        stored_otp = request.session.get('otp')
 
+        # Increment attempt count and save to session
+        attempt_count += 1
+        request.session['attempt_count'] = attempt_count
+
+        # Retrieve form OTP value
+        otp = request.POST.get('otp')
+
+        # If attempts exceed 3, throw error
+        if attempt_count > 3:
+            error_message = 'Attempt limit has been exceeded.'
+            context = {
+                'email': email,
+                'error_message': error_message
+            }
+            return render(request, 'verify_otp.html', context)
+
+        # Check for matching OTP values
         if otp and stored_otp and otp == stored_otp:
+
+            # If OTP values match and stored OTP has not expired, log in user
             if time.time() - otp_timestamp <= 300:
+
+                # Log in user
                 user = User.objects.get(email=email)
                 login(request, user)
 
+                # Clear session data
                 del request.session['email']
                 del request.session['otp']
                 del request.session['otp_timestamp']
+                del request.session['attempt_count']
 
                 return redirect('dashboard')
+
+            # If stored OTP has expired, throw error
             else:
                 error_message = 'Passcode has expired.'
                 context = {
                     'email': email,
                     'error_message': error_message,
-                    'otp_timestamp': otp_timestamp
                 }
                 return render(request, 'verify_otp.html', context)
+
+        # If OTP values do not match, throw error
         else:
             error_message = 'Invalid passcode.'
             context = {
                 'email': email,
                 'error_message': error_message,
-                'otp_timestamp': otp_timestamp
             }
             return render(request, 'verify_otp.html', context)
+
+    # If request is not POST or GET, redirect to home
     else:
-        context = {
-            'email': email,
-            'otp_timestamp': otp_timestamp
-        }
-        return render(request, 'verify_otp.html', context)
+        return redirect('home')
