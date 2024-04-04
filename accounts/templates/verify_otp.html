@@ -8,7 +8,7 @@
 <div class="content">
     <form method="POST">
         {% csrf_token %}
-        <input type="text" name="otp" autocomplete="off" required />
+        <input type="text" name="otp" autocomplete="off" placeholder="ex. 012345" required />
         <button type="submit">Verify</button>
     </form>
 </div>
