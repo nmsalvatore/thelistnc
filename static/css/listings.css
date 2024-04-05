@@ -56,17 +56,24 @@ section.content .listings .sort-option.active {
 }
 
 section.content .listings h3 {
-    font-size: 1rem;
+    font-size: 1.25rem;
     border-bottom: 2px solid #eee;
-    padding-bottom: 0.75rem;
-    margin-top: 3rem;
+    padding-bottom: 0.25rem;
     margin-bottom: 0.75rem;
 }
 
 section.content .listings .event-row {
     display: flex;
     justify-content: space-between;
-    padding: 0.75rem 0;
+    padding: 0.5rem 0;
+}
+
+section.content .listings .event-group {
+    margin-top: 3rem;
+}
+
+section.content .listings .event-group .event-row:last-child {
+    padding-bottom: 0;
 }
 
 section.content .listings a.edit.btn,

@@ -13,26 +13,28 @@
                 <a class="sort-option" href="{% url 'the_list' sorting='by-venue' %}">By Venue</a>
             </div>
             {% for date, events in grouped_events %}
-                <h3>{{ date | date:"M d, Y"}}</h3>
-                {% for event in events %}
-                    <div class="event-row">
-                        <div class="event-info">
-                            <span class="title">{{ event }}, </span>
-                            <span class="venue">{{ event.venue }} @</span>
-                            <span class="start-time">{{ event.start_date | date:"g:i A" }}</span>
-        
-                            {% if event.admission_price == 0 %}
-                                <span class="admission">Free</span>
-                            {% elif event.admission_price > 0 %}
-                                <span class="admission">${{ event.admission_price }}</span>
+                <div class="event-group">
+                    <h3>{{ date | date:"M d, Y"}}</h3>
+                    {% for event in events %}
+                        <div class="event-row">
+                            <div class="event-info">
+                                <span class="title">{{ event }}, </span>
+                                <span class="venue">{{ event.venue }} @</span>
+                                <span class="start-time">{{ event.start_date | date:"g:i A" }}</span>
+            
+                                {% if event.admission_price == 0 %}
+                                    <span class="admission">Free</span>
+                                {% elif event.admission_price > 0 %}
+                                    <span class="admission">${{ event.admission_price }}</span>
+                                {% endif %}
+                            </div>
+                            
+                            {% if event.url %}
+                                <a class="more-info" href="{{ event.url }}"">More Info</a>
                             {% endif %}
                         </div>
-                        
-                        {% if event.url %}
-                            <a class="more-info" href="{{ event.url }}"">More Info</a>
-                        {% endif %}
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             {% endfor %}
         </div>
     </section>

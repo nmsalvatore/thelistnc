@@ -19,23 +19,25 @@
             </nav>
  
             {% for date, events in grouped_events %}
-                <h3>{{ date | date:"M d, Y"}}</h3>
-                {% for event in events %}
-                    <div class="event-row">
-                        <div class="event-info">
-                            <span class="title">{{ event }}, </span>
-                            <span class="venue">{{ event.venue }} @</span>
-                            <span class="start-time">{{ event.start_date | date:"g:i A" }}</span>
-        
-                            {% if event.admission_price == 0 %}
-                                <span class="admission">Free</span>
-                            {% elif event.admission_price > 0 %}
-                                <span class="admission">${{ event.admission_price }}</span>
-                            {% endif %}
+                <div class="event-group">
+                    <h3>{{ date | date:"M d, Y"}}</h3>
+                    {% for event in events %}
+                        <div class="event-row">
+                            <div class="event-info">
+                                <span class="title">{{ event }}, </span>
+                                <span class="venue">{{ event.venue }} @</span>
+                                <span class="start-time">{{ event.start_date | date:"g:i A" }}</span>
+            
+                                {% if event.admission_price == 0 %}
+                                    <span class="admission">Free</span>
+                                {% elif event.admission_price > 0 %}
+                                    <span class="admission">${{ event.admission_price }}</span>
+                                {% endif %}
+                            </div>
+                            <a class="edit btn" href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
                         </div>
-                        <a class="edit btn" href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             {% endfor %}
         </div>
     </section>
