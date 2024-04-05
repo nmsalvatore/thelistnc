@@ -17,19 +17,31 @@ class LoginForm(forms.Form):
 
 
 class EventForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.label_suffix = ''
+
     class Meta:
         model = Event
         fields = [
             'title', 
             'venue', 
-            'city', 
-            'admission_price', 
+            'city',
             'start_date', 
             'end_date',
+            'admission_price', 
             'url',
         ]
+        labels = {
+            'title': 'Title *',
+            'venue': 'Venue *',
+            'city': 'City *',
+            'start_date': 'Start Date & Time *',
+            'end_date': 'End Date & Time',
+            'url': 'URL'
+        }
         widgets = {
-            'title': forms.TextInput(attrs={'placeholder': 'ex. Aaron Ross & Kendrick Lamar'}),
+            'title': forms.TextInput(attrs={'placeholder': 'ex. Aaron Ross'}),
             'venue': forms.TextInput(attrs={'placeholder': 'ex. The Miner\'s Foundry'}),
             'city': forms.TextInput(attrs={'placeholder': 'ex. Nevada City'}),
             'admission_price': forms.NumberInput(attrs={'placeholder': 'ex. 25'}),

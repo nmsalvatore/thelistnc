@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1>Edit Event</h1>
+<p>To edit the event data, please modify or add new values to the form below and click the Update Event button. To delete the event, click the Delete Event button.</p>
+
+<div class="content">
+    <form class="event" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <input type="submit" value="Update Event">
+    </form>
+</div>
+
+<h2>Delete Event</h2>
+<p>If you would like to delete this event, click the Delete Event button below. You will be prompted to confirm the deletion of the listing. If you wish to proceed, click OK in the prompt.</p>
+
+<a class="delete btn" href="{% url 'delete_event' uuid=uuid %}">Delete Event</a>
+
+{% endblock content %}

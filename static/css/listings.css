@@ -1,0 +1,78 @@
+section.content h2 {
+    margin-top: 4.5rem;
+    margin-bottom: 1.5rem;
+}
+
+section.content .listings {
+    margin-bottom: 1.5rem;
+}
+
+section.content .listings nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+section.content .listings nav .send-invite,
+section.content .listings nav .new-event {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 0.25rem;
+}
+
+section.content .listings nav .send-invite {
+    border: 1px solid var(--black);
+    border-radius: 0.25rem;
+    color: var(--black);
+}
+
+section.content .listings nav .new-event {
+    background: var(--black);
+    border-radius: 0.25rem;
+    color: var(--white);
+}
+
+section.content .listings .sort-options {
+    display: flex;
+}
+
+section.content .listings .sort-option {
+    display: block;
+    font-size: 14px;
+    border: 1px solid #f4f4f4;
+    background: #f4f4f4;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    color: var(--dk-gray);
+}
+
+section.content .listings .sort-option.active {
+    border: 1px solid var(--black);
+    background: none;
+    color: var(--black);
+}
+
+section.content .listings h3 {
+    font-size: 1rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.75rem;
+    margin-top: 3rem;
+    margin-bottom: 0.75rem;
+}
+
+section.content .listings .event-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+}
+
+section.content .listings a.edit.btn,
+section.content .listings a.more-info {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 4px;
+}

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+from django.urls import reverse
 from accounts.forms import LoginForm
 
 import random
@@ -13,7 +14,7 @@ def login_view(request):
     Handle user login
     """
     if request.user.is_authenticated:
-        return redirect('dashboard')
+        return redirect(reverse('dashboard', args=['by-date']))
 
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -101,7 +102,7 @@ def verify_login_otp(request):
                 del request.session['otp_timestamp']
                 del request.session['attempt_count']
 
-                return redirect('dashboard')
+                return redirect(reverse('dashboard', args=['by-date']))
 
             # If stored OTP has expired, throw error
             else:

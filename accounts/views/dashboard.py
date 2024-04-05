@@ -1,11 +1,46 @@
 from django.shortcuts import render, redirect
+from events.models import Event
 
 
-def dashboard_view(request):
-    if request.user.is_superuser:
-        return render(request, 'superuser_dashboard.html')
-    
-    if request.user.is_authenticated:
-        return render(request, 'volunteer_dashboard.html')
+def dashboard_view(request, sorting='by-date'):
+    user = request.user
+
+    if user.is_authenticated:
+        if user.is_superuser:
+            if sorting == 'by-date':
+                grouped_events = group_events('start_date')
+                return render(request, 'dashboard_superuser_by_date.html', {'grouped_events': grouped_events})
+
+            elif sorting == 'by-venue':
+                grouped_events = group_events('venue')
+                return render(request, 'dashboard_superuser_by_venue.html', {'grouped_events': grouped_events})
+
+        else:
+            if sorting == 'by-date':
+                grouped_events = group_events('start_date')
+                return render(request, 'dashboard_volunteer_by_date.html', {'grouped_events': grouped_events})
+
+            elif sorting == 'by-venue':
+                grouped_events = group_events('venue')
+                return render(request, 'dashboard_volunteer_by_venue.html', {'grouped_events': grouped_events})
     
     return redirect('login')
+
+
+def group_events(field):
+    grouped_events = []
+    events = Event.objects.order_by(field)
+
+    if field == 'start_date':
+        dates = events.dates('start_date', 'day')
+        for date in dates:
+            date_events = events.filter(start_date__date=date)
+            grouped_events.append((date, date_events))
+
+    if field == 'venue':
+        venues = events.values_list('venue', flat=True).distinct()
+        for venue in venues:
+            venue_events = events.filter(venue=venue)
+            grouped_events.append((venue, venue_events))
+
+    return grouped_events

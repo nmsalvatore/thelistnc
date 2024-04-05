@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/listings.css' %}">
     <link rel="stylesheet" href="{% static 'css/admin.css' %}">
     <title>The List NC</title>
 </head>
@@ -17,7 +18,7 @@
             {% if user.is_authenticated %}
                 <div class="admin-options">
                     <small>{{ user.email }}</small>
-                    <a class="dashboard" href="{% url 'dashboard' %}">Dashboard</a>
+                    <a class="dashboard" href="{% url 'dashboard' sorting='by-date' %}">Dashboard</a>
                     <a class="logout" href="{% url 'logout' %}">Logout</a>
                 </div>
             {% endif %}
