@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+from decouple import config
 
 from accounts.models import Invitation, UserProfile
 from accounts.forms import RegistrationForm
@@ -36,7 +37,7 @@ def register_view(request):
                 send_mail(
                     'Your one-time passcode',
                     f'Your one-time passcode is: {otp}',
-                    'from@example.com',
+                    config('EMAIL_VERIFY_SENDER'),
                     [email],
                     fail_silently=False,
                 )

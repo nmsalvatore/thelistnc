@@ -32,7 +32,7 @@ def send_invitation(request):
         }
         html_message = render_to_string('invitation_email.html', context)
         plain_message = strip_tags(html_message)
-        from_email = config('VERIFIED_SENDER')
+        from_email = config('EMAIL_INVITE_SENDER')
         recipient_list = [email]
 
         # Send email using Mailgun SMTP
