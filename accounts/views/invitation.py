@@ -25,7 +25,8 @@ def send_invitation(request):
 
         # Configure email for Mailgun SMTP
         subject = 'You\'ve been invited to be a moderator for The List NC'
-        registration_url = f'http://localhost:8000/admin/register?code={invitation.code}'
+        base_url = config('BASE_URL')
+        registration_url = f'{base_url}/admin/register?code={invitation.code}'
         context = {
             'email': email,
             'registration_url': registration_url,
