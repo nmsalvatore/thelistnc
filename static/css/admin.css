@@ -2,6 +2,7 @@ form {
     margin: 3rem 0 1.5rem;
 
     fieldset {
+        display: flex;
         border: none;
     }
 
@@ -32,14 +33,17 @@ form {
         border: 1px solid var(--black);
     }
 
-    input[type='email'],
-    input[name='otp'] {
-        max-width: 360px;
-        margin-right: 0.75rem;
+    input[type='email'] {
+        width: 480px;
     }
 
-    input[type='submit'] {
-        max-width: 80px;
+    input[type='otp'] {
+        width: 360px;
+    }
+
+    input[type='email'],
+    input[name='otp'] {
+        margin-right: 0.75rem;
     }
 
     p {
@@ -95,4 +99,10 @@ main a.delete.btn {
     border: 1px solid var(--black);
     border-radius: 0.25rem;
     color: var(--black);
+}
+
+@media only screen and (max-width: 600px) {
+    form input[type='email'] {
+        width: 100%;
+    }
 }
