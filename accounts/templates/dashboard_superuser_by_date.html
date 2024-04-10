@@ -1,4 +1,5 @@
 {% extends 'main.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -13,8 +14,14 @@
                     <a class="sort-option" href="{% url 'dashboard' sorting='by-venue' %}">By Venue</a>
                 </div>
                 <div class="action-options">
-                    <a class="send-invite" href="{% url 'send_invitation' %}">Send invitation</a>
-                    <a class="new-event" href="{% url 'new_event_form' %}">Create new event</a>
+                    <a class="send-invite" href="{% url 'send_invitation' %}">
+                        <img src="{% static 'icons/send.svg' %}">
+                        Send invitation
+                    </a>
+                    <a class="new-event" href="{% url 'new_event_form' %}">
+                        <img src="{% static 'icons/plus.svg' %}">
+                        Create new event
+                    </a>
                 </div>
             </nav>
             {% for date, events in grouped_events %}

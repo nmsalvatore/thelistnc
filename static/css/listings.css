@@ -18,8 +18,9 @@ section.content .listings .action-options {
 }
 
 section.content .listings .action-options a {
-    display: block;
-    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem 0.5rem 0.75rem;
     font-size: 14px;
     text-decoration: none;
     border-radius: 0.25rem;
@@ -29,16 +30,28 @@ section.content .listings .action-options a:last-child {
     margin-left: 0.375rem;
 }
 
+section.content .listings a img {
+    width: 1rem;
+    margin-right: 0.375rem;
+}
+
 section.content .listings nav .send-invite {
     border: 1px solid var(--black);
-    border-radius: 0.25rem;
     color: var(--black);
+}
+
+section.content .listings nav .send-invite img {
+    filter: invert(33%) sepia(0%) saturate(21%) hue-rotate(186deg) brightness(97%) contrast(92%);
 }
 
 section.content .listings nav .new-event {
     background: var(--black);
     border-radius: 0.25rem;
     color: var(--white);
+}
+
+section.content .listings nav .new-event img {
+    filter: invert(99%) sepia(1%) saturate(567%) hue-rotate(277deg) brightness(117%) contrast(100%);
 }
 
 section.content .listings .sort-options {
@@ -57,7 +70,7 @@ section.content .listings .sort-option {
 }
 
 section.content .listings .sort-option.active {
-    border: 1px solid var(--gray);
+    border: 1px solid var(--black);
     background: none;
     color: var(--black);
 }

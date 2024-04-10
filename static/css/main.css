@@ -90,7 +90,7 @@ main h1 {
 main h1 + p {
     max-width: 480px;
     line-height: 1.5;
-    margin-bottom: 4.5rem;
+    margin-bottom: 3rem;
 }
 
 main .event-date {
@@ -143,10 +143,6 @@ small {
 
     main > .container {
         padding: 4.5rem 1.5rem;
-    }
-
-    main h1 + p {
-        margin-bottom: 4.5rem;
     }
 }
 
