@@ -69,7 +69,7 @@ header {
 
 a.logo {
     font-size: 1.25rem;
-    font-weight: 700;
+    font-weight: 500;
     color: inherit;
     text-decoration: none;
 }
@@ -81,11 +81,12 @@ main > .container {
 main p:has(+ h1) {
     margin-bottom: 0.75rem;
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 main h1 {
     margin-bottom: 0.75rem;
+    font-weight: 500;
 }
 
 main h1 + p {
@@ -126,6 +127,10 @@ a {
     text-underline-offset: 4px;
 }
 
+a, button, input[type="submit"] {
+    cursor: pointer;
+}
+
 footer {
     .container {
         padding: 1.5rem 0;
@@ -163,5 +168,9 @@ small {
 
     main > .container {
         padding: 4rem 1rem;
+    }
+
+    main h1 + p {
+        width: 90%;
     }
 }

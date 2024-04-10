@@ -63,7 +63,7 @@ section.content .listings .sort-option {
     font-size: 14px;
     border: 1px solid #f4f4f4;
     background: #f4f4f4;
-    padding: 0.5rem 1rem;
+    padding: 0.375rem 0.75rem;
     text-align: center;
     text-decoration: none;
     color: var(--dk-gray);
