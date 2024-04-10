@@ -44,7 +44,7 @@ class EventForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'placeholder': 'ex. Aaron Ross'}),
             'venue': forms.TextInput(attrs={'placeholder': 'ex. The Miner\'s Foundry'}),
             'city': forms.TextInput(attrs={'placeholder': 'ex. Nevada City'}),
-            'admission_price': forms.NumberInput(attrs={'placeholder': 'ex. 25'}),
+            'admission_price': forms.TextInput(attrs={'placeholder': 'ex. $25'}),
             'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'end_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'url': forms.TextInput(attrs={'placeholder': 'ex. https://www.minersfoundry.com/events/aaron-ross-show.html'}),
