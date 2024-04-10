@@ -18,15 +18,22 @@
                     {% for event in events %}
                         <div class="event-row">
                             <div class="event-info">
-                                <span class="title">{{ event }}, </span>
-                                <span class="venue">{{ event.venue }} @</span>
-                                <span class="start-time">{{ event.start_date | date:"g:i A" }}</span>
+                                <span class="title">{{ event }}</span>
+                                <div class="event-specs">
+                                    <span class="time">
+                                        {{ event.start_date | date:"l, M d, Y" }} at
+                                        {{ event.start_date | date:"g:i A" }},
+                                    </span>
+                                    <span class="venue">&nbsp;{{ event.venue }}</span>
+                                    
+                                    {% if event.admission_price == 0 %}
+                                        <span class="admission">, Free</span>
+                                    {% elif event.admission_price > 0 %}
+                                        <span class="admission">, ${{ event.admission_price }}</span>
+                                    {% endif %}
+                                </div>
             
-                                {% if event.admission_price == 0 %}
-                                    <span class="admission">Free</span>
-                                {% elif event.admission_price > 0 %}
-                                    <span class="admission">${{ event.admission_price }}</span>
-                                {% endif %}
+
                             </div>
                             
                             {% if event.url %}

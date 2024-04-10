@@ -30,15 +30,20 @@
                     {% for event in events %}
                         <div class="event-row">
                             <div class="event-info">
-                                <span class="start-date">{{ event.start_date | date:"M d, Y" }} -</span>
-                                <span class="title">{{ event }} @</span>
-                                <span class="start-time">{{ event.start_date | date:"g:i A" }}</span>
-            
-                                {% if event.admission_price == 0 %}
-                                    <span class="admission">Free</span>
-                                {% elif event.admission_price > 0 %}
-                                    <span class="admission">${{ event.admission_price }}</span>
-                                {% endif %}
+                                <span class="title">{{ event }}</span>
+                                <div class="event-specs">
+                                    <span class="time">
+                                        {{ event.start_date | date:"l, M d, Y" }} at
+                                        {{ event.start_date | date:"g:i A" }},
+                                    </span>
+                                    <span class="venue">&nbsp;{{ event.venue }}</span>
+                                    
+                                    {% if event.admission_price == 0 %}
+                                        <span class="admission">, Free</span>
+                                    {% elif event.admission_price > 0 %}
+                                        <span class="admission">, ${{ event.admission_price }}</span>
+                                    {% endif %}
+                                </div>
                             </div>
                             <a class="edit btn" href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
                         </div>
