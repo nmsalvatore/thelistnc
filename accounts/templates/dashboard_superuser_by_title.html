@@ -1,18 +1,28 @@
 {% extends 'main.html' %}
-
+{% load static %}
 
 {% block content %}
 
-    <h1>Event Listings</h1>
-    <p>Explore a wide range of events in Nevada County, California. From community festivals and live performances to art exhibitions and farmer's markets, there's something for everyone to enjoy.</p>
-
+{% if user.is_authenticated %}
+    <h1>Admin Dashboard</h1>
+    <p>Welcome! As an administrator, you have the ability to create, edit, and delete event data, as well as invite new volunteers. You're cute and you're smart too.</p>
     <section class="content">
         <div class="listings">
             <nav>
                 <div class="sort-options">
-                    <a class="sort-option" href="{% url 'the_list' sorting='by-date' %}">By Date</a>
-                    <a class="sort-option" href="{% url 'the_list' sorting='by-venue' %}">By Venue</a>
+                    <a class="sort-option" href="{% url 'dashboard' sorting='by-date' %}">By Date</a>
+                    <a class="sort-option" href="{% url 'dashboard' sorting='by-venue' %}">By Venue</a>
                     <span class="sort-option active">ABC</span>
+                </div>
+                <div class="action-options">
+                    <a class="send-invite" href="{% url 'send_invitation' %}">
+                        <img src="{% static 'icons/send.svg' %}">
+                        Send invitation
+                    </a>
+                    <a class="new-event" href="{% url 'new_event_form' %}">
+                        <img src="{% static 'icons/plus.svg' %}">
+                        Create new event
+                    </a>
                 </div>
             </nav>
             {% for event in events %}
@@ -33,12 +43,13 @@
                         </div>
                     </div>
                     
-                    {% if event.url %}
-                        <a class="more-info" href="{{ event.url }}"">More Info</a>
-                    {% endif %}
+                    <a class="edit btn" href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
                 </div>
             {% endfor %}
         </div>
     </section>
+{% else %}
+    <h1>Hey, you shouldn't be here!</h1>
+{% endif %}
 
 {% endblock content %}

@@ -11,8 +11,9 @@
         <div class="listings">
             <nav>
                 <div class="sort-options">
-                    <a class="sort-option" href="{% url 'dashboard' sorting='by-date'%}">By Date</a>
+                    <a class="sort-option" href="{% url 'dashboard' sorting='by-date' %}">By Date</a>
                     <span class="sort-option active">By Venue</span>
+                    <a class="sort-option" href="{% url 'dashboard' sorting='by-title' %}">ABC</a>
                 </div>
                 <div class="action-options">
                     <a class="new-event" href="{% url 'new_event_form' %}">

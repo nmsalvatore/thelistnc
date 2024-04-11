@@ -14,7 +14,7 @@ def the_list(request, sorting='by-date'):
         return render(request, 'event_list_by_venue.html', context)
     
     elif sorting == 'by-title':
-        events = Event.objects.order_by('title')
+        events = Event.objects.order_by('title', 'start_date')
         context = {'events': events}
         return render(request, 'event_list_by_title.html', context)
 
@@ -32,7 +32,7 @@ def group_events(field):
     if field == 'venue':
         venues = events.values_list('venue', flat=True).distinct()
         for venue in venues:
-            venue_events = events.filter(venue=venue).order_by('start_date')
+            venue_events = events.filter(venue=venue).order_by('start_date', 'title')
             grouped_events.append((venue, venue_events))
 
     return grouped_events

@@ -11,6 +11,7 @@ section.content .listings nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 3rem;
 }
 
 section.content .listings .action-options {
@@ -57,7 +58,6 @@ section.content .listings nav .new-event img {
 
 section.content .listings .sort-options {
     display: flex;
-    margin-bottom: 3rem;
 }
 
 section.content .listings .sort-option {
@@ -135,11 +135,11 @@ section.content .listings a.more-info {
     }
 
     section.content .listings .action-options {
-        margin-bottom: 3rem;
+        margin-bottom: 1.5rem;
         flex-direction: column;
     }
 
-    section.content .listings .action-options a:first-child {
+    section.content .listings nav .send-invite {
         margin-bottom: 0.375rem;
     }
     

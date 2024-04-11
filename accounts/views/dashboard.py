@@ -14,6 +14,11 @@ def dashboard_view(request, sorting='by-date'):
             elif sorting == 'by-venue':
                 grouped_events = group_events('venue')
                 return render(request, 'dashboard_superuser_by_venue.html', {'grouped_events': grouped_events})
+            
+            elif sorting == 'by-title':
+                events = Event.objects.order_by('title', 'start_date')
+                context = {'events': events}
+                return render(request, 'dashboard_superuser_by_title.html', context)
 
         else:
             if sorting == 'by-date':
@@ -23,6 +28,11 @@ def dashboard_view(request, sorting='by-date'):
             elif sorting == 'by-venue':
                 grouped_events = group_events('venue')
                 return render(request, 'dashboard_volunteer_by_venue.html', {'grouped_events': grouped_events})
+            
+            elif sorting == 'by-title':
+                events = Event.objects.order_by('title', 'start_date')
+                context = {'events': events}
+                return render(request, 'dashboard_volunteer_by_title.html', context)
     
     return redirect('login')
 
@@ -40,7 +50,7 @@ def group_events(field):
     if field == 'venue':
         venues = events.values_list('venue', flat=True).distinct()
         for venue in venues:
-            venue_events = events.filter(venue=venue)
+            venue_events = events.filter(venue=venue).order_by('start_date', 'title')
             grouped_events.append((venue, venue_events))
 
     return grouped_events
