@@ -11,6 +11,7 @@
             <div class="sort-options">
                 <a class="sort-option" href="{% url 'the_list' sorting='by-date' %}">By Date</a>
                 <span class="sort-option active">By Venue</span>
+                <a class="sort-option" href="{% url 'the_list' sorting='by-title' %}">ABC</a>
             </div>
             {% for venue, events in grouped_events %}
                 <div class="event-group">

@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+    <h1>Event Listings</h1>
+    <p>Explore a wide range of events in Nevada County, California. From community festivals and live performances to art exhibitions and farmer's markets, there's something for everyone to enjoy.</p>
+
+    <section class="content">
+        <div class="listings">
+            <div class="sort-options">
+                <a class="sort-option" href="{% url 'the_list' sorting='by-date' %}">By Date</a>
+                <a class="sort-option" href="{% url 'the_list' sorting='by-venue' %}">By Venue</a>
+                <span class="sort-option active">ABC</span>
+            </div>
+            {% for event in events %}
+                <div class="event-row">
+                    <div class="event-info">
+                        <p class="title">{{ event }}</p>
+                        <div class="event-specs">
+                            <p>
+                                {{ event.start_date | date:"l, F d, Y" }} at
+                                {{ event.start_date | date:"g:i A" }}
+                            </p>
+                            
+                            {% if event.admission_price %}
+                                <p>{{ event.venue }}, {{ event.admission_price }}</p>
+                            {% else %}
+                                <p>{{ event.venue }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    {% if event.url %}
+                        <a class="more-info" href="{{ event.url }}"">More Info</a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock content %}

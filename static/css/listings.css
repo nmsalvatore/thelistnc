@@ -57,6 +57,7 @@ section.content .listings nav .new-event img {
 
 section.content .listings .sort-options {
     display: flex;
+    margin-bottom: 3rem;
 }
 
 section.content .listings .sort-option {

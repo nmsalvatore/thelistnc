@@ -12,6 +12,11 @@ def the_list(request, sorting='by-date'):
         grouped_events = group_events('venue')
         context = {'grouped_events': grouped_events}
         return render(request, 'event_list_by_venue.html', context)
+    
+    elif sorting == 'by-title':
+        events = Event.objects.order_by('title')
+        context = {'events': events}
+        return render(request, 'event_list_by_title.html', context)
 
 
 def group_events(field):
