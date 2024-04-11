@@ -3,7 +3,7 @@
     --white: #fff;
     --dk-gray: #6f6f6f;
     --gray: #aaa;
-    --lt-gray: #eee;
+    --lt-gray: #f4f4f4;
 }
 *::before,
 *::after,
@@ -53,7 +53,7 @@ header {
     }
 
     .admin-options a:last-child {
-        margin-left: 0.75rem;
+        margin-left: 0.375rem;
     }
 
     .admin-options small {
@@ -155,10 +155,6 @@ small {
 @media only screen and (max-width: 600px) {
     header .admin-options small {
         display: none;
-    }
-
-    header .admin-options a:last-child {
-        margin-left: 0.375rem;
     }
 
     header > .container,
