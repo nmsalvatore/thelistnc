@@ -24,7 +24,7 @@
  
             {% for date, events in grouped_events %}
                 <div class="event-group">
-                    <h3>{{ date | date:"M d, Y"}}</h3>
+                    <h3>{{ date | date:"F d, Y"}}</h3>
                     {% for event in events %}
                         <div class="event-row">
                             <div class="event-info">
