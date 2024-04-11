@@ -103,8 +103,21 @@ main a.delete.btn {
     font-size: 14px;
 }
 
+.event-row .options {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
 @media only screen and (max-width: 600px) {
     form input[type='email'] {
         width: 100%;
+    }
+
+    .event-row .options {
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 1.5rem;
     }
 }

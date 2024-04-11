@@ -5,7 +5,7 @@ from accounts.views.register import register_view, verify_register_otp, registra
 from accounts.views.login import login_view, verify_login_otp
 from accounts.views.logout import logout_view
 from accounts.views.dashboard import dashboard_view
-from accounts.views.events import new_event, edit_event, delete_event
+from accounts.views.events import new_event, edit_event, delete_event, template_event
 from accounts.views.admin import admin
 
 
@@ -19,6 +19,7 @@ urlpatterns = [
     path('login/verify/', verify_login_otp, name='verify_login_otp'),
     path('logout/', logout_view, name='logout'),
     path('event/new/', new_event, name='new_event_form'),
+    path('event/new/<uuid:uuid>', template_event, name='template_event_form'),
     path('event/edit/<uuid:uuid>/', edit_event, name='edit_event_form'),
     path('event/delete/<uuid:uuid>/', delete_event, name='delete_event'),
     path('<str:sorting>/', dashboard_view, name='dashboard'),

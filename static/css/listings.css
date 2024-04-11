@@ -90,7 +90,7 @@ section.content .listings h3 {
 section.content .listings .event-row {
     display: flex;
     justify-content: space-between;
-    padding: 1.5rem;
+    padding: 1.5rem 1.5rem 1.65rem 1.5rem;
     margin-bottom: 0.75rem;
     border: 1px solid var(--dk-gray);
     border-radius: 0.25rem;
@@ -149,9 +149,5 @@ section.content .listings a.more-info {
 
     section.content .listings .event-row {
         flex-direction: column;
-    }
-
-    section.content .listings .event-row a {
-        margin-top: 1.5rem;
     }
 }
