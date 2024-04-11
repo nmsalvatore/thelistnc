@@ -102,7 +102,7 @@ section.content .listings .title {
 section.content .listings .event-specs {
     margin-top: 0.375rem;
     color: var(--dk-gray);
-    font-size: 12px;
+    font-size: 14px;
 }
 
 section.content .listings .event-specs p:first-child {
@@ -150,6 +150,6 @@ section.content .listings a.more-info {
     }
 
     section.content .listings .event-row a {
-        margin-top: 0.75rem;
+        margin-top: 1.5rem;
     }
 }
