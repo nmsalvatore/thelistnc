@@ -94,7 +94,6 @@ section.content .listings .event-row {
     margin-bottom: 0.75rem;
     border: 1px solid var(--dk-gray);
     border-radius: 0.25rem;
-    background: #f4f4f4;
     box-shadow: 0 1px 8px -6px;
 }
 
