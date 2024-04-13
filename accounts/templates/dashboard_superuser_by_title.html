@@ -25,30 +25,8 @@
                     </a>
                 </div>
             </nav>
-            {% for event in events %}
-                <div class="event-row">
-                    <div class="event-info">
-                        <p class="title">{{ event }}</p>
-                        <div class="event-specs">
-                            <p>
-                                {{ event.start_date | date:"l, F d, Y" }} at
-                                {{ event.start_date | date:"g:i A" }}
-                            </p>
-                            
-                            {% if event.admission_price %}
-                                <p>{{ event.venue }}, {{ event.city }}, {{ event.admission_price }}</p>
-                            {% else %}
-                                <p>{{ event.venue }}, {{ event.city }}</p>
-                            {% endif %}
-                        </div>
-                    </div>
 
-                    <div class="options">
-                        <a class="edit btn" href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
-                        <a class="edit btn" href="{% url 'template_event_form' uuid=event.uuid %}">Use as template</a>
-                    </div>
-                </div>
-            {% endfor %}
+            {% include 'dashboard_listings_by_title.html' %}
         </div>
     </section>
 {% else %}

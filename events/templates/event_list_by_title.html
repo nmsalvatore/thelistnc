@@ -24,11 +24,10 @@
                                 {{ event.start_date | date:"l, F d, Y" }} at
                                 {{ event.start_date | date:"g:i A" }}
                             </p>
-                            
+                            <p>{{ event.venue }}, {{ event.city }}</p>
+                        
                             {% if event.admission_price %}
-                                <p>{{ event.venue }}, {{ event.city }}, {{ event.admission_price }}</p>
-                            {% else %}
-                                <p>{{ event.venue }}, {{ event.city }}</p>
+                                <p>{{ event.admission_price }}</p>
                             {% endif %}
                         </div>
                     </div>
