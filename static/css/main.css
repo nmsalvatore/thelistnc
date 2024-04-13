@@ -61,7 +61,7 @@ header {
     }
 
     .admin-options a.dashboard {
-        background: #fafafa;
+        background: #f4f4f4;
         color: var(--black);
     }
 }
