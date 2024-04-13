@@ -61,7 +61,7 @@ header {
     }
 
     .admin-options a.dashboard {
-        background: #f4f4f4;
+        background: #fafafa;
         color: var(--black);
     }
 }
@@ -84,6 +84,7 @@ main p:has(+ h1) {
 }
 
 main h1 {
+    font-size: 2rem;
     margin-bottom: 0.75rem;
     font-weight: 500;
 }
