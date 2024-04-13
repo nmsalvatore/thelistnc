@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from events.models import Event
 
+import datetime
+
 
 def dashboard_view(request, sorting='by-date'):
     user = request.user
@@ -16,7 +18,8 @@ def dashboard_view(request, sorting='by-date'):
                 return render(request, 'dashboard_superuser_by_venue.html', {'grouped_events': grouped_events})
             
             elif sorting == 'by-title':
-                events = Event.objects.order_by('title', 'start_date')
+                events = Event.objects.filter(start_date__gte=datetime.date.today())
+                events = events.order_by('title', 'start_date')
                 context = {'events': events}
                 return render(request, 'dashboard_superuser_by_title.html', context)
 
@@ -30,7 +33,8 @@ def dashboard_view(request, sorting='by-date'):
                 return render(request, 'dashboard_volunteer_by_venue.html', {'grouped_events': grouped_events})
             
             elif sorting == 'by-title':
-                events = Event.objects.order_by('title', 'start_date')
+                events = Event.objects.filter(start_date__gte=datetime.date.today())
+                events = events.order_by('title', 'start_date')
                 context = {'events': events}
                 return render(request, 'dashboard_volunteer_by_title.html', context)
     
@@ -38,8 +42,10 @@ def dashboard_view(request, sorting='by-date'):
 
 
 def group_events(field):
+    events = Event.objects.filter(start_date__gte=datetime.date.today())
+    events = events.order_by(field)
+
     grouped_events = []
-    events = Event.objects.order_by(field)
 
     if field == 'start_date':
         dates = events.dates('start_date', 'day')
