@@ -37,9 +37,9 @@
                                     </p>
                                     
                                     {% if event.admission_price %}
-                                        <p>{{ event.venue }}, {{ event.admission_price }}</p>
+                                        <p>{{ event.venue }}, {{ event.city }}, {{ event.admission_price }}</p>
                                     {% else %}
-                                        <p>{{ event.venue }}</p>
+                                        <p>{{ event.venue }}, {{ event.city }}</p>
                                     {% endif %}
                                 </div>
                             </div>
