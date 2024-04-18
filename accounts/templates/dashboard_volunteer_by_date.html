@@ -3,31 +3,27 @@
 
 {% block content %}
 
-{% if user.is_authenticated %}
-    <h1>Volunteer Dashboard</h1>
-    <p>Hello! As a volunteer, you've been granted the ability to create, edit, and delete event listings for The List NC. Wield your power with care and grace. Your contributions and efforts are greatly appreciated!</p>
-
-    <section class="content">
-        <div class="listings">
+    {% if user.is_authenticated %}
+        <h1>Volunteer Dashboard</h1>
+        <p>Hello! As a volunteer, you've been granted the ability to create, edit, and delete event listings for The List NC. Wield your power with care and grace. Your contributions and efforts are greatly appreciated!</p>
+        <section class="admin">
             <nav>
-                <div class="sort-options">
-                    <span class="sort-option active">By Date</span>
-                    <a class="sort-option" href="{% url 'dashboard' sorting='by-venue' %}">By Venue</a>
-                    <a class="sort-option" href="{% url 'dashboard' sorting='by-title' %}">ABC</a>
+                <div>
+                    <span>By Date</span>
+                    <a href="{% url 'dashboard' sorting='by-venue' %}">By Venue</a>
                 </div>
-                <div class="action-options">
-                    <a class="new-event" href="{% url 'new_event_form' %}">
+                <div>
+                    <a class="btn" href="{% url 'new_event_form' %}">
                         <img src="{% static 'icons/plus.svg' %}">
                         Create new event
                     </a>
                 </div>
             </nav>
- 
+
             {% include 'dashboard_listings_by_date.html' %}
-        </div>
-    </section>
-{% else %}
-    <h1>Hey, you shouldn't be here!</h1>
-{% endif %}
+        </section>
+    {% else %}
+        <h1>Hey, you shouldn't be here!</h1>
+    {% endif %}
 
 {% endblock content %}

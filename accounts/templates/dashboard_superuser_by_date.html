@@ -3,23 +3,21 @@
 
 {% block content %}
 
-{% if user.is_authenticated %}
-    <h1>Admin Dashboard</h1>
-    <p>Welcome! As an administrator, you have the ability to create, edit, and delete event data, as well as invite new volunteers. You're cute and you're smart too.</p>
-    <section class="content">
-        <div class="listings">
+    {% if user.is_authenticated %}
+        <h1>Admin Dashboard</h1>
+        <p>Welcome! As an administrator, you have the ability to create, edit, and delete event data, as well as invite new volunteers. You're cute and you're smart too.</p>
+        <section class="admin">
             <nav>
-                <div class="sort-options">
-                    <span class="sort-option active">By Date</span>
-                    <a class="sort-option" href="{% url 'dashboard' sorting='by-venue' %}">By Venue</a>
-                    <a class="sort-option" href="{% url 'dashboard' sorting='by-title' %}">ABC</a>
+                <div>
+                    <span>By Date</span>
+                    <a href="{% url 'dashboard' sorting='by-venue' %}">By Venue</a>
                 </div>
-                <div class="action-options">
-                    <a class="send-invite" href="{% url 'send_invitation' %}">
+                <div>
+                    <a class="btn" href="{% url 'send_invitation' %}">
                         <img src="{% static 'icons/send.svg' %}">
                         Send invitation
                     </a>
-                    <a class="new-event" href="{% url 'new_event_form' %}">
+                    <a class="btn" href="{% url 'new_event_form' %}">
                         <img src="{% static 'icons/plus.svg' %}">
                         Create new event
                     </a>
@@ -27,10 +25,9 @@
             </nav>
 
             {% include 'dashboard_listings_by_date.html' %}
-        </div>
-    </section>
-{% else %}
-    <h1>Hey, you shouldn't be here!</h1>
-{% endif %}
+        </section>
+    {% else %}
+        <h1>Hey, you shouldn't be here!</h1>
+    {% endif %}
 
 {% endblock content %}

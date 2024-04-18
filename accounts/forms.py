@@ -24,12 +24,12 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = [
-            'title', 
-            'venue', 
+            'title',
+            'venue',
             'city',
-            'start_date', 
+            'start_date',
             'end_date',
-            'admission_price', 
+            'admission_price',
             'url',
         ]
         labels = {
@@ -42,11 +42,10 @@ class EventForm(forms.ModelForm):
         }
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'ex. Aaron Ross'}),
-            'venue': forms.TextInput(attrs={'placeholder': 'ex. The Miner\'s Foundry'}),
+            'venue': forms.TextInput(attrs={'placeholder': 'ex. Miner\'s Foundry'}),
             'city': forms.TextInput(attrs={'placeholder': 'ex. Nevada City'}),
             'admission_price': forms.TextInput(attrs={'placeholder': 'ex. $25'}),
             'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'end_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
             'url': forms.TextInput(attrs={'placeholder': 'ex. https://www.minersfoundry.com/events/aaron-ross-show.html'}),
         }
-

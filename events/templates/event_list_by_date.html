@@ -1,50 +1,51 @@
-{% extends 'main.html' %}
+{% extends 'main.html' %} {% block content %}
 
+    <h1>
+        Event listings.
+    </h1>
+    <p>
+        Explore a wide range of events in Nevada County, California. From community
+        festivals and live performances to art exhibitions and farmer's markets,
+        there's something for everyone to enjoy.
+    </p>
 
-{% block content %}
+    <section>
+        <nav>
+            <span class="sort-option active">By Date</span>
+            <a
+                class="sort-option"
+                href="{% url 'the_list' sorting='by-venue' %}"
+            >
+                By Venue
+            </a>
+        </nav>
 
-    <h1>Event Listings</h1>
-    <p>Explore a wide range of events in Nevada County, California. From community festivals and live performances to art exhibitions and farmer's markets, there's something for everyone to enjoy.</p>
+        {% for date, events in grouped_events %}
+            <div>
+                <h3>{{ date | date:"D, M j" }}</h3>
+                <ul>
+                    {% for event in events %} {% if event.url %}
+                        <li>
+                            <span>{{ event.start_date | date:"f A" }}</span>
+                            <a href="{{ event.url }}" target="_blank">
+                                {{ event }} @
+                                {{ event.venue }},
+                                {{ event.city }} -
+                                {{ event.admission_price }}
+                            </a>
+                        </li>
 
-    <section class="content">
-        <div class="listings">
-            <nav>
-                <div class="sort-options">
-                    <span class="sort-option active">By Date</span>
-                    <a class="sort-option" href="{% url 'the_list' sorting='by-venue' %}">By Venue</a>
-                    <a class="sort-option" href="{% url 'the_list' sorting='by-title' %}">ABC</a>
-                </div>
-            </nav>
-            {% for date, events in grouped_events %}
-                <div class="event-group">
-                    <h3>{{ date | date:"F d, Y"}}</h3>
-                    {% for event in events %}
-                        <div class="event-row">
-                            <div class="event-info">
-                                <p class="title">{{ event }}</p>
-                                <div class="event-specs">
-                                    <p>
-                                        {{ event.start_date | date:"l, F d, Y" }} at
-                                        {{ event.start_date | date:"g:i A" }}
-                                    </p>
-                                    <p>{{ event.venue }}, {{ event.city }}</p>
-                        
-                                    {% if event.admission_price %}
-                                        <p>{{ event.admission_price }}</p>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            
-                            {% if event.url %}
-                                <div class="options">
-                                    <a class="more-info" href="{{ event.url }}"">More Info</a>
-                                </div>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endfor %}
-        </div>
+                    {% else %}
+                        <li>
+                            <span>{{ event.start_date | date:"f A" }}</span>
+                            <span>
+                                {{ event }} @ {{ event.venue }}, {{ event.city }}
+                            </span>
+                        </li>
+                    {% endif %} {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
     </section>
 
 {% endblock content %}
