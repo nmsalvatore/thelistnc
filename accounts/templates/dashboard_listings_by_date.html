@@ -8,8 +8,13 @@
                     <a href="{{ event.url }}" target="_blank">
                         {{ event }} @
                         {{ event.venue }},
-                        {{ event.city }} -
-                        {{ event.admission_price }}
+                        {{ event.city }}
+
+                        {% if event.admission_price %}
+
+                            - {{ event.admission_price }}
+
+                        {% endif %}
                     </a>
                     <a href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
                 </li>
@@ -18,7 +23,15 @@
                 <li>
                     <span>{{ event.start_date | date:"f A" }}</span>
                     <span>
-                        {{ event }} @ {{ event.venue }}, {{ event.city }}
+                        {{ event }} @
+                        {{ event.venue }},
+                        {{ event.city }}
+
+                        {% if event.admission_price %}
+
+                            - {{ event.admission_price }}
+
+                        {% endif %}
                     </span>
                     <a href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
                 </li>

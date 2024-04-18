@@ -27,8 +27,13 @@
                             <span>{{ event.start_date | date:"M j" }}</span>
                             <a href="{{ event.url }}" target="_blank">
                                 {{ event }} @
-                                {{ event.start_date | date:"g:i A" }} -
-                                {{ event.admission_price }}
+                                {{ event.start_date | date:"g:i A" }}
+
+                                {% if event.admission_price %}
+
+                                    - {{ event.admission_price }}
+
+                                {% endif %}
                             </a>
                         </li>
 
@@ -38,6 +43,12 @@
                             <span>
                                 {{ event }} @
                                 {{ event.start_date | date:"g:i A" }}
+
+                                {% if event.admission_price %}
+
+                                    - {{ event.admission_price }}
+
+                                {% endif %}
                             </span>
                         </li>
                     {% endif %} {% endfor %}
