@@ -227,6 +227,12 @@ form:has(+ h2) {
     margin-bottom: var(--space-2xl);
 }
 
+.logo {
+    text-decoration: none;
+    color: var(--color-primary);
+    font-weight: var(--weight-semibold);
+}
+
 /* --- responsive --- */
 
 @media only screen and (max-width: 568px) {
