@@ -73,7 +73,7 @@ span {
 a {
     cursor: pointer;
     color: var(--color-link);
-    text-underline-offset: 3px;
+    text-underline-offset: 2px;
 }
 
 p {
