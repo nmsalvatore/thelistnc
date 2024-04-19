@@ -17,7 +17,7 @@
     /* colors */
     --color-background: #fff;
     --color-primary: #3a3a3a;
-    --color-secondary: #6f6f6f;
+    --color-secondary: #595959;
     --color-link: #008b8b;
     --color-lt-gray: lightgray;
     --color-gray: gray;
@@ -55,7 +55,7 @@ h6 {
     margin-bottom: var(--space-md);
 }
 
-h1 + p {
+h1 ~ p:last-of-type {
     margin-bottom: var(--space-xl);
 }
 
@@ -81,10 +81,6 @@ p {
     margin: 0 auto;
     max-width: 720px;
     padding: var(--space-lg) 0;
-}
-
-header {
-    margin-bottom: var(--space-md);
 }
 
 header .container {
@@ -162,6 +158,11 @@ a.btn {
 }
 
 /* --- custom --- */
+
+h1 {
+    width: 300px;
+    margin-bottom: var(--space-lg);
+}
 
 h3 {
     font-weight: var(--weight-semibold);
@@ -247,6 +248,10 @@ form:has(+ h2) {
 
     header {
         margin-bottom: var(--space-lg);
+    }
+
+    h1 {
+        width: 260px;
     }
 
     .container {
