@@ -7,12 +7,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="{% static 'css/fonts.css' %}" />
         <link rel="stylesheet" href="{% static 'css/another.css' %}" />
-        <title>The List NC | Event listings for Nevada County, CA</title>
+        <title>The List NC | What's happening in Nevada County</title>
     </head>
     <body>
         <header>
             <div class="container">
-                <a class="logo" href="{% url 'home' %}">TheList<span class="accent">NC</span></a>
+                <a class="logo" href="{% url 'home' %}">The List <span class="accent">NC</span></a>
 
                 {% if user.is_authenticated %}
                     <nav class="admin-options">

@@ -236,7 +236,7 @@ form:has(+ h2) {
     text-decoration: none;
     color: var(--color-primary);
     font-weight: var(--weight-semibold);
-    font-size: 1.1rem;
+    font-size: 1.25rem;
 }
 
 .active {
