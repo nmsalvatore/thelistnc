@@ -16,8 +16,8 @@
 
     /* colors */
     --color-background: #fff;
-    --color-primary: #3a3a3a;
-    --color-secondary: #595959;
+    --color-primary: #2a2a2f;
+    --color-secondary: #595960;
     --color-link: #008b8b;
     --color-lt-gray: lightgray;
     --color-gray: gray;
@@ -71,6 +71,7 @@ span {
 
 a {
     color: var(--color-link);
+    text-decoration-style: dotted;
 }
 
 p {
@@ -126,6 +127,7 @@ form input {
     border-bottom: 1px solid var(--color-lt-gray);
     font-size: 1rem;
     font-family: inherit;
+    font-weight: var(--weight-regular);
     padding: var(--space-xs) 0;
 }
 
@@ -162,6 +164,7 @@ a.btn {
 h1 {
     width: 300px;
     margin-bottom: var(--space-lg);
+    font-size: 3rem;
 }
 
 h3 {
@@ -232,7 +235,15 @@ form:has(+ h2) {
     text-decoration: none;
     color: var(--color-primary);
     font-weight: var(--weight-semibold);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+}
+
+.active {
+    color: var(--color-primary);
+}
+
+.accent {
+    color: var(--color-link);
 }
 
 /* --- responsive --- */
