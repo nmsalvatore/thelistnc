@@ -235,7 +235,7 @@ form:has(+ h2) {
 .logo {
     text-decoration: none;
     color: var(--color-primary);
-    font-weight: var(--weight-semibold);
+    font-weight: var(--weight-bold);
     font-size: 1.25rem;
 }
 
