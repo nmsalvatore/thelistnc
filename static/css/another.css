@@ -229,8 +229,14 @@ a.delete {
     text-decoration: none;
 }
 
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-lg);
+}
+
 form:has(+ h2) {
-    margin-bottom: var(--space-2xl);
+    margin-bottom: var(--space-3xl);
 }
 
 .logo {

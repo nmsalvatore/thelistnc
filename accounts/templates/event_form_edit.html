@@ -9,7 +9,10 @@
         {% csrf_token %}
         {{ form.as_p }}
 
-        <input type="submit" value="Update Event">
+        <div class="actions">
+            <input type="submit" value="Update Event">
+            <a href="{% url 'template_event_form' uuid=uuid %}">Use as template</a>
+        </div>
     </form>
 
     <h2>Delete Event</h2>
