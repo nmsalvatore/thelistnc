@@ -72,6 +72,7 @@ span {
 a {
     color: var(--color-link);
     text-decoration-style: dotted;
+    text-underline-offset: 3px;
 }
 
 p {
