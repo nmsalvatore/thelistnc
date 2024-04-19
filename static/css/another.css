@@ -55,7 +55,8 @@ h6 {
     margin-bottom: var(--space-md);
 }
 
-h1 ~ p:last-of-type {
+h1 ~ p:last-of-type,
+p:has(+ form) {
     margin-bottom: var(--space-xl);
 }
 
@@ -70,8 +71,8 @@ span {
 }
 
 a {
+    cursor: pointer;
     color: var(--color-link);
-    text-decoration-style: dotted;
     text-underline-offset: 3px;
 }
 
