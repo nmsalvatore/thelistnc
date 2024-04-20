@@ -53,7 +53,7 @@ h5,
 h6 {
     color: var(--color-primary);
     font-weight: var(--weight-bold);
-    margin-bottom: var(--space-md);
+    margin-bottom: 1.5rem;
 }
 
 h1 ~ p:last-of-type,
@@ -182,7 +182,7 @@ ul {
 ul li {
     display: grid;
     grid-template-columns: var(--space-3xl) 1fr;
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-md);
 }
 
 nav > *,
