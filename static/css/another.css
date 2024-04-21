@@ -181,7 +181,7 @@ ul {
 
 ul li {
     display: grid;
-    grid-template-columns: 10ch 1fr;
+    grid-template-columns: 14ch 1fr;
     margin-bottom: var(--space-md);
 }
 
@@ -279,6 +279,12 @@ form:has(+ h2) {
 
     h1 {
         width: 260px;
+    }
+
+    ul li {
+        display: grid;
+        grid-template-columns: 10ch 1fr;
+        margin-bottom: var(--space-md);
     }
 
     .container {
