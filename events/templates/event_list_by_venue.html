@@ -24,7 +24,12 @@
                                 <a href="{{ event.url }}" target="_blank">
                                     {{ event }}
                                 </a> - 
-                                {{ event.start_date | date:"M j" }}
+
+                                {% if "12am" in event.start_time|date:"fa"|remove_periods and event.admission_price %}
+                                    {{ event.start_date | date:"M j" }},
+                                {% else %}
+                                    {{ event.start_date | date:"M j" }}
+                                {% endif %}
 
                                 <!-- format event time(s) -->
                                 {% if event.start_time and event.end_time %}
@@ -33,7 +38,7 @@
                                     {% else %}
                                         from {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
                                     {% endif %}
-                                {% else %}
+                                {% elif "12am" not in event.start_time|date:"fa"|remove_periods %}
                                     {% if event.admission_price %}
                                         at {{ event.start_time | date:"fa" | remove_periods }},
                                     {% else %}
@@ -50,7 +55,12 @@
                         {% else %}
                             <li>
                                 {{ event }} -
-                                {{ event.start_date | date:"M j" }}
+
+                                {% if "12am" in event.start_time|date:"fa"|remove_periods and event.admission_price %}
+                                    {{ event.start_date | date:"M j" }},
+                                {% else %}
+                                    {{ event.start_date | date:"M j" }}
+                                {% endif %}
                                     
                                 <!-- format event time(s) -->
                                 {% if event.start_time and event.end_time %}
@@ -59,7 +69,7 @@
                                     {% else %}
                                         from {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
                                     {% endif %}
-                                {% else %}
+                                {% elif "12am" not in event.start_time|date:"fa"|remove_periods %}
                                     {% if event.admission_price %}
                                         at {{ event.start_time | date:"fa" | remove_periods }},
                                     {% else %}
