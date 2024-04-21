@@ -22,68 +22,53 @@
                 <h3>{{ date | date:"D, M j" }}</h3>
                 <ul>
                     {% for event in events %} {% if event.url %}
-                        <li>
-                            {% if event.start_time and event.end_time %}
-                                {% if "a" in event.start_time|date:"a" and "a" in event.end_time|date:"a" or "p" in event.start_time|date:"a" and "p" in event.end_time|date:"a" %}
-                                    <span>
-                                        {{ event.start_time | date:"f" }}-{{ event.end_time | date:"fa" | remove_periods }}
-                                    </span>
-                                {% else %}
-                                    <span>
-                                        {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
-                                    </span>
-                                {% endif %}
+                    <li>
+                        <a href="{{ event.url }}" target="_blank">
+                            {{ event }}
+                        </a> -
+                        {{ event.venue }},
+
+                        <!-- format admission price -->
+                        {% if event.admission_price %}
+                            {{ event.city }}, {{ event.admission_price }},
+                        {% else %}
+                            {{ event.city }},
+                        {% endif %}
+
+                        <!-- format event time(s) -->
+                        {% if event.start_time and event.end_time %}
+                            {% if "a" in event.start_time|date:"a" and "a" in event.end_time|date:"a" or "p" in event.start_time|date:"a" and "p" in event.end_time|date:"a" %}
+                                {{ event.start_time | date:"f" }}-{{ event.end_time | date:"fa" | remove_periods }}
                             {% else %}
-                                <span>
-                                    {{ event.start_time | date:"fa" | remove_periods }}
-                                </span>
+                                {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
                             {% endif %}
-
-                            <span>
-                                <a href="{{ event.url }}" target="_blank">
-                                    {{ event }}
-                                </a> -
-
-                                {{ event.venue }},
-
-                                <!-- format admission price -->
-                                {% if event.admission_price %}
-                                    {{ event.city }}, {{ event.admission_price }}
-                                {% else %}
-                                    {{ event.city }}
-                                {% endif %}
-                            </span>
-                        </li>
+                        {% else %}
+                            {{ event.start_time | date:"fa" | remove_periods }}
+                        {% endif %}
+                    </li>
 
                     {% else %}
                         <li>
-                            {% if event.start_time and event.end_time %}
-                                {% if "a" in event.start_time|date:"a" and "a" in event.end_time|date:"a" or "p" in event.start_time|date:"a" and "p" in event.end_time|date:"a" %}
-                                    <span>
-                                        {{ event.start_time | date:"f" }}-{{ event.end_time | date:"fa" | remove_periods }}
-                                    </span>
-                                {% else %}
-                                    <span>
-                                        {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
-                                    </span>
-                                {% endif %}
+                            {{ event }} -
+                            {{ event.venue }},
+
+                            <!-- format admission price -->
+                            {% if event.admission_price %}
+                                {{ event.city }}, {{ event.admission_price }},
                             {% else %}
-                                <span>
-                                    {{ event.start_time | date:"fa" | remove_periods }}
-                                </span>
+                                {{ event.city }},
                             {% endif %}
 
-                            <span>
-                                {{ event }} -
-                                {{ event.venue }},
-
-                                <!-- format admission price -->
-                                {% if event.admission_price %}
-                                    {{ event.city }}, {{ event.admission_price }}
+                            <!-- format event time(s) -->
+                            {% if event.start_time and event.end_time %}
+                                {% if "a" in event.start_time|date:"a" and "a" in event.end_time|date:"a" or "p" in event.start_time|date:"a" and "p" in event.end_time|date:"a" %}
+                                    {{ event.start_time | date:"f" }}-{{ event.end_time | date:"fa" | remove_periods }}
                                 {% else %}
-                                    {{ event.city }}
+                                    {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
                                 {% endif %}
-                            </span>
+                            {% else %}
+                                {{ event.start_time | date:"fa" | remove_periods }}
+                            {% endif %}
                         </li>
                     {% endif %} {% endfor %}
                 </ul>

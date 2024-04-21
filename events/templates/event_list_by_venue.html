@@ -21,64 +21,48 @@
                         
                         {% if event.url %}
                             <li>
-                                <span>{{ event.start_date | date:"M j" }}</span>
-                                <span>
-                                    <a href="{{ event.url }}" target="_blank">
-                                        {{ event }}
-                                    </a> -
+                                {{ event.start_date | date:"M j" }} -
+                                <a href="{{ event.url }}" target="_blank">
+                                    {{ event }}
+                                </a> -
 
-                                    <!-- format admission price if it exists -->
-                                    {% if event.admission_price %}
-                                        {{ event.admission_price }},
-                                    {% endif %}
+                                <!-- format admission price if it exists -->
+                                {% if event.admission_price %}
+                                    {{ event.admission_price }},
+                                {% endif %}
                                         
-                                    <!-- format event time(s) -->
-                                    {% if event.start_time and event.end_time %}
-                                        {% if "a" in event.start_time|date:"a" and "a" in event.end_time|date:"a" or "p" in event.start_time|date:"a" and "p" in event.end_time|date:"a" %}
-                                            <span>
-                                                {{ event.start_time | date:"f" }}-{{ event.end_time | date:"fa" | remove_periods }}
-                                            </span>
-                                        {% else %}
-                                            <span>
-                                                {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
-                                            </span>
-                                        {% endif %}
+                                <!-- format event time(s) -->
+                                {% if event.start_time and event.end_time %}
+                                    {% if "a" in event.start_time|date:"a" and "a" in event.end_time|date:"a" or "p" in event.start_time|date:"a" and "p" in event.end_time|date:"a" %}
+                                        {{ event.start_time | date:"f" }}-{{ event.end_time | date:"fa" | remove_periods }}
                                     {% else %}
-                                        <span>
-                                            {{ event.start_time | date:"fa" | remove_periods }}
-                                        </span>
+                                        {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
                                     {% endif %}
-                                </span>
+                                {% else %}
+                                    {{ event.start_time | date:"fa" | remove_periods }}
+                                {% endif %}
                             </li>
 
                         {% else %}
                             <li>
-                                <span>{{ event.start_date | date:"M j" }}</span>
-                                <span>
-                                    {{ event }} -
+                                {{ event.start_date | date:"M j" }} -
+                                {{ event }} -
 
-                                    <!-- format admission price if it exists -->
-                                    {% if event.admission_price %}
-                                        {{ event.admission_price }},
-                                    {% endif %}
+                                <!-- format admission price if it exists -->
+                                {% if event.admission_price %}
+                                    {{ event.admission_price }},
+                                {% endif %}
                                     
-                                    <!-- format event time(s) -->
-                                    {% if event.start_time and event.end_time %}
-                                        {% if "a" in event.start_time|date:"a" and "a" in event.end_time|date:"a" or "p" in event.start_time|date:"a" and "p" in event.end_time|date:"a" %}
-                                            <span>
-                                                {{ event.start_time | date:"f" }}-{{ event.end_time | date:"fa" | remove_periods }}
-                                            </span>
-                                        {% else %}
-                                            <span>
-                                                {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
-                                            </span>
-                                        {% endif %}
+                                <!-- format event time(s) -->
+                                {% if event.start_time and event.end_time %}
+                                    {% if "a" in event.start_time|date:"a" and "a" in event.end_time|date:"a" or "p" in event.start_time|date:"a" and "p" in event.end_time|date:"a" %}
+                                        {{ event.start_time | date:"f" }}-{{ event.end_time | date:"fa" | remove_periods }}
                                     {% else %}
-                                        <span>
-                                            {{ event.start_time | date:"fa" | remove_periods }}
-                                        </span>
+                                        {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
                                     {% endif %}
-                                </span>
+                                {% else %}
+                                    {{ event.start_time | date:"fa" | remove_periods }}
+                                {% endif %}
                             </li>
                         {% endif %} 
                     
