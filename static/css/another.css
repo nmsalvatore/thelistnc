@@ -217,6 +217,10 @@ ul.by-venue li {
     display: flex;
 }
 
+ul.by-venue li div {
+    margin-bottom: 0;
+}
+
 ul.by-venue li div:first-child {
     flex-shrink: 0;
 }
