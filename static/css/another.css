@@ -195,7 +195,7 @@ nav > *:last-child {
 }
 
 section nav {
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-lg);
     border-bottom: 1px solid var(--color-lt-gray);
     padding-bottom: var(--space-md);
 }
