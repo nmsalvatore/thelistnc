@@ -58,7 +58,7 @@ h6 {
 
 h1 ~ p:last-of-type,
 p:has(+ form) {
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-2xl);
 }
 
 h2 + p {
@@ -99,7 +99,7 @@ main {
 }
 
 div {
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-xl);
 }
 
 form:has(input[type="hidden"]):has(
@@ -195,7 +195,7 @@ nav > *:last-child {
 }
 
 section nav {
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-xl);
     border-bottom: 1px solid var(--color-lt-gray);
     padding-bottom: var(--space-md);
 }
