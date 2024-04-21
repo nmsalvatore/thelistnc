@@ -185,6 +185,10 @@ ul li {
     margin-bottom: var(--space-md);
 }
 
+ul li span:first-child {
+    padding-right: 1.5rem;
+}
+
 nav > *,
 nav > div > * {
     margin-right: var(--space-sm);
