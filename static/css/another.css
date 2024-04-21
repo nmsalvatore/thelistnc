@@ -181,7 +181,7 @@ ul {
 
 ul li {
     display: grid;
-    grid-template-columns: 12ch 1fr;
+    grid-template-columns: 9ch 1fr;
     margin-bottom: var(--space-md);
 }
 
