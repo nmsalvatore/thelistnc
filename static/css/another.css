@@ -99,7 +99,7 @@ main {
 }
 
 div {
-    margin-bottom: var(--space-xl);
+    margin-bottom: 2.5rem;
 }
 
 form:has(input[type="hidden"]):has(
