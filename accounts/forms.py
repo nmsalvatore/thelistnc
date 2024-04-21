@@ -28,6 +28,8 @@ class EventForm(forms.ModelForm):
             'venue',
             'city',
             'start_date',
+            'start_time',
+            'end_time',
             'end_date',
             'admission_price',
             'url',
@@ -36,8 +38,10 @@ class EventForm(forms.ModelForm):
             'title': 'Title *',
             'venue': 'Venue *',
             'city': 'City *',
-            'start_date': 'Start Date & Time *',
-            'end_date': 'End Date & Time',
+            'start_date': 'Start Date *',
+            'start_time': 'Start Time *',
+            'end_time': 'End Time',
+            'end_date': 'End Date',
             'url': 'URL'
         }
         widgets = {
@@ -45,7 +49,9 @@ class EventForm(forms.ModelForm):
             'venue': forms.TextInput(attrs={'placeholder': 'ex. Miner\'s Foundry'}),
             'city': forms.TextInput(attrs={'placeholder': 'ex. Nevada City'}),
             'admission_price': forms.TextInput(attrs={'placeholder': 'ex. $25'}),
-            'start_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
-            'end_date': forms.DateTimeInput(attrs={'type': 'datetime-local'}),
+            'start_date': forms.DateInput(attrs={'type': 'date'}),
+            'start_time': forms.TimeInput(attrs={'type': 'time'}),
+            'end_time': forms.TimeInput(attrs={'type': 'time'}),
+            'end_date': forms.DateInput(attrs={'type': 'date'}),
             'url': forms.TextInput(attrs={'placeholder': 'ex. https://www.minersfoundry.com/events/aaron-ross-show.html'}),
         }

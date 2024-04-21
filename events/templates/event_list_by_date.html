@@ -1,4 +1,8 @@
-{% extends 'main.html' %} {% block content %}
+{% extends 'main.html' %} 
+
+{% load events_extras %}
+
+{% block content %}
 
     {% include 'heading.html' %}
 
@@ -19,7 +23,20 @@
                 <ul>
                     {% for event in events %} {% if event.url %}
                         <li>
-                            <span>{{ event.start_date | date:"f A" }}</span>
+                            {% if "a" in event.start_time|date:"a" and "a" in event.end_time|date:"a" %}
+                                <span>
+                                    {{ event.start_time | date:"f" }}-{{ event.end_time | date:"fa" | remove_periods }}
+                                </span>
+                            {% elif "p" in event.start_time|date:"a" and "p" in event.end_time|date:"a"%}
+                                <span>
+                                    {{ event.start_time | date:"f" }}-{{ event.end_time | date:"fa" | remove_periods }}
+                                </span>
+                            {% else %}
+                                <span>
+                                    {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
+                                </span>
+                            {% endif %}
+
                             <a href="{{ event.url }}" target="_blank">
                                 {{ event }} @
                                 {{ event.venue }},
@@ -35,7 +52,20 @@
 
                     {% else %}
                         <li>
-                            <span>{{ event.start_date | date:"f A" }}</span>
+                            {% if "a" in event.start_time|date:"a" and "a" in event.end_time|date:"a" %}
+                                <span>
+                                    {{ event.start_time | date:"f" }}-{{ event.end_time | date:"fa" | remove_periods }}
+                                </span>
+                            {% elif "p" in event.start_time|date:"a" and "p" in event.end_time|date:"a"%}
+                                <span>
+                                    {{ event.start_time | date:"f" }}-{{ event.end_time | date:"fa" | remove_periods }}
+                                </span>
+                            {% else %}
+                                <span>
+                                    {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
+                                </span>
+                            {% endif %}
+
                             <span>
                                 {{ event }} @
                                 {{ event.venue }},

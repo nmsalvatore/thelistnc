@@ -181,7 +181,7 @@ ul {
 
 ul li {
     display: grid;
-    grid-template-columns: var(--space-3xl) 1fr;
+    grid-template-columns: 12ch 1fr;
     margin-bottom: var(--space-md);
 }
 
@@ -216,7 +216,7 @@ section.admin nav {
 }
 
 .admin ul li {
-    grid-template-columns: var(--space-3xl) 1fr var(--space-2xl);
+    grid-template-columns: 12ch 1fr var(--space-2xl);
 }
 
 .admin ul li *:last-child {
