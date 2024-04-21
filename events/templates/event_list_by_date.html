@@ -39,17 +39,20 @@
                                 </span>
                             {% endif %}
 
-                            <a href="{{ event.url }}" target="_blank">
-                                {{ event }} @
+                            <span>
+                                <a href="{{ event.url }}" target="_blank">
+                                    {{ event }}
+                                </a> -
+
                                 {{ event.venue }},
-                                {{ event.city }}
 
+                                <!-- format admission price -->
                                 {% if event.admission_price %}
-
-                                    - {{ event.admission_price }}
-
+                                    {{ event.city }}, {{ event.admission_price }}
+                                {% else %}
+                                    {{ event.city }}
                                 {% endif %}
-                            </a>
+                            </span>
                         </li>
 
                     {% else %}
@@ -71,14 +74,14 @@
                             {% endif %}
 
                             <span>
-                                {{ event }} @
+                                {{ event }} -
                                 {{ event.venue }},
-                                {{ event.city }}
 
+                                <!-- format admission price -->
                                 {% if event.admission_price %}
-
-                                    - {{ event.admission_price }}
-
+                                    {{ event.city }}, {{ event.admission_price }}
+                                {% else %}
+                                    {{ event.city }}
                                 {% endif %}
                             </span>
                         </li>

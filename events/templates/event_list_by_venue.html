@@ -1,5 +1,7 @@
 {% extends 'main.html' %}
 
+{% load events_extras %}
+
 
 {% block content %}
 
@@ -15,36 +17,72 @@
             <div>
                 <h3>{{ venue }}</h3>
                 <ul>
-                    {% for event in events %} {% if event.url %}
-                        <li>
-                            <span>{{ event.start_date | date:"M j" }}</span>
-                            <a href="{{ event.url }}" target="_blank">
-                                {{ event }} @
-                                {{ event.start_date | date:"g:i A" }}
+                    {% for event in events %} 
+                        
+                        {% if event.url %}
+                            <li>
+                                <span>{{ event.start_date | date:"M j" }}</span>
+                                <span>
+                                    <a href="{{ event.url }}" target="_blank">
+                                        {{ event }}
+                                    </a> -
 
-                                {% if event.admission_price %}
+                                    <!-- format admission price if it exists -->
+                                    {% if event.admission_price %}
+                                        {{ event.admission_price }},
+                                    {% endif %}
+                                        
+                                    <!-- format event time(s) -->
+                                    {% if event.start_time and event.end_time %}
+                                        {% if "a" in event.start_time|date:"a" and "a" in event.end_time|date:"a" or "p" in event.start_time|date:"a" and "p" in event.end_time|date:"a" %}
+                                            <span>
+                                                {{ event.start_time | date:"f" }}-{{ event.end_time | date:"fa" | remove_periods }}
+                                            </span>
+                                        {% else %}
+                                            <span>
+                                                {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
+                                            </span>
+                                        {% endif %}
+                                    {% else %}
+                                        <span>
+                                            {{ event.start_time | date:"fa" | remove_periods }}
+                                        </span>
+                                    {% endif %}
+                                </span>
+                            </li>
 
-                                    - {{ event.admission_price }}
+                        {% else %}
+                            <li>
+                                <span>{{ event.start_date | date:"M j" }}</span>
+                                <span>
+                                    {{ event }} -
 
-                                {% endif %}
-                            </a>
-                        </li>
-
-                    {% else %}
-                        <li>
-                            <span>{{ event.start_date | date:"M j" }}</span>
-                            <span>
-                                {{ event }} @
-                                {{ event.start_date | date:"g:i A" }}
-
-                                {% if event.admission_price %}
-
-                                    - {{ event.admission_price }}
-
-                                {% endif %}
-                            </span>
-                        </li>
-                    {% endif %} {% endfor %}
+                                    <!-- format admission price if it exists -->
+                                    {% if event.admission_price %}
+                                        {{ event.admission_price }},
+                                    {% endif %}
+                                    
+                                    <!-- format event time(s) -->
+                                    {% if event.start_time and event.end_time %}
+                                        {% if "a" in event.start_time|date:"a" and "a" in event.end_time|date:"a" or "p" in event.start_time|date:"a" and "p" in event.end_time|date:"a" %}
+                                            <span>
+                                                {{ event.start_time | date:"f" }}-{{ event.end_time | date:"fa" | remove_periods }}
+                                            </span>
+                                        {% else %}
+                                            <span>
+                                                {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
+                                            </span>
+                                        {% endif %}
+                                    {% else %}
+                                        <span>
+                                            {{ event.start_time | date:"fa" | remove_periods }}
+                                        </span>
+                                    {% endif %}
+                                </span>
+                            </li>
+                        {% endif %} 
+                    
+                    {% endfor %}
                 </ul>
             </div>
         {% endfor %}
