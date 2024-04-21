@@ -213,6 +213,14 @@ section.admin nav {
     align-items: center;
 }
 
+ul.by-venue li {
+    display: flex;
+}
+
+ul.by-venue li div:first-child {
+    flex-shrink: 0;
+}
+
 .admin ul li {
     display: grid;
     grid-template-columns: 1fr auto;
