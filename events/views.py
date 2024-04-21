@@ -31,14 +31,14 @@ def group_events(field):
     if field == 'start_date':
         dates = events.dates('start_date', 'day')
         for date in dates:
-            date_events = events.filter(start_date=date)
+            date_events = events.filter(start_date=date).order_by('start_time', 'end_time')
             grouped_events.append((date, date_events))
 
     if field == 'venue':
         venues = events.values_list('venue', 'city').distinct()
         for venue_data in venues:
             venue = f'{venue_data[0]}, {venue_data[1]}'
-            venue_events = events.filter(venue=venue_data[0]).order_by('start_date', 'title')
+            venue_events = events.filter(venue=venue_data[0]).order_by('start_date', 'start_time', 'end_time')
             grouped_events.append((venue, venue_events))
 
     return grouped_events
