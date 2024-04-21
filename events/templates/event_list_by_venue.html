@@ -26,9 +26,9 @@
                                 </a> - 
 
                                 {% if "12am" in event.start_time|date:"fa"|remove_periods and event.admission_price %}
-                                    {{ event.start_date | date:"M j" }},
+                                    {{ event.start_date | date:"F j" }},
                                 {% else %}
-                                    {{ event.start_date | date:"M j" }}
+                                    {{ event.start_date | date:"F j" }}
                                 {% endif %}
 
                                 <!-- format event time(s) -->
@@ -57,9 +57,9 @@
                                 {{ event }} -
 
                                 {% if "12am" in event.start_time|date:"fa"|remove_periods and event.admission_price %}
-                                    {{ event.start_date | date:"M j" }},
+                                    {{ event.start_date | date:"F j" }},
                                 {% else %}
-                                    {{ event.start_date | date:"M j" }}
+                                    {{ event.start_date | date:"F j" }}
                                 {% endif %}
                                     
                                 <!-- format event time(s) -->

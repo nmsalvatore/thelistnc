@@ -7,15 +7,14 @@
             {% for event in events %} {% if event.url %}
                 <li>
                     <span>
-                        {{ event.start_date | date:"M j" }} -
                         <a href="{{ event.url }}" target="_blank">
                             {{ event }}
                         </a> -
 
                         {% if "12am" in event.start_time|date:"fa"|remove_periods and event.admission_price %}
-                            {{ event.start_date | date:"M j" }},
+                            {{ event.start_date | date:"F j" }},
                         {% else %}
-                            {{ event.start_date | date:"M j" }}
+                            {{ event.start_date | date:"F j" }}
                         {% endif %}
                             
                         <!-- format event time(s) -->
@@ -47,13 +46,12 @@
             {% else %}
                 <li>
                     <span>
-                        {{ event.start_date | date:"M j" }} -
                         {{ event }} -
 
                         {% if "12am" in event.start_time|date:"fa"|remove_periods and event.admission_price %}
-                            {{ event.start_date | date:"M j" }},
+                            {{ event.start_date | date:"F j" }},
                         {% else %}
-                            {{ event.start_date | date:"M j" }}
+                            {{ event.start_date | date:"F j" }}
                         {% endif %}
                             
                         <!-- format event time(s) -->
