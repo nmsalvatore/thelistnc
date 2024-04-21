@@ -215,6 +215,7 @@ section.admin nav {
 
 ul.by-venue li {
     display: flex;
+    align-items: center;
 }
 
 ul.by-venue li div {
