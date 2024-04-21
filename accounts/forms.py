@@ -30,7 +30,7 @@ class EventForm(forms.ModelForm):
             'start_date',
             'start_time',
             'end_time',
-            'end_date',
+            # 'end_date',
             'admission_price',
             'url',
         ]

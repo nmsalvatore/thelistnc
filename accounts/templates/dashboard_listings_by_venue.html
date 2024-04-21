@@ -1,37 +1,65 @@
+{% load accounts_extras %}
+
 {% for venue, events in grouped_events %}
     <div>
         <h3>{{ venue }}</h3>
         <ul>
             {% for event in events %} {% if event.url %}
                 <li>
-                    <span>{{ event.start_date | date:"M j" }}</span>
-                    <a href="{{ event.url }}" target="_blank">
-                        {{ event }} @
-                        {{ event.start_date | date:"g:i A" }}
+                    <span>
+                        {{ event.start_date | date:"M j" }} -
+                        <a href="{{ event.url }}" target="_blank">
+                            {{ event }}
+                        </a> -
 
+                        <!-- format admission price if it exists -->
                         {% if event.admission_price %}
-
-                            - {{ event.admission_price }}
-
+                            {{ event.admission_price }},
                         {% endif %}
-                    </a>
-                    <a href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
+                                
+                        <!-- format event time(s) -->
+                        {% if event.start_time and event.end_time %}
+                            {% if "a" in event.start_time|date:"a" and "a" in event.end_time|date:"a" or "p" in event.start_time|date:"a" and "p" in event.end_time|date:"a" %}
+                                {{ event.start_time | date:"f" }}-{{ event.end_time | date:"fa" | remove_periods }}
+                            {% else %}
+                                {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
+                            {% endif %}
+                        {% else %}
+                            {{ event.start_time | date:"fa" | remove_periods }}
+                        {% endif %}
+                    </span>
+                    <span>
+                        <a href="{% url 'template_event_form' uuid=event.uuid %}">Template</a>
+                        <a href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
+                    </span>
                 </li>
 
             {% else %}
                 <li>
-                    <span>{{ event.start_date | date:"M j" }}</span>
                     <span>
-                        {{ event }} @
-                        {{ event.start_date | date:"g:i A" }}
+                        {{ event.start_date | date:"M j" }} -
+                        {{ event }} -
 
+                        <!-- format admission price if it exists -->
                         {% if event.admission_price %}
-
-                            - {{ event.admission_price }}
-
+                            {{ event.admission_price }},
+                        {% endif %}
+                            
+                        <!-- format event time(s) -->
+                        {% if event.start_time and event.end_time %}
+                            {% if "a" in event.start_time|date:"a" and "a" in event.end_time|date:"a" or "p" in event.start_time|date:"a" and "p" in event.end_time|date:"a" %}
+                                {{ event.start_time | date:"f" }}-{{ event.end_time | date:"fa" | remove_periods }}
+                            {% else %}
+                                {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
+                            {% endif %}
+                        {% else %}
+                            {{ event.start_time | date:"fa" | remove_periods }}
                         {% endif %}
                     </span>
-                    <a href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
+                    <span>
+                        <a href="{% url 'template_event_form' uuid=event.uuid %}">Template</a>
+                        <a href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
+                    </span>
                 </li>
             {% endif %} {% endfor %}
         </ul>

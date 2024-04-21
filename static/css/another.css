@@ -175,20 +175,12 @@ h3 {
     font-size: 1.1rem;
 }
 
-strong {
-    font-weight: 300;
-}
-
 ul {
     list-style-type: none;
 }
 
 ul li {
     margin-bottom: var(--space-md);
-}
-
-ul li span:first-child {
-    padding-right: 1rem;
 }
 
 nav > *,
@@ -222,11 +214,17 @@ section.admin nav {
 }
 
 .admin ul li {
-    grid-template-columns: 12ch 1fr var(--space-2xl);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-lg);
 }
 
 .admin ul li *:last-child {
     text-align: right;
+}
+
+.admin ul li *:last-child a:first-child{
+    padding-right: var(--space-md);
 }
 
 a.delete {
