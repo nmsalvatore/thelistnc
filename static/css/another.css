@@ -65,6 +65,7 @@ h2 + p {
     margin-bottom: var(--space-lg);
 }
 
+a,
 p,
 span {
     line-height: 1.5;
@@ -180,6 +181,7 @@ ul {
 
 ul li {
     margin-bottom: var(--space-md);
+    line-height: 1.5;
 }
 
 nav > *,
@@ -210,18 +212,6 @@ section.admin nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-ul.by-venue li {
-    display: flex;
-}
-
-ul.by-venue li div {
-    margin-bottom: 0;
-}
-
-ul.by-venue li div:first-child {
-    flex-shrink: 0;
 }
 
 .admin ul li {
