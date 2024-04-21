@@ -19,7 +19,7 @@
 
         {% for date, events in grouped_events %}
             <div>
-                <h3>{{ date | date:"D, F j" }}</h3>
+                <h3>{{ date | date:"l, F j" }}</h3>
                 <ul>
                     {% for event in events %} 
                     
