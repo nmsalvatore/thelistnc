@@ -72,6 +72,7 @@ span {
 }
 
 a {
+    display: inline-block;
     cursor: pointer;
     color: var(--color-link);
     text-underline-offset: 2px;
@@ -143,7 +144,6 @@ input:not([type="submit"]):focus {
 }
 
 input[type="submit"]:focus {
-    outline-offset: 1px;
     outline: 1px solid var(--color-secondary);
 }
 
