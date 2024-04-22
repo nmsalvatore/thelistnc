@@ -25,10 +25,9 @@
                     
                         {% if event.url %}
                     <li>
-                        <a href="{{ event.url }}" target="_blank">
-                            {{ event }}
-                        </a> -
-                        {{ event.venue }},
+                        <a href="{{ event.url }}" target="_blank">{{ event }}</a> 
+                        
+                        - {{ event.venue }},
 
                         {% if "12am" in event.start_time|date:"fa"|remove_periods and not event.admission_price %}
                             {{ event.city }}

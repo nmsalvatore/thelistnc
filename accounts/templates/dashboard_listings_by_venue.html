@@ -7,9 +7,7 @@
             {% for event in events %} {% if event.url %}
                 <li>
                     <span>
-                        <a href="{{ event.url }}" target="_blank">
-                            {{ event }}
-                        </a> -
+                        <a href="{{ event.url }}" target="_blank">{{ event }}</a> -
 
                         {% if "12am" in event.start_time|date:"fa"|remove_periods and event.admission_price %}
                             {{ event.start_date | date:"F j" }},
