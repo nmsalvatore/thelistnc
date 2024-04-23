@@ -30,7 +30,8 @@ class EventForm(forms.ModelForm):
             'start_date',
             'start_time',
             'end_time',
-            # 'end_date',
+            'continuous',
+            'end_date',
             'admission_price',
             'url',
         ]
@@ -41,7 +42,8 @@ class EventForm(forms.ModelForm):
             'start_date': 'Start Date *',
             'start_time': 'Start Time *',
             'end_time': 'End Time',
-            'end_date': 'End Date',
+            'end_date': 'Final Day of Event',
+            'continuous': 'Does this event continue over multiple days?',
             'url': 'URL'
         }
         widgets = {
@@ -52,6 +54,7 @@ class EventForm(forms.ModelForm):
             'start_date': forms.DateInput(attrs={'type': 'date'}),
             'start_time': forms.TimeInput(attrs={'type': 'time'}),
             'end_time': forms.TimeInput(attrs={'type': 'time'}),
+            'continuous': forms.CheckboxInput(),
             'end_date': forms.DateInput(attrs={'type': 'date'}),
             'url': forms.TextInput(attrs={'placeholder': 'ex. https://www.minersfoundry.com/events/aaron-ross-show.html'}),
         }

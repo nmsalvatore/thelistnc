@@ -14,6 +14,7 @@ class Event(models.Model):
     end_date = models.DateField(blank=True, null=True)
     end_time = models.TimeField(blank=True, null=True)
     url = models.URLField(blank=True, null=True)
+    continuous = models.BooleanField(blank=True, default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='events', null=True)

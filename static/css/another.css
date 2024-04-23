@@ -246,6 +246,10 @@ form:has(+ h2) {
     margin-bottom: var(--space-3xl);
 }
 
+p:has(input#id_end_date) {
+    display: none;
+}
+
 .logo {
     text-decoration: none;
     color: var(--color-primary);
@@ -260,6 +264,10 @@ form:has(+ h2) {
 
 .accent {
     color: var(--color-link);
+}
+
+input[type="checkbox"] {
+    align-self: flex-start;
 }
 
 /* --- responsive --- */
