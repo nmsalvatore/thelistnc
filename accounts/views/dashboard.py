@@ -54,9 +54,10 @@ def group_events(field):
             grouped_events.append((date, date_events))
 
     if field == 'venue':
-        venues = events.values_list('venue', flat=True).distinct()
-        for venue in venues:
-            venue_events = events.filter(venue=venue).order_by('start_date', 'title')
+        venues = events.values_list('venue', 'city').distinct()
+        for venue_data in venues:
+            venue = f'{venue_data[0]}, {venue_data[1]}'
+            venue_events = events.filter(venue=venue_data[0], city=venue_data[1]).order_by('start_date', 'start_time', 'end_time')
             grouped_events.append((venue, venue_events))
 
     return grouped_events
