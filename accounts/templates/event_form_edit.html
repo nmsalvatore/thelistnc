@@ -10,7 +10,12 @@
         {{ form.as_p }}
 
         <div class="actions">
-            <input type="submit" value="Update Event">
+            <input 
+                onclick="return confirmUpdate()"
+                id="updateButton" 
+                type="submit" 
+                value="Update Event"
+            >
             <a href="{% url 'template_event_form' uuid=uuid %}">Use as template</a>
         </div>
     </form>
@@ -18,6 +23,11 @@
     <h2>Delete Event</h2>
     <p>If you would like to delete this event, click the Delete Event button below. You will be prompted to confirm the deletion of the listing. If you wish to proceed, click OK in the prompt.</p>
 
-    <a class="delete btn" href="{% url 'delete_event' uuid=uuid %}">Delete Event</a>
-
+    <a 
+        onclick="return confirmDelete()" 
+        class="delete btn" 
+        href="{% url 'delete_event' uuid=uuid %}"
+    >
+        Delete Event
+    </a>
 {% endblock content %}
