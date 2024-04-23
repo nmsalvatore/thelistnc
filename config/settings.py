@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     # Project apps
     'events.apps.EventsConfig',
     'accounts.apps.AccountsConfig',
-    'common.apps.CommonConfig',
 ]
 
 MIDDLEWARE = [
