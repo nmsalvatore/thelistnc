@@ -5,7 +5,7 @@
     <h1>Edit Event</h1>
     <p>To edit the event data, please modify or add new values to the form below and click the Update Event button. To delete the event, click the Delete Event button.</p>
 
-    <form class="event" method="POST">
+    <form class="edit event" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
 

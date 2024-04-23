@@ -270,6 +270,11 @@ input[type="checkbox"] {
     align-self: flex-start;
 }
 
+form.edit p:has(#id_continuous),
+form.edit p:has(#id_end_date) {
+    display: none !important;
+}
+
 /* --- responsive --- */
 
 @media only screen and (max-width: 568px) {

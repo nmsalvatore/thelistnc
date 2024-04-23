@@ -23,7 +23,9 @@ def new_event(request):
                     while current_date <= end_date:
                         event_data = {
                             **form.cleaned_data,
+                            'continuous': False,
                             'start_date': current_date,
+                            'end_date': None,
                             'created_by': request.user,
                         }
 
@@ -34,12 +36,12 @@ def new_event(request):
                     with transaction.atomic():
                         Event.objects.bulk_create(events)
                     
-                    return redirect(reverse('dashboard', args=['by-date']))
                 else:
                     new_event = form.save(commit=False)
                     new_event.created_by = request.user
                     new_event.save()
-                    return redirect(reverse('dashboard', args=['by-date']))
+
+                return redirect(reverse('dashboard', args=['by-date']))
 
         else:
             form = EventForm()
@@ -61,16 +63,40 @@ def template_event(request, uuid):
             form = EventForm(request.POST)
 
             if form.is_valid():
-                new_event = form.save(commit=False)
-                new_event.created_by = request.user
-                new_event.save()
+                start_date = form.cleaned_data['start_date']
+                end_date = form.cleaned_data['end_date']
+
+                if end_date:
+                    events = []
+                    current_date = start_date
+
+                    while current_date <= end_date:
+                        event_data = {
+                            **form.cleaned_data,
+                            'continuous': False,
+                            'start_date': current_date,
+                            'end_date': None,
+                            'created_by': request.user,
+                        }
+
+                        event = Event(**event_data)
+                        events.append(event)
+                        current_date += timedelta(days=1)
+                    
+                    with transaction.atomic():
+                        Event.objects.bulk_create(events)
+                    
+                else:
+                    new_event = form.save(commit=False)
+                    new_event.created_by = request.user
+                    new_event.save()
+
                 return redirect(reverse('dashboard', args=['by-date']))
 
         else:
             form = EventForm(instance=event)
-
-        context = {'form': form}
-        return render(request, 'event_form_new.html', context)
+            context = {'form': form}
+            return render(request, 'event_form_new.html', context)
 
     else:
         raise Http404('Page not found')
@@ -112,3 +138,36 @@ def delete_event(request, uuid):
         return redirect(reverse('dashboard', args=['by-date']))
     else:
         raise Http404('Page not found')
+
+
+# helper functions
+
+def create_new_event(request, form):
+    form = EventForm(request.POST)
+
+    if form.is_valid():
+        start_date = form.cleaned_data['start_date']
+        end_date = form.cleaned_data['end_date']
+
+        if end_date:
+            events = []
+            current_date = start_date
+
+            while current_date <= end_date:
+                event_data = {
+                    **form.cleaned_data,
+                    'start_date': current_date,
+                    'created_by': request.user,
+                }
+
+                event = Event(**event_data)
+                events.append(event)
+                current_date += timedelta(days=1)
+            
+            with transaction.atomic():
+                Event.objects.bulk_create(events)
+            
+        else:
+            new_event = form.save(commit=False)
+            new_event.created_by = request.user
+            new_event.save()
