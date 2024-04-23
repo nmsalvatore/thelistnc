@@ -50,7 +50,7 @@ def group_events(field):
     if field == 'start_date':
         dates = events.dates('start_date', 'day')
         for date in dates:
-            date_events = events.filter(start_date=date)
+            date_events = events.filter(start_date=date).order_by('start_time', 'end_time')
             grouped_events.append((date, date_events))
 
     if field == 'venue':
