@@ -44,7 +44,7 @@ class EventForm(forms.ModelForm):
             'start_time': 'Start Time *',
             'end_time': 'End Time',
             'end_date': 'Final Date of Event (Setting a final date will create identical listings for each date from the start date to the final date of the event)',
-            'continuous': 'Does this event continue over multiple days?',
+            'continuous': 'Does this event last multiple days?',
             'extra_info': 'Any additional info (age range, sold out, byob, etc.)',
             'url': 'URL'
         }
