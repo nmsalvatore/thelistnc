@@ -6,7 +6,7 @@
     <p>Please enter your email address in the field below and click Log In. As a security measure, we will send a one-time passcode to your email address. You will need to enter this passcode on the next page to complete the login process.</p>
 
     <div class="content">
-        <form method="POST">
+        <form class="inline-form" method="POST">
             {% csrf_token %}
             {{ form.email }}
             <input type="submit" value="Login" />

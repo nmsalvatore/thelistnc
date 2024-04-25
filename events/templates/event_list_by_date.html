@@ -4,9 +4,9 @@
 
 {% block content %}
 
-    {% include 'heading.html' %}
+    {% include 'hero.html' %}
 
-    <section>
+    <section class="event-list">
         <nav>
             <span class="sort-option active">By Date</span>
             <a
@@ -18,7 +18,7 @@
         </nav>
 
         {% for date, events in grouped_events %}
-            <div>
+            <div class="event-group">
                 <h3>{{ date | date:"l, F j" }}</h3>
                 <ul>
                     {% for event in events %} 

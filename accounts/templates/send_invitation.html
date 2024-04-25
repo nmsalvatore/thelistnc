@@ -6,7 +6,7 @@
     <p>Use the form below to send an invitation to volunteers. Enter the recipient's email address and click Send Invitation. The recipient will receive an email with a unique link to create their account.</p>
 
     <div class="content">
-        <form method="POST">
+        <form class="inline-form" method="POST">
             {% csrf_token %}
             <input type="email" placeholder="Email" name="email" autocomplete="off" required />
             <input type="submit" value="Send" />
