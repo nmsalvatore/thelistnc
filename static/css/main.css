@@ -81,7 +81,7 @@ p:has(+ form) {
 }
 
 a, p {
-    line-height: 1.5;
+    line-height: 1.75;
 }
 
 a {
@@ -198,7 +198,7 @@ a.btn {
 .event-group ul li {
     margin-bottom: var(--size-md);
     padding-bottom: var(--size-md);
-    line-height: 1.5;
+    line-height: 1.75;
     border-bottom: 1px solid #f4f4f4;
 }
 
@@ -291,7 +291,7 @@ form.edit p:has(#id_end_date) {
 
 @media only screen and (max-width: 568px) {
     html {
-        font-size: 14px;
+        font-size: 15px;
     }
 
     body {
