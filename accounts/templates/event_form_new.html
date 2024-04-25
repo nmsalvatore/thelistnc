@@ -8,7 +8,7 @@
     <form class="event" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Create New Event">
+        <input onclick="return checkForMultipleListings()" type="submit" value="Create New Event">
     </form>
 
 {% endblock content %}
