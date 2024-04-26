@@ -305,6 +305,10 @@ form.edit p:has(#id_end_date) {
         margin-bottom: var(--size-lg);
     }
 
+    h1 {
+        width: 260px;
+    }
+
     h1.admin + p {
         margin-bottom: var(--size-lg);
     }
