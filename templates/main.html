@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="{% static 'css/fonts.css' %}" />
         <link rel="stylesheet" href="{% static 'css/main.css' %}" />
         <link rel="icon" href="{% static 'images/favicons/favicon.png' %}" />
-        
+
         <!-- HTML Meta Tags -->
         <title>The List NC - What's happening in Nevada County?</title>
         <meta name="description" content="">
@@ -36,7 +36,7 @@
         <meta name="twitter:description" content="Find events in Nevada County with The List NC! Our volunteer-run database features everything from festivals and farmer's markets to trivia nights and live shows.">
         <meta name="twitter:image" content="{% static 'images/opengraph/og_image.png' %}">
 
-        <script defer src="{% static 'js/index.js' %}"></script>
+        {% block scripts %}{% endblock %}
     </head>
     <body>
         <header>

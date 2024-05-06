@@ -1,31 +1,32 @@
 {% extends 'main.html' %}
+{% load static %}
+
+{% block scripts %}
+<script defer src="{% static 'js/index.js' %}"></script>
+{% endblock scripts %}
 
 {% block content %}
-
     <h1>Edit Event</h1>
     <p>To edit the event data, please modify or add new values to the form below and click the Update Event button. To delete the event, click the Delete Event button.</p>
-
     <form class="edit event" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
 
         <div class="actions">
-            <input 
+            <input
                 onclick="return confirmUpdate()"
-                id="updateButton" 
-                type="submit" 
+                id="updateButton"
+                type="submit"
                 value="Update Event"
             >
             <a href="{% url 'template_event_form' uuid=uuid %}">Use as template</a>
         </div>
     </form>
-
     <h2 class="delete-heading">Delete Event</h2>
     <p>If you would like to delete this event, click the Delete Event button below. You will be prompted to confirm the deletion of the listing. If you wish to proceed, click OK in the prompt.</p>
-
-    <a 
-        onclick="return confirmDelete()" 
-        class="delete btn" 
+    <a
+        onclick="return confirmDelete()"
+        class="delete btn"
         href="{% url 'delete_event' uuid=uuid %}"
     >
         Delete Event
