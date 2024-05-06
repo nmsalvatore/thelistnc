@@ -191,11 +191,11 @@ a.btn {
 }
 
 .event-group ul {
-    list-style-type: none;
+    margin-left: 1rem;
 }
 
 .event-group ul li {
-    margin-bottom: var(--size-md);
+    margin-bottom: var(--size-lg);
     line-height: 1.75;
 }
 
