@@ -29,10 +29,6 @@
     --weight-light: 400;
 }
 
-html {
-    font-size: 16px;
-}
-
 body {
     display: flex;
     flex-direction: column;
@@ -70,8 +66,9 @@ h6 {
 }
 
 h1 {
-    width: 300px;
-    font-size: 3rem;
+    width: 240px;
+    font-size: 2.5rem;
+    line-height: 1.3;
 }
 
 h1 ~ p:last-of-type,
@@ -79,7 +76,9 @@ p:has(+ form) {
     margin-bottom: var(--size-2xl);
 }
 
-a, p, span {
+a,
+p,
+span {
     line-height: 1.75;
 }
 
@@ -92,7 +91,8 @@ p {
     margin-bottom: var(--size-md);
 }
 
-a, input[type="submit"] {
+a,
+input[type="submit"] {
     cursor: pointer;
 }
 
@@ -185,7 +185,7 @@ a.btn {
 }
 
 .event-group h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: var(--weight-semibold);
     margin-bottom: var(--size-lg);
 }
@@ -196,9 +196,7 @@ a.btn {
 
 .event-group ul li {
     margin-bottom: var(--size-md);
-    padding-bottom: var(--size-md);
     line-height: 1.75;
-    border-bottom: 1px solid #f4f4f4;
 }
 
 .event-group ul li:last-child {
@@ -242,7 +240,7 @@ section.admin nav {
     text-align: right;
 }
 
-.admin ul li *:last-child a:first-child{
+.admin ul li *:last-child a:first-child {
     padding-right: var(--size-md);
 }
 
@@ -294,7 +292,7 @@ form.edit p:has(#id_end_date) {
 
 @media only screen and (max-width: 568px) {
     html {
-        font-size: 15px;
+        font-size: 90%;
     }
 
     body {
@@ -306,7 +304,7 @@ form.edit p:has(#id_end_date) {
     }
 
     h1 {
-        width: 260px;
+        width: 200px;
     }
 
     h1.admin + p {
