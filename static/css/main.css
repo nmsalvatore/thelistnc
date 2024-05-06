@@ -195,7 +195,7 @@ a.btn {
 }
 
 .event-group ul li {
-    margin-bottom: var(--size-lg);
+    margin-bottom: var(--size-md);
     line-height: 1.75;
 }
 
