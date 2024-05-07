@@ -4,87 +4,88 @@
     <div class="event-group">
         <h3>{{ date | date:"l, F j" }}</h3>
         <ul>
-            {% for event in events %} 
+            {% for event in events %}
                 <li>
+                    <div class="grid-row">
+                        {% if event.url %}
+                            <span>
+                                <a href="{{ event.url }}" target="_blank">{{ event }}</a>
 
-                {% if event.url %}
-                    <span>
-                        <a href="{{ event.url }}" target="_blank">{{ event }}</a>
+                                - {{ event.venue }},
 
-                        - {{ event.venue }},
+                                {% if "12am" in event.start_time|date:"fa"|remove_periods and not event.admission_price %}
+                                    {{ event.city }}
+                                {% else %}
+                                    {{ event.city }},
+                                {% endif %}
 
-                        {% if "12am" in event.start_time|date:"fa"|remove_periods and not event.admission_price %}
-                            {{ event.city }}
-                        {% else  %}
-                            {{ event.city }},
+                                {% if event.start_time and event.end_time %}
+                                    {% if event.admission_price or event.extra_info %}
+                                        {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }},
+                                    {% else %}
+                                        {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
+                                    {% endif %}
+                                {% elif "12am" not in event.start_time|date:"fa"|remove_periods %}
+                                    {% if event.admission_price or event.extra_info %}
+                                        {{ event.start_time | date:"fa" | remove_periods }},
+                                    {% else %}
+                                        {{ event.start_time | date:"fa" | remove_periods }}
+                                    {% endif %}
+                                {% endif %}
+
+                                {% if event.admission_price and event.extra_info %}
+                                    {{ event.admission_price }}, {{ event.extra_info }}
+                                {% elif event.admission_price %}
+                                    {{ event.admission_price }}
+                                {% elif event.extra_info %}
+                                    {{ event.extra_info }}
+                                {% endif %}
+                            </span>
+                            <span>
+                                <a href="{% url 'template_event_form' uuid=event.uuid %}">Template</a>
+                                <a href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
+                            </span>
+
+                        {% else %}
+                            <span>
+                                {{ event }} -
+                                {{ event.venue }},
+
+                                {% if "12am" in event.start_time|date:"fa"|remove_periods and not event.admission_price %}
+                                    {{ event.city }}
+                                {% else %}
+                                    {{ event.city }},
+                                {% endif %}
+
+                                {% if event.start_time and event.end_time %}
+                                    {% if event.admission_price or event.extra_info %}
+                                        {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }},
+                                    {% else %}
+                                        {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
+                                    {% endif %}
+                                {% elif "12am" not in event.start_time|date:"fa"|remove_periods %}
+                                    {% if event.admission_price or event.extra_info %}
+                                        {{ event.start_time | date:"fa" | remove_periods }},
+                                    {% else %}
+                                        {{ event.start_time | date:"fa" | remove_periods }}
+                                    {% endif %}
+                                {% endif %}
+
+                                {% if event.admission_price and event.extra_info %}
+                                    {{ event.admission_price }}, {{ event.extra_info }}
+                                {% elif event.admission_price %}
+                                    {{ event.admission_price }}
+                                {% elif event.extra_info %}
+                                    {{ event.extra_info }}
+                                {% endif %}
+                            </span>
+                            <span>
+                                <a href="{% url 'template_event_form' uuid=event.uuid %}">Template</a>
+                                <a href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
+                            </span>
+
                         {% endif %}
-
-                        {% if event.start_time and event.end_time %}
-                            {% if event.admission_price or event.extra_info %}
-                                {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }},
-                            {% else %}
-                                {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
-                            {% endif %}
-                        {% elif "12am" not in event.start_time|date:"fa"|remove_periods %}
-                            {% if event.admission_price or event.extra_info %}
-                                {{ event.start_time | date:"fa" | remove_periods }},
-                            {% else %}
-                                {{ event.start_time | date:"fa" | remove_periods }}
-                            {% endif %}
-                        {% endif %}
-
-                        {% if event.admission_price and event.extra_info %}
-                            {{ event.admission_price }}, {{ event.extra_info }}
-                        {% elif event.admission_price %}
-                            {{ event.admission_price }}
-                        {% elif event.extra_info %}
-                            {{ event.extra_info }}
-                        {% endif %}
-                    </span>
-                    <span>
-                        <a href="{% url 'template_event_form' uuid=event.uuid %}">Template</a>
-                        <a href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
-                    </span>
-
-                {% else %}
-                    <span>
-                        {{ event }} -
-                        {{ event.venue }},
-
-                        {% if "12am" in event.start_time|date:"fa"|remove_periods and not event.admission_price %}
-                            {{ event.city }}
-                        {% else  %}
-                            {{ event.city }},
-                        {% endif %}
-
-                        {% if event.start_time and event.end_time %}
-                            {% if event.admission_price or event.extra_info %}
-                                {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }},
-                            {% else %}
-                                {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
-                            {% endif %}
-                        {% elif "12am" not in event.start_time|date:"fa"|remove_periods %}
-                            {% if event.admission_price or event.extra_info %}
-                                {{ event.start_time | date:"fa" | remove_periods }},
-                            {% else %}
-                                {{ event.start_time | date:"fa" | remove_periods }}
-                            {% endif %}
-                        {% endif %}
-
-                        {% if event.admission_price and event.extra_info %}
-                            {{ event.admission_price }}, {{ event.extra_info }}
-                        {% elif event.admission_price %}
-                            {{ event.admission_price }}
-                        {% elif event.extra_info %}
-                            {{ event.extra_info }}
-                        {% endif %}
-                    </span>
-                    <span>
-                        <a href="{% url 'template_event_form' uuid=event.uuid %}">Template</a>
-                        <a href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
-                    </span>
-
-                {% endif %} 
+                    </div>
                 </li>
 
             {% endfor %}

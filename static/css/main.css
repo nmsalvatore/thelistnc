@@ -230,17 +230,13 @@ section.admin nav {
     align-items: center;
 }
 
-.admin ul li {
+.admin ul li .grid-row {
     display: grid;
     grid-template-columns: 1fr auto;
     gap: var(--size-lg);
 }
 
-.admin ul li *:last-child {
-    text-align: right;
-}
-
-.admin ul li *:last-child a:first-child {
+.admin ul li span:last-child a:first-child {
     padding-right: var(--size-md);
 }
 
