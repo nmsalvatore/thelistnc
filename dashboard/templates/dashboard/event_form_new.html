@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block scripts %}
+    <script defer src="{% static 'js/index.js' %}"></script>
+{% endblock scripts %}
+
+{% block content %}
+    <h1>New Event</h1>
+    <p>
+        To create a new event, please fill out the form below with all available data and click the Create New Event button.
+    </p>
+
+    <form class="event" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input onclick="return checkForMultipleListings()"
+               type="submit"
+               value="Create New Event">
+    </form>
+{% endblock content %}

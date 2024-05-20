@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <h1 class="admin">Volunteer Dashboard</h1>
+        <p>
+            Hello! As a volunteer, you've been granted the ability to create, edit, and delete event listings for The List NC. Wield your power with care and grace. Your contributions and efforts are greatly appreciated!
+        </p>
+        <section class="admin event-list">
+            <nav>
+                <div>
+                    <a href="{% url 'dashboard' sorting='by-date' %}">By Date</a>
+                    <span class="active">By Venue</span>
+                </div>
+                <div>
+                    <a class="btn" href="{% url 'new_event_form' %}">
+                        <img src="{% static 'icons/plus.svg' %}">
+                        Create new event
+                    </a>
+                </div>
+            </nav>
+
+            {% include 'dashboard/event_list_by_venue.html' %}
+        </section>
+    {% else %}
+        <h1>Hey, you shouldn't be here!</h1>
+    {% endif %}
+
+{% endblock content %}
