@@ -48,7 +48,7 @@ def register_view(request):
     else:
         form = RegistrationForm()
 
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'accounts/register.html', {'form': form})
 
 
 def verify_register_otp(request):
@@ -67,7 +67,7 @@ def verify_register_otp(request):
         context = {
             'email': email,
         }
-        return render(request, 'verify_otp.html', {'email': email})
+        return render(request, 'accounts/verify_otp.html', {'email': email})
 
     # POST request logic
     if request.method == 'POST':
@@ -89,7 +89,7 @@ def verify_register_otp(request):
                 'email': email,
                 'error_message': error_message,
             }
-            return render(request, 'verify_otp.html', context)
+            return render(request, 'accounts/verify_otp.html', context)
 
         # Check for matching OTP values
         if otp and stored_otp and otp == stored_otp:
@@ -117,7 +117,7 @@ def verify_register_otp(request):
                 login(request, user)
 
                 return redirect('registration_success')
-            
+
             # If stored OTP has expired, throw error
             else:
                 error_message = 'Passcode has expired.'
@@ -125,8 +125,8 @@ def verify_register_otp(request):
                     'email': email,
                     'error_message': error_message,
                 }
-                return render(request, 'verify_otp.html', context)
-        
+                return render(request, 'accounts/verify_otp.html', context)
+
         # If OTP values do not match, throw error
         else:
             error_message = 'Invalid passcode.'
@@ -134,12 +134,12 @@ def verify_register_otp(request):
                 'email': email,
                 'error_message': error_message,
             }
-            return render(request, 'verify_otp.html', context)
-        
+            return render(request, 'accounts/verify_otp.html', context)
+
     # If request is not POST or GET, redirect to home
     else:
         return redirect('home')
 
 
 def registration_success(request):
-    return render(request, 'registration_success.html')
+    return render(request, 'accounts/registration_success.html')
