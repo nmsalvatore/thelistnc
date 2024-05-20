@@ -5,7 +5,8 @@ from events.views import the_list
 
 urlpatterns = [
     path('', the_list, name='home'),
-    path('django-admin/', admin.site.urls),
-    path('admin/', include('accounts.urls')),
+    path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls')),
     path('events/', include('events.urls')),
+    path('dashboard/', include('dashboard.urls')),
 ]
