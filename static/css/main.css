@@ -195,8 +195,16 @@ a.btn {
 }
 
 .event-group ul li {
+    list-style-type: none;
     margin-bottom: var(--size-md);
     line-height: 1.75;
+    position: relative;
+}
+
+.event-group ul li::before {
+    content: "•";
+    position: absolute;
+    left: -1rem;
 }
 
 .event-group ul li:last-child {
@@ -230,7 +238,7 @@ section.admin nav {
     align-items: center;
 }
 
-.admin ul li .grid-row {
+.admin ul li {
     display: grid;
     grid-template-columns: 1fr auto;
     gap: var(--size-lg);
