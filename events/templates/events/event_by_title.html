@@ -11,9 +11,9 @@
     {% endif %}
 
     {% if event.admission_price or event.extra_info %}
-        {{ event.venue }},
+        {{ event.venue }}, {{ event.city }},
     {% else %}
-        {{ event.venue }}
+        {{ event.venue }}, {{ event.city }}
     {% endif %}
 
     {% if event.admission_price and event.extra_info %}
@@ -24,4 +24,4 @@
         {{ event.extra_info }}
     {% endif %}
 
-{% if event.url %}</a>{% endif %}
+    {% if event.url %}</a>{% endif %}
