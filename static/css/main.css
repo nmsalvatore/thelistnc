@@ -17,6 +17,7 @@
     /* colors */
     --color-background: #fff;
     --color-primary: #0f0f0f;
+    --color-secondary: #3f3f3f;
     --color-link: #008080;
     --color-lt-gray: #d3d3d3;
     --color-gray: #808080;
@@ -35,7 +36,7 @@ body {
     font-size: 1rem;
     font-family: Inter, Helvetica, sans-serif;
     font-weight: var(--weight-light);
-    color: var(--color-primary);
+    color: var(--color-secondary);
     min-height: 100dvh;
     padding: var(--size-lg);
 }
@@ -61,7 +62,7 @@ h4,
 h5,
 h6 {
     color: var(--color-primary);
-    font-weight: var(--weight-bold);
+    font-weight: var(--weight-semibold);
     margin-bottom: var(--size-md);
 }
 
@@ -270,7 +271,7 @@ p:has(input#id_end_date) {
 .logo {
     text-decoration: none;
     color: var(--color-primary);
-    font-weight: var(--weight-bold);
+    font-weight: var(--weight-semibold);
     font-size: 1.25rem;
 }
 
