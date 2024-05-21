@@ -1,12 +1,12 @@
 {% load accounts_extras %}
 
-{% for date, events in grouped_events %}
+{% for title, events in grouped_events %}
     <div class="event-group">
-        <h3>{{ date | date:"l, F j" }}</h3>
+        <h3>{{ title }}</h3>
         <ul>
             {% for event in events %}
                 <li>
-                    <span>{% include 'events/event_by_date.html' %}</span>
+                    <span>{% include 'events/event_by_title.html' %}</span>
                     <span>
                         <a href="{% url 'template_event_form' uuid=event.uuid %}">Template</a>
                         <a href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>

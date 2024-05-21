@@ -3,16 +3,15 @@
 
 {% block content %}
 
-    {% if user.is_authenticated %}
-        <h1 class="admin">Admin Dashboard</h1>
-        <p>
-            Welcome! As an administrator, you have the ability to create, edit, and delete event data, as well as invite new volunteers. You're cute and you're smart too.
-        </p>
+    {% if user.is_superuser %}
+        {% include 'dashboard/heading_superuser.html' %}
+
         <section class="admin event-list">
             <nav>
                 <div>
-                    <span class="active">By Date</span>
-                    <a href="{% url 'dashboard' sorting='by-venue' %}">By Venue</a>
+                    <span class="sort-option active">By Date</span>
+                    <a class="sort-option" href="{% url 'dashboard' sorting='by-venue' %}">By Venue</a>
+                    <a class="sort-option" href="{% url 'dashboard' sorting='by-title' %}">By Title</a>
                 </div>
                 <div>
                     <a class="btn" href="{% url 'send_invitation' %}">

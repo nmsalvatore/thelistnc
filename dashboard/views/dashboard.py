@@ -7,37 +7,37 @@ import datetime
 
 
 def dashboard_view(request, sorting='by-date'):
+    template = ''
+    grouped_events = []
+
     user = request.user
 
     if user.is_authenticated:
+        if sorting == 'by-date':
+            grouped_events = group_events('date')
+        elif sorting == 'by-venue':
+            grouped_events = group_events('venue')
+        elif sorting == 'by-title':
+            grouped_events = group_events('title')
+
         if user.is_superuser:
             if sorting == 'by-date':
-                grouped_events = group_events('start_date')
-                return render(request, 'dashboard/dashboard_superuser_by_date.html', {'grouped_events': grouped_events})
-
+                template = 'dashboard/dashboard_superuser_by_date.html'
             elif sorting == 'by-venue':
-                grouped_events = group_events('venue')
-                return render(request, 'dashboard/dashboard_superuser_by_venue.html', {'grouped_events': grouped_events})
-
+                template = 'dashboard/dashboard_superuser_by_venue.html'
             elif sorting == 'by-title':
-                events = Event.objects.filter(start_date__gte=datetime.date.today())
-                events = events.order_by('title', 'start_date')
-                context = {'events': events}
-                return render(request, 'dashboard/dashboard_superuser_by_title.html', context)
+                template = 'dashboard/dashboard_superuser_by_title.html'
 
         else:
             if sorting == 'by-date':
-                grouped_events = group_events('start_date')
-                return render(request, 'dashboard/dashboard_volunteer_by_date.html', {'grouped_events': grouped_events})
-
+                template = 'dashboard/dashboard_volunteer_by_date.html'
             elif sorting == 'by-venue':
-                grouped_events = group_events('venue')
-                return render(request, 'dashboard/dashboard_volunteer_by_venue.html', {'grouped_events': grouped_events})
-
+                template = 'dashboard/dashboard_volunteer_by_venue.html'
             elif sorting == 'by-title':
-                events = Event.objects.filter(start_date__gte=datetime.date.today())
-                events = events.order_by('title', 'start_date')
-                context = {'events': events}
-                return render(request, 'dashboard/dashboard_volunteer_by_title.html', context)
+                template = 'dashboard/dashboard_volunteer_by_title.html'
 
-    return redirect('login')
+        context = {'grouped_events': grouped_events}
+        return render(request, template, context)
+
+    else:
+        return redirect('login')

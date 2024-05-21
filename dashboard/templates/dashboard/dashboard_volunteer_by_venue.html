@@ -4,15 +4,14 @@
 {% block content %}
 
     {% if user.is_authenticated %}
-        <h1 class="admin">Volunteer Dashboard</h1>
-        <p>
-            Hello! As a volunteer, you've been granted the ability to create, edit, and delete event listings for The List NC. Wield your power with care and grace. Your contributions and efforts are greatly appreciated!
-        </p>
+        {% include 'dashboard/heading_volunteer.html' %}
+
         <section class="admin event-list">
             <nav>
                 <div>
-                    <a href="{% url 'dashboard' sorting='by-date' %}">By Date</a>
-                    <span class="active">By Venue</span>
+                    <a class="sort-option" href="{% url 'dashboard' sorting='by-date' %}">By Date</a>
+                    <span class="sort-option active">By Venue</span>
+                    <a class="sort-option" href="{% url 'dashboard' sorting='by-title' %}">By Title</a>
                 </div>
                 <div>
                     <a class="btn" href="{% url 'new_event_form' %}">

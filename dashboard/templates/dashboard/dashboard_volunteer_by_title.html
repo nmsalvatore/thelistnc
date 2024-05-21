@@ -3,21 +3,17 @@
 
 {% block content %}
 
-    {% if user.is_superuser %}
-        {% include 'dashboard/heading_superuser.html' %}
+    {% if user.is_authenticated %}
+        {% include 'dashboard/heading_volunteer.html' %}
 
         <section class="admin event-list">
             <nav>
                 <div>
                     <a class="sort-option" href="{% url 'dashboard' sorting='by-date' %}">By Date</a>
-                    <span class="sort-option active">By Venue</span>
-                    <a class="sort-option" href="{% url 'dashboard' sorting='by-title' %}">By Title</a>
+                    <a class="sort-option" href="{% url 'dashboard' sorting='by-venue' %}">By Venue</a>
+                    <span class="sort-option active">By Title</span>
                 </div>
                 <div>
-                    <a class="btn" href="{% url 'send_invitation' %}">
-                        <img src="{% static 'icons/send.svg' %}">
-                        Send invitation
-                    </a>
                     <a class="btn" href="{% url 'new_event_form' %}">
                         <img src="{% static 'icons/plus.svg' %}">
                         Create new event
@@ -25,7 +21,7 @@
                 </div>
             </nav>
 
-            {% include 'dashboard/event_list_by_venue.html' %}
+            {% include 'dashboard/event_list_by_title.html' %}
         </section>
     {% else %}
         <h1>Hey, you shouldn't be here!</h1>
