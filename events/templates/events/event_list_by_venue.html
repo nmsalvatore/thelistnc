@@ -7,6 +7,7 @@
         <nav>
             <a class="sort-option" href="{% url 'the_list' sorting='by-date' %}">By Date</a>
             <span class="sort-option active">By Venue</span>
+            <a class="sort-option" href="{% url 'the_list' sorting='by-title' %}">By Title</a>
         </nav>
 
         {% for venue, events in grouped_events %}
