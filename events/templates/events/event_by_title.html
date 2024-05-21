@@ -1,0 +1,27 @@
+{% load events_extras %}
+
+{% if event.url %}<a href="{{ event.url }}" target="_blank">{% endif %}
+
+    {% if not event.end_time %}
+        {{ event.start_date | date:"l, F j" }} at {{ event.start_time | date:"fa" | remove_periods }},
+    {% elif "12am" in event.start_time|date:"fa"|remove_periods and "12am" in event.end_time|date:"fa"|remove_periods %}
+        {{ event.start_date | date:"l, F j" }},
+    {% else %}
+        {{ event.start_date | date:"l, F j" }} from {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }},
+    {% endif %}
+
+    {% if event.admission_price or event.extra_info %}
+        {{ event.venue }},
+    {% else %}
+        {{ event.venue }}
+    {% endif %}
+
+    {% if event.admission_price and event.extra_info %}
+        {{ event.admission_price }}, {{ event.extra_info }}
+    {% elif event.admission_price %}
+        {{ event.admission_price }}
+    {% elif event.extra_info %}
+        {{ event.extra_info }}
+    {% endif %}
+
+{% if event.url %}</a>{% endif %}
