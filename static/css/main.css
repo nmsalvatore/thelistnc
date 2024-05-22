@@ -24,10 +24,9 @@
     --color-red: #cd5c5c;
 
     /* weights */
-    --weight-bold: 700;
-    --weight-semibold: 500;
+    --weight-semibold: 600;
+    --weight-medium: 500;
     --weight-regular: 400;
-    --weight-light: 400;
 }
 
 body {
@@ -62,7 +61,7 @@ h4,
 h5,
 h6 {
     color: var(--color-primary);
-    font-weight: var(--weight-semibold);
+    font-weight: var(--weight-medium);
     margin-bottom: var(--size-md);
 }
 
@@ -178,7 +177,7 @@ a.btn {
 }
 
 .event-list nav .active {
-    font-weight: var(--weight-semibold);
+    font-weight: var(--weight-medium);
 }
 
 .event-group {
@@ -187,7 +186,7 @@ a.btn {
 
 .event-group h3 {
     font-size: 1.3rem;
-    font-weight: var(--weight-semibold);
+    font-weight: var(--weight-medium);
     margin-bottom: var(--size-lg);
 }
 
@@ -271,7 +270,7 @@ p:has(input#id_end_date) {
 .logo {
     text-decoration: none;
     color: var(--color-primary);
-    font-weight: var(--weight-semibold);
+    font-weight: var(--weight-medium);
     font-size: 1.25rem;
 }
 
