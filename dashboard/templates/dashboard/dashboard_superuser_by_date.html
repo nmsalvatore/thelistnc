@@ -6,12 +6,12 @@
     {% if user.is_superuser %}
         {% include 'dashboard/heading_superuser.html' %}
 
-        <section class="admin event-list">
+        <section>
             <nav>
                 <div>
-                    <span class="sort-option active">By Date</span>
-                    <a class="sort-option" href="{% url 'dashboard' sorting='by-venue' %}">By Venue</a>
-                    <a class="sort-option" href="{% url 'dashboard' sorting='by-title' %}">By Title</a>
+                    <span>By Date</span>
+                    <a href="{% url 'dashboard' sorting='by-venue' %}">By Venue</a>
+                    <a href="{% url 'dashboard' sorting='by-title' %}">By Title</a>
                 </div>
                 <div>
                     <a class="btn" href="{% url 'send_invitation' %}">

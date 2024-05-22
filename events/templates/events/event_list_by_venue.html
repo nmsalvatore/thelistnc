@@ -1,17 +1,17 @@
 {% extends 'main.html' %}
 
 {% block content %}
-    {% include 'hero.html' %}
+    {% include 'events/hero.html' %}
 
-    <section class="event-list">
+    <section>
         <nav>
-            <a class="sort-option" href="{% url 'the_list' sorting='by-date' %}">By Date</a>
-            <span class="sort-option active">By Venue</span>
-            <a class="sort-option" href="{% url 'the_list' sorting='by-title' %}">By Title</a>
+            <a href="{% url 'the_list' sorting='by-date' %}">By Date</a>
+            <span>By Venue</span>
+            <a href="{% url 'the_list' sorting='by-title' %}">By Title</a>
         </nav>
 
         {% for venue, events in grouped_events %}
-            <div class="event-group">
+            <div>
                 <h3>{{ venue }}</h3>
                 <ul>
                     {% for event in events %}

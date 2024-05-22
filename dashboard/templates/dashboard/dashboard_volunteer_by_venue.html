@@ -9,9 +9,9 @@
         <section class="admin event-list">
             <nav>
                 <div>
-                    <a class="sort-option" href="{% url 'dashboard' sorting='by-date' %}">By Date</a>
-                    <span class="sort-option active">By Venue</span>
-                    <a class="sort-option" href="{% url 'dashboard' sorting='by-title' %}">By Title</a>
+                    <a href="{% url 'dashboard' sorting='by-date' %}">By Date</a>
+                    <span>By Venue</span>
+                    <a href="{% url 'dashboard' sorting='by-title' %}">By Title</a>
                 </div>
                 <div>
                     <a class="btn" href="{% url 'new_event_form' %}">

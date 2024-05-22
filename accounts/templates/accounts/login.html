@@ -3,9 +3,11 @@
 {% block content %}
 
     <h1>Login</h1>
-    <p>Please enter your email address in the field below and click Log In. As a security measure, we will send a one-time passcode to your email address. You will need to enter this passcode on the next page to complete the login process.</p>
+    <p>
+        Please enter your email address in the field below and click Log In. As a security measure, we will send a one-time passcode to your email address. You will need to enter this passcode on the next page to complete the login process.
+    </p>
 
-    <div class="content">
+    <div>
         <form class="inline-form" method="POST">
             {% csrf_token %}
             {{ form.email }}
@@ -14,9 +16,7 @@
     </div>
 
     {% if form.email.errors %}
-        {% for error in form.email.errors %}
-            <p style="color: red;">{{ error }}</p>
-        {% endfor %}
+        {% for error in form.email.errors %}<p style="color: red;">{{ error }}</p>{% endfor %}
     {% endif %}
 
 {% endblock content %}

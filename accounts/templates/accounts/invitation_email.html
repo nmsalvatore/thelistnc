@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Invitation to Join</title>
-</head>
-<body>
-    <h2>You're Invited!</h2>
-    <p>Dear {{ email }},</p>
-    <p>You have been invited to join our platform. Please click the button below to register:</p>
-    <p>
-        <a href="{{ registration_url }}" style="display: inline-block; padding: 10px 20px; background-color: #007bff; border-radius: 4px; color: #fff; text-decoration: none;">Register Now</a>
-    </p>
-    <p>If the button doesn't work, you can also copy and paste the following URL into your browser:</p>
-    <p>{{ registration_url }}</p>
-    <p>Thank you!</p>
-</body>
+    <head>
+        <title>Invitation to Join</title>
+    </head>
+    <body>
+        <h2>You're Invited!</h2>
+        <p>Dear {{ email }},</p>
+        <p>You have been invited to join our platform. Please click the button below to register:</p>
+        <p>
+            <a href="{{ registration_url }}"
+               style="display: inline-block;
+                      padding: 10px 20px;
+                      background-color: #008080;
+                      border-radius: 4px;
+                      color: #fff;
+                      text-decoration: none">Register Now</a>
+        </p>
+        <p>If the button doesn't work, you can also copy and paste the following URL into your browser:</p>
+        <p>{{ registration_url }}</p>
+        <p>Thank you!</p>
+    </body>
 </html>
