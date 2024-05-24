@@ -1,15 +1,20 @@
 {% load static %}
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-74KMVNTK53"></script>
+        <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-74KMVNTK53"
+        ></script>
         <script>
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
 
-            gtag('config', 'G-74KMVNTK53');
+            gtag("config", "G-74KMVNTK53");
         </script>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,48 +23,62 @@
         <link rel="icon" href="{% static 'images/favicons/favicon.png' %}" />
 
         <!-- HTML Meta Tags -->
-        <title>The List NC - What's happening in Nevada County?</title>
-        <meta name="description" content="">
+        <title>The List NC | What's happening in Nevada County?</title>
+        <meta
+            name="description"
+            content="Find events in Nevada County with The List NC! Our volunteer-run database features everything from festivals and farmer's markets to trivia nights and live shows."
+        />
 
         <!-- Facebook Meta Tags -->
-        <meta property="og:url" content="https://thelistnc.org">
-        <meta property="og:type" content="website">
-        <meta property="og:title"
-              content="The List NC - What's happening in Nevada County?">
-        <meta property="og:description"
-              content="Find events in Nevada County with The List NC! Our volunteer-run database features everything from festivals and farmer's markets to trivia nights and live shows.">
-        <meta property="og:image"
-              content="{% static 'images/opengraph/og_image.png' %}">
+        <meta property="og:url" content="https://thelistnc.org" />
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:title"
+            content="The List NC | What's happening in Nevada County?"
+        />
+        <meta
+            property="og:description"
+            content="Find events in Nevada County with The List NC! Our volunteer-run database features everything from festivals and farmer's markets to trivia nights and live shows."
+        />
+        <meta
+            property="og:image"
+            content="{% static 'images/opengraph/og_image.png' %}"
+        />
 
         <!-- Twitter Meta Tags -->
-        <meta name="twitter:card" content="summary_large_image">
-        <meta property="twitter:domain" content="thelistnc.org">
-        <meta property="twitter:url" content="https://thelistnc.org">
-        <meta name="twitter:title"
-              content="The List NC - What's happening in Nevada County?">
-        <meta name="twitter:description"
-              content="Find events in Nevada County with The List NC! Our volunteer-run database features everything from festivals and farmer's markets to trivia nights and live shows.">
-        <meta name="twitter:image"
-              content="{% static 'images/opengraph/og_image.png' %}">
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="thelistnc.org" />
+        <meta property="twitter:url" content="https://thelistnc.org" />
+        <meta
+            name="twitter:title"
+            content="The List NC | What's happening in Nevada County?"
+        />
+        <meta
+            name="twitter:description"
+            content="Find events in Nevada County with The List NC! Our volunteer-run database features everything from festivals and farmer's markets to trivia nights and live shows."
+        />
+        <meta
+            name="twitter:image"
+            content="{% static 'images/opengraph/og_image.png' %}"
+        />
 
         {% block scripts %}{% endblock %}
     </head>
     <body>
         <header>
-            <a class="logo" href="{% url 'home' %}">The List <span class="accent">NC</span></a>
+            <a class="logo" href="{% url 'home' %}"
+                >The List <span class="accent">NC</span></a
+            >
 
             {% if user.is_authenticated %}
-                <nav>
-                    <a href="{% url 'dashboard' sorting='by-date' %}">Dashboard</a>
-                    <a href="{% url 'logout' %}">Logout</a>
-                </nav>
+            <nav>
+                <a href="{% url 'dashboard' sorting='by-date' %}">Dashboard</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            </nav>
             {% endif %}
         </header>
 
-        <main>
-            {% block content %}
-            {% endblock content %}
-        </main>
+        <main>{% block content %} {% endblock content %}</main>
 
         <footer>
             <small>&copy; 2024 The List NC. All rights reserved.</small>
