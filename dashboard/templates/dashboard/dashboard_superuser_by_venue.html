@@ -1,6 +1,10 @@
 {% extends 'main.html' %}
 {% load static %}
 
+{% block subtitle %}
+    Admin dashboard
+{% endblock subtitle %}
+
 {% block content %}
 
     {% if user.is_superuser %}
