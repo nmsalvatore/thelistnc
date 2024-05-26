@@ -16,7 +16,7 @@
 
         {% for date, events in grouped_events %}
             <div>
-                <h3>{{ date | date:"l, F j" }}</h3>
+                <h2>{{ date | date:"l, F j" }}</h2>
                 <ul>
                     {% for event in events %}
                         <li>{% include 'events/event_by_date.html' %}</li>

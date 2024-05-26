@@ -176,7 +176,7 @@ section > div {
     margin-bottom: var(--size-xl);
 }
 
-section > div > h3 {
+section > div > h2 {
     font-size: 1.2rem;
     font-weight: var(--weight-semibold);
     margin-bottom: var(--size-lg);

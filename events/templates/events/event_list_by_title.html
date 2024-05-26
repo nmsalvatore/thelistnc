@@ -16,7 +16,7 @@
 
         {% for title, events in grouped_events %}
             <div>
-                <h3>{{ title }}</h3>
+                <h2>{{ title }}</h2>
                 <ul>
                     {% for event in events %}
                         <li>{% include 'events/event_by_title.html' %}</li>
