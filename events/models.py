@@ -13,7 +13,7 @@ class Event(models.Model):
     start_time = models.TimeField(null=True)
     end_date = models.DateField(blank=True, null=True)
     end_time = models.TimeField(blank=True, null=True)
-    url = models.URLField(blank=True, null=True)
+    url = models.URLField(max_length=300, blank=True, null=True)
     continuous = models.BooleanField(blank=True, default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     extra_info = models.CharField(max_length=255, blank=True, null=True)
