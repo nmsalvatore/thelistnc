@@ -281,15 +281,6 @@ form > div:has(input + a) {
     margin-top: var(--size-lg);
 }
 
-.description {
-    background: #fafafa;
-    border-radius: 0.5rem;
-    border: 1px solid #ddd;
-    padding: 1.5rem;
-    margin-top: 2rem;
-    color: #6f6f6f;
-}
-
 /* --- responsive --- */
 
 @media only screen and (max-width: 568px) {
