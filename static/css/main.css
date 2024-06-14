@@ -181,22 +181,27 @@ section > div > h2 {
     margin-bottom: var(--size-lg);
 }
 
-section > div > ul {
+/* section > div > ul {
     margin-left: 1rem;
-}
+} */
 
 section > div > ul > li {
     list-style-type: none;
-    margin-bottom: var(--size-md);
+    padding: 1rem 0;
     line-height: 1.75;
     position: relative;
+    border-bottom: 1px solid #eee;
 }
 
-section > div > ul li::before {
+section > div > ul > li:first-child {
+    padding-top: 0.5rem;
+}
+
+/* section > div > ul li::before {
     content: "•";
     position: absolute;
     left: -1rem;
-}
+} */
 
 section > div > ul li:last-child {
     border-bottom: none;
@@ -274,6 +279,15 @@ form > div:has(input + a) {
     display: flex;
     justify-content: space-between;
     margin-top: var(--size-lg);
+}
+
+.description {
+    background: #fafafa;
+    border-radius: 0.5rem;
+    border: 1px solid #ddd;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    color: #6f6f6f;
 }
 
 /* --- responsive --- */
