@@ -92,6 +92,7 @@ span {
 a {
     color: var(--color-link);
     text-underline-offset: 2px;
+    text-decoration: none;
 }
 
 a:has(> img) {
