@@ -67,7 +67,7 @@ h3,
 h4,
 h5,
 h6 {
-    color: var(--color-secondary);
+    color: var(--color-primary);
     font-weight: var(--weight-semibold);
     margin-bottom: var(--size-md);
 }
