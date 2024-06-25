@@ -286,8 +286,9 @@ form > div:has(input + a) {
     border: 1px solid var(--color-lt-gray);
     padding: 2rem;
     margin-top: 2rem;
-    box-shadow: 1px 1px 8px -6px;
+    background: #fafafa;
     border-radius: 4px;
+    box-shadow: 1px 1px 8px -6px var(--color-link);
 }
 
 /* --- responsive --- */
