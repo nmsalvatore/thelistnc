@@ -1,11 +1,10 @@
-{% extends 'main.html' %}
+{% extends 'main.html' %} 
 
-{% block subtitle %}
-    Events by date
-{% endblock subtitle %}
+{% block subtitle %} Events by date {% endblock subtitle %}
 
-{% block content %}
-    {% include 'events/heading_by_date.html' %}
+{% block content %} 
+
+    {% include 'events/heading.html' %}
 
     <section>
         <nav>
@@ -15,14 +14,14 @@
         </nav>
 
         {% for date, events in grouped_events %}
-            <div>
-                <h2>{{ date | date:"l, F j" }}</h2>
-                <ul>
-                    {% for event in events %}
-                        <li>{% include 'events/event_by_date.html' %}</li>
-                    {% endfor %}
-                </ul>
-            </div>
+        <div>
+            <h2>{{ date | date:"l, F j" }}</h2>
+            <ul>
+                {% for event in events %}
+                <li>{% include 'events/event_by_date.html' %}</li>
+                {% endfor %}
+            </ul>
+        </div>
         {% endfor %}
     </section>
 

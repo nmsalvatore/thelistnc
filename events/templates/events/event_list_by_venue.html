@@ -1,11 +1,10 @@
-{% extends 'main.html' %}
+{% extends 'main.html' %} 
 
-{% block subtitle %}
-    Events by venue
-{% endblock subtitle %}
+{% block subtitle %} Events by venue {% endblock subtitle %}
 
-{% block content %}
-    {% include 'events/heading_by_venue.html' %}
+{% block content %} 
+
+    {% include 'events/heading.html' %}
 
     <section>
         <nav>
@@ -15,14 +14,14 @@
         </nav>
 
         {% for venue, events in grouped_events %}
-            <div>
-                <h2>{{ venue }}</h2>
-                <ul>
-                    {% for event in events %}
-                        <li>{% include 'events/event_by_venue.html' %}</li>
-                    {% endfor %}
-                </ul>
-            </div>
+        <div>
+            <h2>{{ venue }}</h2>
+            <ul>
+                {% for event in events %}
+                <li>{% include 'events/event_by_venue.html' %}</li>
+                {% endfor %}
+            </ul>
+        </div>
         {% endfor %}
     </section>
 
