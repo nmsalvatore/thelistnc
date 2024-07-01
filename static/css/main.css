@@ -146,7 +146,7 @@ main {
 
         & + p {
             margin-bottom: var(--size-xl);
-            line-height: 1.6;
+            line-height: 1.7;
         }
     }
 
@@ -199,7 +199,7 @@ main {
             list-style-type: none;
             line-height: 1.75;
             position: relative;
-            margin-bottom: var(--size-md);
+            margin-bottom: var(--size-lg);
         }
 
         li:last-child {
