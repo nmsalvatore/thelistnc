@@ -83,7 +83,7 @@ h6,
 strong,
 b {
     color: var(--color-darkest);
-    font-weight: var(--weight-semibold);
+    font-weight: var(--weight-medium);
 }
 
 .admin-bar {
@@ -195,11 +195,14 @@ main {
     .event-group {
         margin-bottom: var(--size-xl);
 
+        ul {
+            margin-left: var(--size-md);
+        }
+
         li {
-            list-style-type: none;
-            line-height: 1.75;
+            line-height: 1.7;
             position: relative;
-            margin-bottom: var(--size-lg);
+            margin-bottom: var(--size-md);
         }
 
         li:last-child {
