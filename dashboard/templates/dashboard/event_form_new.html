@@ -18,8 +18,10 @@
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <input onclick="return checkForMultipleListings()"
-               type="submit"
-               value="Create New Event">
+        <div class="form-actions">
+            <input onclick="return checkForMultipleListings()"
+                   type="submit"
+                   value="Create New Event">
+        </div>
     </form>
 {% endblock content %}

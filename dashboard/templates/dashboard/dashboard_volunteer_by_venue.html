@@ -10,8 +10,8 @@
     {% if user.is_authenticated %}
         {% include 'dashboard/heading_volunteer.html' %}
 
-        <section class="admin event-list">
-            <nav>
+        <section>
+            <nav class="options">
                 <div>
                     <a href="{% url 'dashboard' sorting='by-date' %}">By Date</a>
                     <span>By Venue</span>

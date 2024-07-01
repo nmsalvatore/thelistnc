@@ -1,7 +1,7 @@
 {% load accounts_extras %}
 
 {% for title, events in grouped_events %}
-    <div>
+    <div class="event-group">
         <h2>{{ title }}</h2>
         <ul>
             {% for event in events %}

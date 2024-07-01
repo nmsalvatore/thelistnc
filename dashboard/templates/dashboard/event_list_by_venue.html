@@ -1,7 +1,7 @@
 {% load accounts_extras %}
 
 {% for venue, events in grouped_events %}
-    <div>
+    <div class="event-group">
         <h2>{{ venue }}</h2>
         <ul>
             {% for event in events %}
