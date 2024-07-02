@@ -9,7 +9,7 @@
     --color-dark: hsl(180 30% 30%);
     --color-medium: hsl(180 20% 60%);
     --color-light: hsl(180 15% 90%);
-    --color-lightest: hsl(180 10% 95%);
+    --color-lightest: hsl(180 10% 97%);
     --color-white: #ffffff;
     --color-red: #cd5c5c;
     --weight-regular: 400;
@@ -101,7 +101,7 @@ header {
     .logo {
         color: var(--color-darkest);
         text-decoration: none;
-        font-size: 1.2rem;
+        font-size: 1.1rem;
 
         .accent {
             color: var(--color-primary);
