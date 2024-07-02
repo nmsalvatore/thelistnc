@@ -140,7 +140,7 @@ main {
 
     h1 {
         font-size: 2rem;
-        font-weight: 600;
+        font-weight: 700;
         margin-bottom: var(--size-lg);
 
         & + p {
