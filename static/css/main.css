@@ -136,11 +136,11 @@ main {
     h1,
     h2 {
         font-family: "IBM Plex Mono", monospace;
+        font-weight: 600;
     }
 
     h1 {
         font-size: 2rem;
-        font-weight: 700;
         margin-bottom: var(--size-lg);
 
         & + p {
@@ -151,7 +151,6 @@ main {
 
     h2 {
         font-size: 1rem;
-        font-weight: 700;
         margin-bottom: var(--size-md);
         padding: var(--size-sm) 0;
         border-bottom: 2px solid var(--color-light);
