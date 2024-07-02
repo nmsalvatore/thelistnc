@@ -3,7 +3,7 @@
     src:
         local("IBM Plex Mono SemiBold"),
         local("IBMPlexMono-SemiBold"),
-        url("IBMPlexMono-SemiBold.woff2") format("woff2");
+        url("../fonts/IBMPlexMono-SemiBold.woff2") format("woff2");
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -14,7 +14,7 @@
     src:
         local("IBM Plex Mono Bold"),
         local("IBMPlexMono-Bold"),
-        url("IBMPlexMono-Bold.woff2") format("woff2");
+        url("../fonts/IBMPlexMono-Bold.woff2") format("woff2");
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -25,7 +25,7 @@
     src:
         local("IBM Plex Sans Medium"),
         local("IBMPlexSans-Medium"),
-        url("IBMPlexSans-Medium.woff2") format("woff2");
+        url("../fonts/IBMPlexSans-Medium.woff2") format("woff2");
     font-weight: 500;
     font-style: normal;
     font-display: swap;
