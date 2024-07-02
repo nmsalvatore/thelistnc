@@ -111,7 +111,7 @@ header {
     }
 
     .admin-options {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
 
         a {
             text-decoration: none;
@@ -158,7 +158,7 @@ main {
 
     .sort-options {
         font-weight: var(--weight-medium);
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         padding-bottom: var(--size-sm);
         margin-bottom: 2.5rem;
         border-bottom: var(--size-xs) solid var(--color-lightest);
