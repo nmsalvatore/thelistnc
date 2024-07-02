@@ -5,12 +5,12 @@
     --size-lg: 2rem;
     --size-xl: 4rem;
     --color-primary: hsl(180 80% 30%);
-    --color-darkest: hsl(180 60% 20%);
-    --color-dark: hsl(180 30% 35%);
-    --color-medium: hsl(180 20% 65%);
-    --color-light: hsl(180 15% 85%);
-    --color-lightest: hsl(180 10% 96%);
-    --color-whitish: hsl(180 5% 99%);
+    --color-darkest: hsl(180 55% 20%);
+    --color-dark: hsl(180 40% 35%);
+    --color-medium: hsl(180 25% 65%);
+    --color-light: hsl(180 20% 85%);
+    --color-lightest: hsl(180 15% 95%);
+    --color-whitish: hsl(180 10% 98%);
     --color-red: #cd5c5c;
     --weight-regular: 400;
     --weight-medium: 500;
