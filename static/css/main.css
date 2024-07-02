@@ -145,7 +145,7 @@ main {
 
         & + p {
             margin-bottom: var(--size-xl);
-            line-height: 2;
+            line-height: 1.8;
         }
     }
 
@@ -201,7 +201,7 @@ main {
         li {
             padding: var(--size-md) 0;
             border-bottom: 2px solid var(--color-lightest);
-            line-height: 2;
+            line-height: 1.8;
         }
 
         li:last-child {
