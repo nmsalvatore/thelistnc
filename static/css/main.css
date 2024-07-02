@@ -100,17 +100,12 @@ header {
 
     .logo {
         color: var(--color-darkest);
+        text-decoration: none;
+        font-size: 1.2rem;
 
         .accent {
             color: var(--color-primary);
         }
-    }
-
-    & > a {
-        text-decoration: none;
-        color: var(--color-primary);
-        font-weight: var(--weight-semibold);
-        font-size: 1.2rem;
     }
 
     .admin-options {
