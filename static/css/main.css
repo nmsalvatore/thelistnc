@@ -52,6 +52,8 @@ button {
 a {
     color: var(--color-primary);
     font-weight: var(--weight-medium);
+    text-underline-offset: 2px;
+    text-decoration-color: var(--color-medium);
 }
 
 a:has(> img) {
