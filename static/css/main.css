@@ -286,7 +286,7 @@ form {
     button[type="submit"] {
         cursor: pointer;
         background: var(--color-primary);
-        color: var(--color-white);
+        color: var(--color-whitish);
     }
 
     input[type="submit"]:focus,
