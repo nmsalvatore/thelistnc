@@ -5,9 +5,9 @@
     --size-lg: 2rem;
     --size-xl: 4rem;
     --color-primary: hsl(180 80% 30%);
-    --color-darkest: hsl(180 60% 15%);
+    --color-darkest: hsl(180 60% 10%);
     --color-dark: hsl(180 30% 30%);
-    --color-medium: hsl(180 20% 60%);
+    --color-medium: hsl(180 20% 65%);
     --color-light: hsl(180 15% 90%);
     --color-lightest: hsl(180 10% 97%);
     --color-white: #ffffff;
@@ -285,8 +285,12 @@ form {
     button[type="submit"] {
         cursor: pointer;
         background: var(--color-primary);
-        border: 2px solid var(--color-medium);
         color: var(--color-white);
+    }
+
+    input[type="submit"]:focus,
+    button[type="submit"]:focus {
+        outline: 2px solid var(--color-medium);
     }
 
     .form-actions {
