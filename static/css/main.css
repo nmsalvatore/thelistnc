@@ -8,8 +8,8 @@
     --color-darkest: hsl(180 60% 15%);
     --color-dark: hsl(180 30% 30%);
     --color-medium: hsl(180 20% 65%);
-    --color-light: hsl(180 15% 90%);
-    --color-lightest: hsl(180 10% 97%);
+    --color-light: hsl(180 15% 85%);
+    --color-lightest: hsl(180 10% 96%);
     --color-whitish: hsl(180 5% 99%);
     --color-red: #cd5c5c;
     --weight-regular: 400;
@@ -161,7 +161,7 @@ main {
         font-size: 0.9rem;
         padding-bottom: var(--size-sm);
         margin-bottom: 2.5rem;
-        border-bottom: var(--size-xs) solid var(--color-light);
+        border-bottom: var(--size-xs) solid var(--color-lightest);
 
         & > *,
         & > div > * {
