@@ -6,7 +6,7 @@
     --size-xl: 4rem;
     --color-primary: hsl(180 80% 30%);
     --color-darkest: hsl(180 60% 20%);
-    --color-dark: hsl(180 30% 33%);
+    --color-dark: hsl(180 30% 35%);
     --color-medium: hsl(180 20% 65%);
     --color-light: hsl(180 15% 85%);
     --color-lightest: hsl(180 10% 96%);
@@ -145,7 +145,7 @@ main {
 
         & + p {
             margin-bottom: var(--size-xl);
-            line-height: 1.7;
+            line-height: 2;
         }
     }
 
@@ -201,7 +201,7 @@ main {
         li {
             padding: var(--size-md) 0;
             border-bottom: 2px solid var(--color-lightest);
-            line-height: 1.7;
+            line-height: 2;
         }
 
         li:last-child {
