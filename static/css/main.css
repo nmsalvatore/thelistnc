@@ -141,7 +141,7 @@ main {
     h1 {
         font-size: 2rem;
         font-weight: 600;
-        margin-bottom: var(--size-md);
+        margin-bottom: var(--size-lg);
 
         & + p {
             margin-bottom: var(--size-xl);
