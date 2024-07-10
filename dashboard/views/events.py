@@ -24,6 +24,7 @@ def new_event(request):
                         event_data = {
                             **form.cleaned_data,
                             'continuous': False,
+                            'manual_upload': True,
                             'start_date': current_date,
                             'end_date': None,
                             'created_by': request.user,
@@ -39,6 +40,7 @@ def new_event(request):
                 else:
                     new_event = form.save(commit=False)
                     new_event.created_by = request.user
+                    new_event.manual_upload = True
                     new_event.save()
 
                 return redirect(reverse('dashboard', args=['by-date']))
@@ -74,6 +76,7 @@ def template_event(request, uuid):
                         event_data = {
                             **form.cleaned_data,
                             'continuous': False,
+                            'manual_upload': True,
                             'start_date': current_date,
                             'end_date': None,
                             'created_by': request.user,
@@ -89,6 +92,7 @@ def template_event(request, uuid):
                 else:
                     new_event = form.save(commit=False)
                     new_event.created_by = request.user
+                    new_event.manual_upload = True
                     new_event.save()
 
                 return redirect(reverse('dashboard', args=['by-date']))
@@ -115,6 +119,7 @@ def edit_event(request, uuid):
             if form.is_valid():
                 new_event = form.save(commit=False)
                 new_event.created_by = request.user
+                new_event.manual_upload = True
                 new_event.save()
                 return redirect(reverse('dashboard', args=['by-date']))
         else:

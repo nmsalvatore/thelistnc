@@ -19,6 +19,7 @@ class Event(models.Model):
     extra_info = models.CharField(max_length=255, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name='events', null=True)
+    manual_upload = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
