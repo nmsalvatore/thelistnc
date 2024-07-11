@@ -1,6 +1,17 @@
 @font-face {
     font-family: "Inter";
     src:
+        local("Inter SemiBold"),
+        local("Inter-SemiBold"),
+        url("../fonts/Inter-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Inter";
+    src:
         local("Inter Medium"),
         local("Inter-Medium"),
         url("../fonts/Inter-Medium.woff2") format("woff2");

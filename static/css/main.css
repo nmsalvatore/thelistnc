@@ -104,6 +104,7 @@ header {
         color: var(--color-darkest);
         text-decoration: none;
         font-size: 1.1rem;
+        font-weight: 600;
 
         .accent {
             color: var(--color-primary);
@@ -135,11 +136,11 @@ main {
 
     h1,
     h2 {
-        font-weight: 500;
+        font-weight: 600;
     }
 
     h1 {
-        font-size: 2rem;
+        font-size: 1.75rem;
         margin-bottom: var(--size-lg);
 
         & + p {
@@ -156,7 +157,6 @@ main {
     }
 
     .sort-options {
-        font-weight: var(--weight-medium);
         font-size: 0.85rem;
         padding-bottom: var(--size-md);
         margin-bottom: 2.5rem;
@@ -173,6 +173,7 @@ main {
         }
 
         & span {
+            font-weight: 600;
             color: var(--color-darkest);
             padding-bottom: var(--size-md);
             border-bottom: var(--size-xs) solid var(--color-primary);
