@@ -98,7 +98,7 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-top: var(--size-lg) !important;
+    margin-top: var(--size-lg);
 
     .logo {
         color: var(--color-darkest);
@@ -142,7 +142,6 @@ main {
     h1 {
         font-size: 1.75rem;
         margin-bottom: var(--size-lg);
-        padding-top: var(--size-sm);
 
         & + p {
             margin-bottom: var(--size-xl);
@@ -361,11 +360,11 @@ form.inline-form {
     header,
     main,
     footer {
-        padding: var(--size-md);
+        padding: var(--size-lg) var(--size-md);
     }
 
     header {
-        margin-bottom: var(--size-md);
+        margin-top: 0;
 
         .admin-options a {
             margin-right: var(--size-md);
