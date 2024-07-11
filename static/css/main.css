@@ -142,6 +142,7 @@ main {
     h1 {
         font-size: 1.75rem;
         margin-bottom: var(--size-lg);
+        padding-top: var(--size-sm);
 
         & + p {
             margin-bottom: var(--size-xl);
