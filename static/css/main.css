@@ -4,9 +4,9 @@
     --size-md: 1rem;
     --size-lg: 2rem;
     --size-xl: 4rem;
-    --color-primary: hsl(180 80% 27%);
-    --color-darkest: hsl(180 55% 20%);
-    --color-dark: hsl(180 40% 35%);
+    --color-primary: hsl(180 80% 25%);
+    --color-darkest: hsl(180 55% 10%);
+    --color-dark: hsl(180 40% 25%);
     --color-medium: hsl(180 25% 65%);
     --color-light: hsl(180 20% 85%);
     --color-lightest: hsl(180 15% 95%);
@@ -101,7 +101,6 @@ header {
     margin-top: var(--size-lg) !important;
 
     .logo {
-        color: var(--color-darkest);
         text-decoration: none;
         font-size: 1.1rem;
 
