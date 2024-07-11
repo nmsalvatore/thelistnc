@@ -1,21 +1,21 @@
 @font-face {
-    font-family: "IBM Plex Mono";
+    font-family: "Inter";
     src:
-        local("IBM Plex Mono SemiBold"),
-        local("IBMPlexMono-SemiBold"),
-        url("../fonts/IBMPlexMono-SemiBold.woff2") format("woff2");
-    font-weight: 600;
+        local("Inter Medium"),
+        local("Inter-Medium"),
+        url("../fonts/Inter-Medium.woff2") format("woff2");
+    font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: "IBM Plex Sans";
+    font-family: "Inter";
     src:
-        local("IBM Plex Sans Medium"),
-        local("IBMPlexSans-Medium"),
-        url("../fonts/IBMPlexSans-Medium.woff2") format("woff2");
-    font-weight: 500;
+        local("Inter Regular"),
+        local("Inter-Regular"),
+        url("../fonts/Inter-Regular.woff2") format("woff2");
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
