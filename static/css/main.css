@@ -5,7 +5,7 @@
     --space-lg: 5rem;
     --space-xl: 8rem;
     --space-2xl: 13rem;
-    --color-whitish: hsl(27 50% 98%);
+    --color-whitish: #fcfaf7;
     --color-lightest: hsl(180 20% 97%);
     --color-light: hsl(180 30% 90% / 0.75);
     --color-medium: hsl(180 50% 70%);
