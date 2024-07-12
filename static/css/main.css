@@ -117,6 +117,10 @@ header .admin-options > a:first-child {
     margin-right: var(--space-md);
 }
 
+main {
+    margin-bottom: var(--space-xl);
+}
+
 main > div:has(h1) {
     margin-bottom: var(--space-lg);
 }
@@ -198,6 +202,10 @@ nav.sort-and-auth-options a {
     background: white;
     border: 1px solid var(--color-medium);
     box-shadow: 4px 4px var(--color-light);
+
+    p.url {
+        margin-top: var(--space-xs);
+    }
 }
 
 .auth-event-row {
@@ -211,7 +219,7 @@ nav.sort-and-auth-options a {
 }
 
 .auth-event-row summary {
-    max-width: 600px;
+    max-width: 540px;
 }
 
 form {
@@ -256,6 +264,9 @@ form > p #id_continuous:focus {
 }
 
 form > .form-actions {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
     margin: var(--space-lg) 0;
     text-align: right;
 }
@@ -277,6 +288,28 @@ form.inline-form input:not(input[type="submit"]) {
     padding: var(--space-xs);
     margin-right: var(--space-sm);
     border: 1px solid var(--color-medium);
+}
+
+form + h2 + p {
+    margin-bottom: var(--space-md);
+}
+
+@media only screen and (max-width: 680px) {
+    nav.sort-and-auth-options {
+        align-items: flex-start;
+        flex-direction: column-reverse;
+
+        > div:last-child {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: var(--space-lg);
+
+            > a:first-child {
+                margin-bottom: var(--space-xs);
+                margin-right: 0;
+            }
+        }
+    }
 }
 
 @media only screen and (max-width: 568px) {
