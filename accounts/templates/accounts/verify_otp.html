@@ -5,11 +5,12 @@
 {% endblock subtitle %}
 
 {% block content %}
-
-    <h1>Verify OTP</h1>
-    <p>
-        For your security, a one-time passcode has been sent to <strong>{{ email }}</strong>. The passcode will expire in 5 minutes. Please enter the passcode in the field below and click Verify to complete the verification process.
-    </p>
+    <div>
+        <h1>Verify OTP</h1>
+        <p>
+            For your security, a one-time passcode has been sent to <strong>{{ email }}</strong>. The passcode will expire in 5 minutes. Please enter the passcode in the field below and click Verify to complete the verification process.
+        </p>
+    </div>
 
     <div>
         <form class="inline-form" method="POST">

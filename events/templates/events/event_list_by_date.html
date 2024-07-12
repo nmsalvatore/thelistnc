@@ -18,11 +18,11 @@
         {% for date, events in grouped_events %}
             <div class="event-group">
                 <h2>{{ date | date:"l, F j" }}</h2>
-                <ul>
-                    {% for event in events %}
-                        <li>{% include 'events/event_by_date.html' %}</li>
-                    {% endfor %}
-                </ul>
+                {% for event in events %}
+                    <details>
+                        {% include 'events/event_by_date.html' %}
+                    </details>
+                {% endfor %}
             </div>
         {% endfor %}
     </section>

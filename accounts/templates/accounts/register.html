@@ -5,11 +5,12 @@
 {% endblock subtitle %}
 
 {% block content %}
-
-    <h1>Registration</h1>
-    <p>
-        You've been invited to volunteer with The List NC! To proceed with registration, please enter your email address in the field below and click Register. As a security measure, we will send a one-time passcode to your email address. The passcode will expire 5 minutes after it is generated, so make sure that you have access to your email inbox before proceeding.
-    </p>
+    <div>
+        <h1>Registration</h1>
+        <p>
+            You've been invited to volunteer with The List NC! To proceed with registration, please enter your email address in the field below and click Register. As a security measure, we will send a one-time passcode to your email address. The passcode will expire 5 minutes after it is generated, so make sure that you have access to your email inbox before proceeding.
+        </p>
+    </div>
 
     <form class="inline-form" method="POST">
         {% csrf_token %}

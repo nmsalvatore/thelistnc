@@ -49,15 +49,9 @@ class EventForm(forms.ModelForm):
             'url': 'URL'
         }
         widgets = {
-            'title': forms.TextInput(attrs={'placeholder': 'ex. Aaron Ross'}),
-            'venue': forms.TextInput(attrs={'placeholder': 'ex. Miner\'s Foundry'}),
-            'city': forms.TextInput(attrs={'placeholder': 'ex. Nevada City'}),
-            'admission_price': forms.TextInput(attrs={'placeholder': 'ex. $25'}),
             'start_date': forms.DateInput(attrs={'type': 'date'}),
             'start_time': forms.TimeInput(attrs={'type': 'time'}),
             'end_time': forms.TimeInput(attrs={'type': 'time'}),
             'continuous': forms.CheckboxInput(),
             'end_date': forms.DateInput(attrs={'type': 'date'}),
-            'url': forms.TextInput(attrs={'placeholder': 'ex. https://www.minersfoundry.com/events/aaron-ross-show.html'}),
-            'extra_info': forms.TextInput(attrs={'placeholder': 'ex. 18+'}),
         }
