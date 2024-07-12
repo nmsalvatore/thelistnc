@@ -184,6 +184,10 @@ nav.sort-and-auth-options a {
     color: var(--color-medium);
 }
 
+.event-group details {
+    padding: 5px 0;
+}
+
 .event-group details summary {
     cursor: pointer;
 }
