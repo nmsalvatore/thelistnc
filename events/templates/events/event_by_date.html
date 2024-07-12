@@ -1,6 +1,8 @@
 {% load events_extras %}
 
-<summary>{{ event }}</summary>
+<summary>
+    <strong>{{ event.start_time | date:"fa" | remove_periods }} -</strong> {{ event }} at {{ event.venue }}
+</summary>
 <div>
     <p class="title">
         <strong>Title:</strong> {{ event }}
@@ -28,7 +30,7 @@
 
     {% if event.additional_info %}
         <p class="additional-info">
-            <strong>Additional Info:</strong> {{ event.additional_info }}
+            <strong>Additional Info:</strong> {{ event.extra_info }}
         </p>
     {% endif %}
 
