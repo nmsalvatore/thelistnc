@@ -7,8 +7,11 @@
     <p class="title">
         <strong>Title:</strong> {{ event }}
     </p>
-    <p class="location">
-        <strong>Location:</strong> {{ event.venue }}
+    <p class="venue">
+        <strong>Venue:</strong> {{ event.venue }}
+    </p>
+    <p class="city">
+        <strong>City:</strong> {{ event.city }}
     </p>
     <p class="date">
         <strong>Date:</strong> {{ event.start_date|date:'l, F j, Y' }}
