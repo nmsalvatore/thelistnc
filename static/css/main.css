@@ -186,7 +186,6 @@ nav.sort-and-auth-options a {
 
 .event-group details {
     padding: 5px 0;
-    margin-bottom: var(--space-xs);
 }
 
 .event-group details summary {
@@ -195,7 +194,7 @@ nav.sort-and-auth-options a {
 
 .event-group details[open] > div {
     padding: 2rem 2.4rem;
-    margin: 1rem 0 2rem;
+    margin: 2rem 0;
     background: white;
     border: 1px solid var(--color-medium);
     box-shadow: 4px 4px var(--color-light);
