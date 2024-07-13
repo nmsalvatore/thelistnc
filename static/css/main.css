@@ -5,7 +5,7 @@
     --space-lg: 5rem;
     --space-xl: 8rem;
     --space-2xl: 13rem;
-    --color-light: #f6fafa;
+    --color-light: #f1f8f8;
     --color-medium: #99cccc;
     --color-dark: #084747;
     --color-primary: #008080;
@@ -154,7 +154,7 @@ nav.sort-and-auth-options {
 nav.sort-options > *,
 nav.sort-and-auth-options > div:first-child > * {
     margin-right: var(--space-sm);
-    padding: 0.3rem 0;
+    padding: 0.5rem 0;
     border-radius: 1px;
 }
 
@@ -186,6 +186,7 @@ nav.sort-and-auth-options a {
 
 .event-group details {
     padding: 5px 0;
+    margin-bottom: var(--space-xs);
 }
 
 .event-group details summary {
