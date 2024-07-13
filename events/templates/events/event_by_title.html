@@ -1,6 +1,6 @@
 {% load events_extras %}
 
-<summary>{{ event.start_date|date:'l, F j, Y' }} at {{ event.venue }}</summary>
+<summary>{{ event.start_date|date:'F j' }} at {{ event.venue }}</summary>
 <div>
     <p class="title">
         <strong>Title:</strong> {{ event }}
