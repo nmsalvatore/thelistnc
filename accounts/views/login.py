@@ -3,127 +3,113 @@ from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.urls import reverse
-from decouple import config
+from django.views.decorators.http import require_http_methods
 
 from accounts.forms import LoginForm
 
+from decouple import config
 import random
 import time
 
-
+@require_http_methods(["GET", "POST"])
 def login_view(request):
     """
     Handle user login
     """
     if request.user.is_authenticated:
-        return redirect(reverse('dashboard', args=['by-date']))
+        return redirect(reverse("dashboard", args=["by-date"]))
 
-    if request.method == 'POST':
+    if request.method == "GET":
+        form = LoginForm()
+        context = {"form": form}
+        return render(request, "accounts/login.html", context)
+
+    if request.method == "POST":
         form = LoginForm(request.POST)
+
         if form.is_valid():
-            email = form.cleaned_data['email']
+            email = form.cleaned_data["email"]
 
             try:
                 user = User.objects.get(email=email)
                 otp = str(random.randint(100000, 999999))
 
-                # Initialize session data
-                request.session['email'] = email
-                request.session['otp'] = otp
-                request.session['otp_timestamp'] = time.time()
-                request.session['attempt_count'] = 0
+                request.session["email"] = email
+                request.session["otp"] = otp
+                request.session["otp_timestamp"] = time.time()
+                request.session["attempt_count"] = 0
 
-                # Send OTP via email
                 send_mail(
-                    'Your one-time passcode',
-                    f'Your one-time passcode is: {otp}',
-                    config('EMAIL_VERIFY_SENDER'),
+                    "Your one-time passcode",
+                    f"Your one-time passcode is: {otp}",
+                    config("EMAIL_USER"),
                     [email],
                     fail_silently=False,
                 )
 
-                return redirect('verify_login_otp')
+                return redirect("verify_login_otp")
+
             except User.DoesNotExist:
-                form.add_error('email', 'No account is associated with this email address.')
-    else:
-        form = LoginForm()
-
-    return render(request, 'accounts/login.html', {'form': form})
+                form.add_error("email", "No account is associated with this email address.")
+                context = {"form": form}
+                return render(request, "accounts/login.html", context)
 
 
+@require_http_methods(["GET", "POST"])
 def verify_login_otp(request):
     """
     Complete user login with one-time passcode
     """
+    email = request.session.get("email")
+    otp_timestamp = request.session.get("otp_timestamp")
+    time_elapsed = time.time() - otp_timestamp
+    stored_otp = request.session.get("otp")
+    attempt_count = request.session.get("attempt_count")
+    verify_template = "accounts/verify_otp.html"
 
-    # Retrieve session data
-    email = request.session.get('email')
-    otp_timestamp = request.session.get('otp_timestamp')
-    stored_otp = request.session.get('otp')
-    attempt_count = request.session.get('attempt_count')
+    if request.method == "GET":
+        context = {"email": email}
+        return render(request, verify_template, context)
 
-    # GET request logic
-    if request.method == 'GET':
-        context = {
-            'email': email,
-        }
-        return render(request, 'accounts/verify_otp.html', context)
-
-    # POST request logic
-    if request.method == 'POST':
-
-        # Increment attempt count and save to session
+    if request.method == "POST":
         attempt_count += 1
-        request.session['attempt_count'] = attempt_count
+        request.session["attempt_count"] = attempt_count
+        context = {"email": email}
 
-        # Retrieve form OTP value
-        otp = request.POST.get('otp')
+        if time_elapsed > 300:
+            context["error_message"] = "Passcode has expired. Navigate back to login page to start over."
+            return render(request, verify_template, context)
 
-        # If attempts exceed 3, throw error
         if attempt_count > 3:
-            error_message = 'Attempt limit has been exceeded.'
-            context = {
-                'email': email,
-                'error_message': error_message
-            }
-            return render(request, 'accounts/verify_otp.html', context)
+            context["error_message"] = "Attempt limit has been reached. Navigate back to login page to start over."
+            return render(request, verify_template, context)
 
-        # Check for matching OTP values
-        if otp and stored_otp and otp == stored_otp:
+        otp = request.POST.get("otp")
+        if not otp:
+            context["error_message"] = "Please enter a valid passcode."
+            return render(request, verify_template, context)
 
-            # If OTP values match and stored OTP has not expired, log in user
-            if time.time() - otp_timestamp <= 300:
+        stored_otp = request.session.get("otp")
+        if not stored_otp:
+            context["error_message"] = "Something went wrong."
+            return render(request, verify_template, context)
 
-                # Log in user
-                user = User.objects.get(email=email)
-                login(request, user)
+        if otp!= stored_otp and attempt_count == 3:
+            context["error_message"] = "Invalid passcode. Attempt limit has been reached."
+            return render(request, verify_template, context)
 
-                # Clear session data
-                del request.session['email']
-                del request.session['otp']
-                del request.session['otp_timestamp']
-                del request.session['attempt_count']
+        if otp != stored_otp:
+            context["error_message"] = "Invalid passcode."
+            return render(request, verify_template, context)
 
-                return redirect(reverse('dashboard', args=['by-date']))
+        user = User.objects.get(email=email)
+        login(request, user)
+        delete_session_data(request)
+        return redirect(reverse("dashboard", args=["by-date"]))
 
-            # If stored OTP has expired, throw error
-            else:
-                error_message = 'Passcode has expired.'
-                context = {
-                    'email': email,
-                    'error_message': error_message,
-                }
-                return render(request, 'accounts/verify_otp.html', context)
 
-        # If OTP values do not match, throw error
-        else:
-            error_message = 'Invalid passcode.'
-            context = {
-                'email': email,
-                'error_message': error_message,
-            }
-            return render(request, 'accounts/verify_otp.html', context)
-
-    # If request is not POST or GET, redirect to home
-    else:
-        return redirect('home')
+def delete_session_data(request):
+    del request.session["email"]
+    del request.session["otp"]
+    del request.session["otp_timestamp"]
+    del request.session["attempt_count"]

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+from django.views.decorators.http import require_http_methods, require_GET
 from decouple import config
 
 from accounts.models import Invitation, UserProfile
@@ -12,11 +13,16 @@ import random
 import time
 
 
+@require_http_methods(["GET", "POST"])
 @invitation_required
 def register_view(request):
     """
     Handle user registration via invite
     """
+    if request.method == "GET":
+        form = RegistrationForm()
+        return render(request, "accounts/register.html", {"form": form})
+
     if request.method == "POST":
         form = RegistrationForm(request.POST)
 
@@ -45,10 +51,8 @@ def register_view(request):
 
             return redirect("verify_register_otp")
 
-    form = RegistrationForm()
-    return render(request, "accounts/register.html", {"form": form})
 
-
+@require_http_methods(["GET", "POST"])
 def verify_register_otp(request):
     """
     Complete registration with one-time passcode
@@ -69,35 +73,29 @@ def verify_register_otp(request):
         context = {"email": email}
 
         if time_elapsed > 300:
-            error_message = "Passcode has expired."
-            context["error_message"] = error_message
-            return render(request, verify_template, context)
-
-        if attempt_count == 3:
-            error_message = "Invalid passcode. Attempt limit has been reached."
-            context["error_message"] = error_message
+            context["error_message"] = "Passcode has expired. Follow the link in the invitation email to start over."
             return render(request, verify_template, context)
 
         if attempt_count > 3:
-            error_message = "Attempt limit has been exceeded."
-            context["error_message"] = error_message
+            context["error_message"] = "Attempt limit has been reached. Follow the link in the invitation email to start over."
             return render(request, verify_template, context)
 
         otp = request.POST.get("otp")
         if not otp:
-            error_message = "Please enter a valid passcode"
-            context["error_message"] = error_message
+            context["error_message"] = "Please enter a valid passcode."
             return render(request, verify_template, context)
 
         stored_otp = request.session.get("otp")
         if not stored_otp:
-            error_message = "Something went wrong."
-            context["error_message"] = error_message
+            context["error_message"] = "Something went wrong."
+            return render(request, verify_template, context)
+
+        if otp!= stored_otp and attempt_count == 3:
+            context["error_message"] = "Invalid passcode. Attempt limit has been reached."
             return render(request, verify_template, context)
 
         if otp != stored_otp:
-            error_message = "Invalid passcode."
-            context["error_message"] = error_message
+            context["error_message"] = "Invalid passcode."
             return render(request, verify_template, context)
 
         user = create_user(email)
@@ -106,9 +104,8 @@ def verify_register_otp(request):
         login(request, user)
         return redirect("registration_success")
 
-    return redirect("home")
 
-
+@require_GET
 def registration_success(request):
     if request.user.is_authenticated:
         return render(request, "accounts/registration_success.html")

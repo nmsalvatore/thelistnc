@@ -3,12 +3,19 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from django.views.decorators.http import require_http_methods, require_GET
+
 from decouple import config
+
 from accounts.models import Invitation
 
 
+@require_http_methods(["GET", "POST"])
 @user_passes_test(lambda u: u.is_superuser)
 def send_invitation(request):
+    if request.method == "GET":
+        return render(request, 'accounts/send_invitation.html')
+
     if request.method == 'POST':
         email = request.POST['email']
 
@@ -26,9 +33,9 @@ def send_invitation(request):
             return render(request, 'accounts/send_invitation.html', {'error_message': error_message})
 
         return redirect('invitation_sent')
-    return render(request, 'accounts/send_invitation.html')
 
 
+@require_GET
 @user_passes_test(lambda u: u.is_superuser)
 def invitation_sent(request):
     return render(request, 'accounts/invitation_sent.html')
