@@ -277,6 +277,7 @@ form input[type="submit"] {
 
 form.inline-form {
     display: flex;
+    margin-bottom: var(--space-sm);
 }
 
 form.inline-form input:not(input[type="submit"]) {
