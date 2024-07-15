@@ -57,7 +57,7 @@ def send_invitation_email(recipient_email, invitation):
     send_mail(
         subject,
         plain_message,
-        from_email,
+        f"The List NC <{from_email}>",
         recipient_list,
         html_message=html_message,
         fail_silently=False,
