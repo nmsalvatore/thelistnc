@@ -27,25 +27,27 @@ def register_view(request):
         form = RegistrationForm(request.POST)
 
         if form.is_valid():
-            email = form.cleaned_data["email"]
+            recipient_email = form.cleaned_data["email"]
             invitation = request.invitation
 
-            if invitation.email != email:
+            if invitation.email != recipient_email:
                 form.add_error("email", "Invalid email for the given invitation code.")
                 return render(request, "accounts/register.html", {"form": form})
 
             otp = str(random.randint(100000, 999999))
-            request.session["email"] = email
+            request.session["email"] = recipient_email
             request.session["otp"] = otp
             request.session["otp_timestamp"] = time.time()
             request.session["invitation_id"] = invitation.id
             request.session["attempt_count"] = 0
 
+            from_email = config('EMAIL_USER')
+
             send_mail(
-                "Your one-time passcode",
+                "The List NC Verification Code",
                 f"Your one-time passcode is: {otp}",
-                config('EMAIL_USER'),
-                [email],
+                f"The List NC <{from_email}>",
+                [recipient_email],
                 fail_silently=False,
             )
 
