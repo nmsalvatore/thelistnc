@@ -13,7 +13,7 @@ def send_invitation(request):
         email = request.POST['email']
 
         already_invited = Invitation.objects.filter(email=email)
-        if already_invited == None:
+        if already_invited:
             error_message = 'User has already received an invitation.'
             return render(request, 'accounts/send_invitation.html', {'error_message': error_message})
 
