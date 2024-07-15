@@ -1,0 +1,21 @@
+{
+    "name": "thelistnc__scraper",
+    "version": "1.0.0",
+    "description": "",
+    "main": "crazyhorse.js",
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "dotenv": "^16.4.5",
+        "got": "^14.2.1",
+        "jsdom": "^24.0.0",
+        "postgres": "^3.4.4",
+        "uuid": "^9.0.1"
+    },
+    "type": "module",
+    "devDependencies": {
+        "@tsconfig/node21": "^21.0.3",
+        "typescript": "^5.5.3"
+    }
+}
