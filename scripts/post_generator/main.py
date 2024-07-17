@@ -82,7 +82,12 @@ def draw_events(draw, x_pos, y_pos, events, font, time_fill, event_fill):
     for event in events:
         title = event[0]
         venue = event[4]
-        event_text = f"{title} @ {venue}"
+
+        if "downtown" in venue.lower():
+            event_text = f"{title} in {venue}"
+        else:
+            event_text = f"{title} @ {venue}"
+
         event_time = get_event_time(event)
 
         if y_pos < (1062 - 200):
