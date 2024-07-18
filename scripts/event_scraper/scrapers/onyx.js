@@ -65,7 +65,7 @@ async function getOnyxShowings() {
 
 async function getMovieNodes() {
     const response = await fetch(
-        "https://www.theonyxtheatre.com/page-data/sq/d/1945441818.json",
+        "https://cms-assets.webediamovies.pro/prod/the-onyx-theatre/669879108762661ea59669ae/public/page-data/sq/d/1443148036.json",
     );
     const data = await response.json();
     const nodes = await data.data.allMovie.nodes;
