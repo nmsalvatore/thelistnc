@@ -85,6 +85,8 @@ def draw_events(draw, x_pos, y_pos, events, font, time_fill, event_fill):
 
         if "downtown" in venue.lower():
             event_text = f"{title} in {venue}"
+        if venue.lower() == "union street":
+            event_text = f"{title} on {venue}"
         else:
             event_text = f"{title} @ {venue}"
 
