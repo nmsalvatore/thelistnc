@@ -18,8 +18,8 @@ def the_list(request, sorting='by-date'):
         return render(request, 'events/event_list_by_venue.html', context)
 
     elif sorting == 'by-title':
-        grouped_events = group_events('title')
-        context = {'grouped_events': grouped_events}
+        events = Event.objects.filter(start_date__gte=datetime.date.today()).order_by("title", "start_date", "start_time")
+        context = {'events': events}
         return render(request, 'events/event_list_by_title.html', context)
 
 
