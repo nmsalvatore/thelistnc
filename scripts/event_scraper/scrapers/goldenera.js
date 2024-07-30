@@ -1,5 +1,6 @@
 import jsdom from "jsdom";
 import { formatTime } from "../utils/dates.js";
+import { capitalize } from "../utils/strings.js";
 
 async function getPageDocument() {
     const url = "https://www.goldeneralounge.com/events";
@@ -53,7 +54,7 @@ async function getAllEvents(sql) {
 
 function getTitle(event) {
     const title = event.querySelector("h1").textContent;
-    return title;
+    return capitalize(title);
 }
 
 function getStartTimeElement(event) {

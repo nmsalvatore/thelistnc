@@ -1,5 +1,6 @@
 import jsdom from "jsdom";
 import { formatTime } from "../utils/dates.js";
+import { capitalize } from "../utils/strings.js";
 
 async function getPageDocument() {
     const url = "https://lucchesivineyards.com/";
@@ -7,7 +8,7 @@ async function getPageDocument() {
     const html = await response.text();
     const { JSDOM } = jsdom;
     const dom = new JSDOM(html);
-    const document = dom.window.document;
+    const document = dom.window.document.body;
     return document;
 }
 
@@ -60,7 +61,7 @@ function getTitle(event) {
         title = title.split("at the Vineyard")[0].trim();
     }
 
-    return title;
+    return capitalize(title);
 }
 
 function getVenue(event) {
