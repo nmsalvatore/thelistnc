@@ -198,7 +198,7 @@ nav.sort-and-auth-options a {
     margin-right: 1rem;
 }
 
-.auth-event-row summary {
+.auth-event-row p {
     max-width: 540px;
 }
 
@@ -290,6 +290,20 @@ form + h2 + p {
                 margin-right: 0;
             }
         }
+    }
+
+    .auth-event-row .auth-options {
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .auth-event-row .auth-options > a:first-child {
+        margin-right: 0;
+    }
+
+    .auth-event-row p {
+        max-width: calc(100% - 86px);
     }
 }
 

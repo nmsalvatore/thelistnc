@@ -3,16 +3,20 @@
 {% for date, events in grouped_events %}
     <div class="admin event-group">
         <h2>{{ date | date:"l, F j" }}</h2>
-        {% for event in events %}
-            <div class="auth-event-row">
-                <details>
-                    {% include 'events/event_by_date.html' %}
-                </details>
-                <div class="auth-options">
-                    <a href="{% url 'template_event_form' uuid=event.uuid %}">Template</a>
-                    <a href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
-                </div>
-            </div>
-        {% endfor %}
+        <ul>
+            {% for event in events %}
+                <li>
+                    <div class="auth-event-row">
+                        <p>
+                            {% include 'events/event_by_date.html' %}
+                        </p>
+                        <div class="auth-options">
+                            <a href="{% url 'template_event_form' uuid=event.uuid %}">Template</a>
+                            <a href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
 {% endfor %}
