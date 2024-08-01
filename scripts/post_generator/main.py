@@ -114,7 +114,7 @@ def draw_site_title(draw, x_pos, y_pos, fill1, fill2, font_size):
 
 def draw_date(draw, x_pos, y_pos, fill, font_size):
     date_font = ImageFont.truetype("fonts/IBMPlexSans-Medium.ttf", font_size)
-    today = date.today().strftime("%a, %B %d")
+    today = date.today().strftime("%a, %B %-d")
     draw.text((x_pos, y_pos), today, fill=fill, font=date_font, anchor="ls")
 
 
