@@ -4,29 +4,44 @@
     Events by date
 {% endblock subtitle %}
 
-{% block content %}
-
+{% block header_content %}
     {% include 'events/heading.html' %}
+{% endblock header_content %}
 
-    <section>
-        <nav class="sort-options">
-            <span>By Date</span>
-            <a href="{% url 'the_list' sorting='by-venue' %}">By Venue</a>
-            <a href="{% url 'the_list' sorting='by-title' %}">By Title</a>
-        </nav>
+{% block main_content %}
+    <nav class="sort-options">
+        <span class="option">By Date</span>
+        <a class="option" href="{% url 'the_list' sorting='by-venue' %}">By Venue</a>
+        <a class="option" href="{% url 'the_list' sorting='by-title' %}">By Title</a>
+    </nav>
 
-        {% for date, events in grouped_events %}
+    <section class="dates tags">
+        {% for date in dates %}
+            <a href="#events_{{ date | date:'Ymd' }}" class="tag">{{ date | date:"n/j" }}</a>
+        {% endfor %}
+    </section>
+
+    <section class="events">
+        {% for date, events, num_events in grouped_events %}
             <div class="event-group">
-                <h2>{{ date | date:"D, M j" }}</h2>
+                <header class="event-group-header">
+                    <div class="event-group-heading">
+                        <h2 id="events_{{ date | date:'Ymd' }}">{{ date | date:"D, M j" }}</h2>
+                        <div class="heading-details">
+                            <p class="num-events">{{ num_events }} event{{ num_events|pluralize }}</p>
+                            <span class="separator">|</span>
+                            <a href="#top" class="back-to-top">Top of page</a>
+                        </div>
+                    </div>
+                </header>
                 <ul>
-                {% for event in events %}
-                    <li>
-                        {% include 'events/event_by_date.html' %}
-                    </li>
-                {% endfor %}
+                    {% for event in events %}
+                        <li class="event-row">
+                            {% include 'events/event_by_date.html' %}
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
         {% endfor %}
     </section>
-
-{% endblock content %}
+{% endblock main_content %}

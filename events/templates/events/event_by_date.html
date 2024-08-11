@@ -1,32 +1,32 @@
 {% load events_extras %}
 
-{% if event.url %}
-    <a href="{{ event.url }}" target="_blank">{{ event }}</a>
-{% else %}
-    {{ event }}
-{% endif %}
-
-- {{ event.venue }}, {{ event.city }},
-
+<!-- time -->
 {% if not event.end_time %}
-    {% if event.admission_price or event.extra_info %}
-        {{ event.start_time | date:"fa" | remove_periods }},
-    {% else %}
-        {{ event.start_time | date:"fa" | remove_periods }}
-    {% endif %}
+    <div class="time">{{ event.start_time | date:"fa" | remove_periods }}</div>
 {% elif "12am" in event.start_time|date:"fa"|remove_periods and "12am" in event.end_time|date:"fa"|remove_periods %}
+    <div class="time">TBD</div>
 {% else %}
-    {% if event.admission_price or event.extra_info %}
-        {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }},
-    {% else %}
-        {{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}
-    {% endif %}
+    <div class="time">{{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}</div>
 {% endif %}
 
-{% if event.admission_price and event.extra_info %}
-    {{ event.admission_price }}, {{ event.extra_info }}
-{% elif event.admission_price %}
-    {{ event.admission_price }}
-{% elif event.extra_info %}
-    {{ event.extra_info }}
-{% endif %}
+<div class="details">
+    <!-- title -->
+    <a href="{% url 'the_list' sorting='by-title' %}#events_{{ event.title|slugify }}" class="title">{{ event }}</a>
+
+    <!-- venue -->
+    <a href="{% url 'the_list' sorting='by-venue' %}#events_{{ event.venue|slugify }}" class="venue highlighted">{{ event.venue }}</a>
+
+    <!-- extra info -->
+    {% if event.admission_price and event.extra_info %}
+        <span class="extras">{{ event.admission_price }}, {{ event.extra_info }}</span>
+    {% elif event.admission_price %}
+        <span class="extras">{{ event.admission_price }}</span>
+    {% elif event.extra_info %}
+        <span class="extras">{{ event.extra_info }}</span>
+    {% endif %}
+
+    <!-- url -->
+    {% if event.url %}
+        <a href="{{ event.url }}" class="url">more info</a>
+    {% endif %}
+</div>

@@ -4,26 +4,44 @@
     Events by title
 {% endblock subtitle %}
 
-{% block content %}
-
+{% block header_content %}
     {% include 'events/heading.html' %}
+{% endblock header_content %}
 
-    <section>
-        <nav class="sort-options">
-            <a href="{% url 'the_list' sorting='by-date' %}">By Date</a>
-            <a href="{% url 'the_list' sorting='by-venue' %}">By Venue</a>
-            <span>By Title</span>
-        </nav>
+{% block main_content %}
+    <nav class="sort-options">
+        <a class="option" href="{% url 'the_list' sorting='by-date' %}">By Date</a>
+        <a class="option" href="{% url 'the_list' sorting='by-venue' %}">By Venue</a>
+        <span class="option">By Title</span>
+    </nav>
 
-        <div class="event-group">
-            <ul class="event-group">
-                {% for event in events %}
-                    <li>
-                        {% include 'events/event_by_title.html' %}
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
+    <section class="titles tags">
+        {% for title in titles %}
+            <a href="#events_{{ title|slugify }}" class="tag">{{ title }}</a>
+        {% endfor %}
     </section>
 
-{% endblock content %}
+    <section class="events">
+        {% for title, events, num_events in grouped_events %}
+            <div class="event-group">
+                <header class="event-group-header">
+                    <div class="event-group-heading">
+                        <h2 id="events_{{ title|slugify }}">{{ title }}</h2>
+                        <div class="heading-details">
+                            <p class="num-events">{{ num_events }} event{{ num_events|pluralize }}</p>
+                            <span class="separator">|</span>
+                            <a href="#top" class="back-to-top">Top of page</a>
+                        </div>
+                    </div>
+                </header>
+                <ul>
+                    {% for event in events %}
+                        <li class="event-row">
+                            {% include 'events/event_by_title.html' %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock main_content %}
