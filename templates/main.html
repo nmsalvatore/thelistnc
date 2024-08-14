@@ -45,22 +45,31 @@
         <meta name="twitter:image"
               content="{% static 'images/opengraph/og_image.png' %}" />
 
-        {% block scripts %}{% endblock %}
+        <script>document.documentElement.classList.add("js-enabled")</script>
+        <script src="{% static 'js/load_colors.js' %}"></script>
+        <script src="{% static 'js/colors.js' %}" defer></script>
+        {% block scripts %}{% endblock scripts %}
     </head>
     <body>
         <div class="container">
-            <header>
-                <a class="logo" href="{% url 'home' %}">The List <span class="accent">NC</span></a>
+            <nav>
                 {% if user.is_authenticated %}
                     <div class="admin-options">
                         <a href="{% url 'dashboard' sorting='by-date' %}">Dashboard</a>
                         <a href="{% url 'logout' %}">Logout</a>
                     </div>
                 {% endif %}
+            </nav>
+            <header class="site-header">
+                <div class="heading-row">
+                    <h1 class="logo">The List <button id="colorCycle" class="accent">NC</button></h1>
+                </div>
+                {% block header_content %}
+                {% endblock header_content %}
             </header>
             <main>
-                {% block content %}
-                {% endblock content %}
+                {% block main_content %}
+                {% endblock main_content %}
             </main>
             <footer>
                 <small>&copy; 2024 The List NC. All rights reserved.</small>
