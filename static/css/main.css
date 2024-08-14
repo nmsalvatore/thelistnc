@@ -118,7 +118,7 @@ a {
     cursor: pointer;
     color: var(--color-primary);
     font-weight: 600;
-    text-decoration-color: var(--color-3);
+    text-decoration-color: inherit;
     text-underline-offset: 2px;
     text-decoration-thickness: 2px;
 }
@@ -313,16 +313,6 @@ li.event-row .title {
     color: var(--color-4);
 }
 
-li.event-row .title,
-li.event-row .venue {
-    /* text-decoration: none; */
-}
-
-li.event-row .title:hover,
-li.event-row .venue:hover {
-    text-decoration: underline;
-}
-
 li.event-row .extras {
     font-style: italic;
     text-transform: lowercase;
@@ -334,12 +324,7 @@ li.event-row .url {
 }
 
 li.event-row > div.start-date .month-year {
-    /* text-decoration: none; */
     font-weight: inherit;
-}
-
-li.event-row > div.start-date .month-year:hover {
-    text-decoration: underline;
 }
 
 @media only screen and (max-width: 540px) {
