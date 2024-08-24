@@ -43,7 +43,7 @@ def new_event(request):
                     new_event.manual_upload = True
                     new_event.save()
 
-                return redirect(reverse('dashboard', args=['by-date']))
+                return redirect('home')
 
         else:
             form = EventForm()
@@ -95,7 +95,7 @@ def template_event(request, uuid):
                     new_event.manual_upload = True
                     new_event.save()
 
-                return redirect(reverse('dashboard', args=['by-date']))
+                return redirect('home')
 
         else:
             form = EventForm(instance=event)
@@ -121,7 +121,7 @@ def edit_event(request, uuid):
                 new_event.created_by = request.user
                 new_event.manual_upload = True
                 new_event.save()
-                return redirect(reverse('dashboard', args=['by-date']))
+                return redirect('home')
         else:
             form = EventForm(instance=event)
 
@@ -140,7 +140,7 @@ def delete_event(request, uuid):
             raise Http404('Event not found')
 
         event.delete()
-        return redirect(reverse('dashboard', args=['by-date']))
+        return redirect('home')
     else:
         raise Http404('Page not found')
 
