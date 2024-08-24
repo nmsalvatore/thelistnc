@@ -7,29 +7,38 @@
 </div>
 
 <div class="details">
-    <!-- title -->
-    <a href="{% url 'the_list' sorting='by-title' %}#events_{{ event.title|slugify }}" class="title">{{ event }}</a>
+    <div>
+        <!-- title -->
+        <a href="{% url 'the_list' sorting='by-title' %}#events_{{ event.title|slugify }}" class="title">{{ event }}</a>
 
-    <!-- time -->
-    {% if not event.end_time %}
-        <span class="time highlighted">{{ event.start_time | date:"fa" | remove_periods }}</span>
-    {% elif "12am" in event.start_time|date:"fa"|remove_periods and "12am" in event.end_time|date:"fa"|remove_periods %}
-        <span class="time highlighted">TBD</span>
-    {% else %}
-        <span class="time highlighted">{{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}</span>
-    {% endif %}
+        <!-- time -->
+        {% if not event.end_time %}
+            <span class="time highlighted">{{ event.start_time | date:"fa" | remove_periods }}</span>
+        {% elif "12am" in event.start_time|date:"fa"|remove_periods and "12am" in event.end_time|date:"fa"|remove_periods %}
+            <span class="time highlighted">TBD</span>
+        {% else %}
+            <span class="time highlighted">{{ event.start_time | date:"fa" | remove_periods }}-{{ event.end_time | date:"fa" | remove_periods }}</span>
+        {% endif %}
 
-    <!-- extra info -->
-    {% if event.admission_price and event.extra_info %}
-        <span class="extras">{{ event.admission_price }}, {{ event.extra_info }}</span>
-    {% elif event.admission_price %}
-        <span class="extras">{{ event.admission_price }}</span>
-    {% elif event.extra_info %}
-        <span class="extras">{{ event.extra_info }}</span>
-    {% endif %}
+        <!-- extra info -->
+        {% if event.admission_price and event.extra_info %}
+            <span class="extras">{{ event.admission_price }}, {{ event.extra_info }}</span>
+        {% elif event.admission_price %}
+            <span class="extras">{{ event.admission_price }}</span>
+        {% elif event.extra_info %}
+            <span class="extras">{{ event.extra_info }}</span>
+        {% endif %}
 
-    <!-- url -->
-    {% if event.url %}
-        - <a href="{{ event.url }}" target="_blank" class="url">more info</a>
+        <!-- url -->
+        {% if event.url %}
+            - <a href="{{ event.url }}" target="_blank" class="url">more info</a>
+        {% endif %}
+    </div>
+
+    {% if user.is_authenticated %}
+        <div class="event-admin-options">
+            <a class="edit button" href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
+            <a class="template button" href="{% url 'template_event_form' uuid=event.uuid %}">Use as template</a>
+        </div>
     {% endif %}
 </div>

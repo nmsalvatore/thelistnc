@@ -4,6 +4,7 @@ from accounts.views.invitation import send_invitation, invitation_sent
 from accounts.views.register import register_view, verify_register_otp, registration_success
 from accounts.views.login import login_view, verify_login_otp
 from accounts.views.logout import logout_view
+from accounts.views.admin import admin_view
 
 
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
     path('login/', login_view, name='login'),
     path('login/verify/', verify_login_otp, name='verify_login_otp'),
     path('logout/', logout_view, name='logout'),
+    path('', admin_view, name='admin')
 ]

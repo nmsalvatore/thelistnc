@@ -1,12 +1,17 @@
 {% extends 'main.html' %}
+{% load static %}
 
 {% block subtitle %}
     Send invitation
 {% endblock subtitle %}
 
-{% block content %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock css %}
+
+{% block main_content %}
     <div>
-        <h1>Send Invitation</h1>
+        <h2>Send Invitation</h2>
         <p>
             Use the form below to send an invitation to volunteers. Enter the recipient's email address and click Send Invitation. The recipient will receive an email with a unique link to create their account.
         </p>
@@ -26,4 +31,4 @@
 
     {% if error_message %}<p style="color: red;">{{ error_message }}</p>{% endif %}
 
-{% endblock content %}
+{% endblock main_content %}

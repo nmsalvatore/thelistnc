@@ -42,12 +42,14 @@ def group_events(field):
 
     if field == 'venue':
         events = events.order_by(Lower('venue'))
-        venues = events.values_list('venue', flat=True).distinct()
-        sorted_venues = sorted(venues, key=natural_sort_key)
-        for venue in sorted_venues:
+        venue_details = events.values_list('venue', 'city').distinct()
+        sorted_venue_details = sorted(venue_details, key=natural_sort_key)
+        for details in sorted_venue_details:
+            venue = details[0]
+            city = details[1]
             venue_events = events.filter(venue=venue).order_by('start_date', 'start_time', 'end_time')
             num_events = len(venue_events)
-            grouped_events.append((venue, venue_events, num_events))
+            grouped_events.append((venue, venue_events, num_events, city))
 
     if field == 'title':
         events = events.order_by(Lower('title'))
@@ -62,7 +64,7 @@ def group_events(field):
 
 
 def natural_sort_key(value):
-    name = value.lower() if isinstance(value, tuple) else value.lower()
+    name = value[0].lower() if isinstance(value, tuple) else value.lower()
     articles = {'the', 'a', 'an'}
     for article in articles:
         if name.startswith(article + ' '):

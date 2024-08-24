@@ -1,12 +1,17 @@
 {% extends 'main.html' %}
+{% load static %}
 
 {% block subtitle %}
     Verify one-time passcode
 {% endblock subtitle %}
 
-{% block content %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock css %}
+
+{% block main_content %}
     <div>
-        <h1>Verify OTP</h1>
+        <h2>Verify OTP</h2>
         <p>
             For your security, a one-time passcode has been sent to <strong>{{ email }}</strong>. The passcode will expire in 5 minutes. Please enter the passcode in the field below and click Verify to complete the verification process.
         </p>
@@ -26,4 +31,4 @@
 
     {% if error_message %}<p style="color: red;">{{ error_message }}</p>{% endif %}
 
-{% endblock content %}
+{% endblock main_content %}

@@ -1,13 +1,18 @@
 {% extends 'main.html' %}
+{% load static %}
 
 {% block subtitle %}
     Invitation sent
 {% endblock subtitle %}
 
-{% block content %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock css %}
+
+{% block main_content %}
     <div>
-        <h1>Invitation Sent</h1>
+        <h2>Invitation Sent</h2>
         <p>The invitation has been sent successfully.</p>
     </div>
 
-{% endblock content %}
+{% endblock main_content %}

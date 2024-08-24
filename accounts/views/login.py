@@ -17,7 +17,7 @@ def login_view(request):
     Handle user login
     """
     if request.user.is_authenticated:
-        return redirect(reverse("dashboard", args=["by-date"]))
+        return redirect("dashboard")
 
     if request.method == "GET":
         form = LoginForm()
@@ -107,7 +107,7 @@ def verify_login_otp(request):
         user = User.objects.get(email=email)
         login(request, user)
         delete_session_data(request)
-        return redirect(reverse("dashboard", args=["by-date"]))
+        return redirect("dashboard")
 
 
 def delete_session_data(request):

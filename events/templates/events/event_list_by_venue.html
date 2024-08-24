@@ -22,15 +22,16 @@
     </section>
 
     <section class="events">
-        {% for venue, events, num_events in grouped_events %}
-            <div class="event-group">
+        {% for venue, events, num_events, city in grouped_events %}
+            <div id="events_{{ venue|slugify }}" class="event-group">
                 <header class="event-group-header">
                     <div class="event-group-heading">
-                        <h2 id="events_{{ venue|slugify }}">{{ venue }}</h2>
+                        <p class="city">{{ city }}</p>
+                        <h2>{{ venue }}</h2>
                         <div class="heading-details">
                             <p class="num-events">{{ num_events }} event{{ num_events|pluralize }}</p>
                             <span class="separator">|</span>
-                            <a href="#top" class="back-to-top">Top of page</a>
+                            <a href="#top" class="back-to-top button">Top of page</a>
                         </div>
                     </div>
                 </header>

@@ -1,0 +1,70 @@
+h2 {
+    font-size: 2.8rem;
+}
+
+form.inline-form {
+    display: flex;
+    margin-top: var(--space-2);
+}
+
+form.inline-form input:not(input[type="submit"]) {
+    width: 100%;
+    margin-right: var(--space-1);
+}
+
+p:has(input) {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--space-2);
+}
+
+p:has(input) label {
+    margin-bottom: var(--space-1);
+}
+
+p:has(input#id_continuous) {
+    display: block;
+}
+
+input#id_continuous {
+    position: relative;
+    top: 2px;
+    box-shadow: none;
+    margin-left: var(--space-1);
+}
+
+p:has(input#id_end_date) {
+    display: none;
+}
+
+section.delete-event-container {
+    margin-top: var(--space-5);
+}
+
+a#delete_event {
+    display: inline-block;
+    background: hsl(25 40% 50%);
+    color: var(--color-1);
+    text-decoration: none;
+    border: 1px solid var(--color-4);
+    border-radius: 4px;
+    font-weight: 400;
+    padding: var(--space-1) var(--space-2);
+    box-shadow: 3px 3px var(--color-2);
+}
+
+div:has(form) + p {
+    margin: var(--space-2) 0;
+}
+
+div:has(h2) p {
+    line-height: 1.6;
+}
+
+div.registration-intro p {
+    margin-bottom: var(--space-2);
+}
+
+div.registration-intro p:last-child {
+    margin-bottom: 0;
+}

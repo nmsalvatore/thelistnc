@@ -44,7 +44,7 @@ def invitation_sent(request):
 def send_invitation_email(recipient_email, invitation):
     subject = 'You\'ve been invited to be a volunteer for The List NC'
     base_url = config('BASE_URL')
-    registration_url = f'{base_url}/accounts/register?code={invitation.code}'
+    registration_url = f'{base_url}/admin/register?code={invitation.code}'
     context = {
         'email': recipient_email,
         'registration_url': registration_url,

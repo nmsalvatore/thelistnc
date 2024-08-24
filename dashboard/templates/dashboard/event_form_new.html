@@ -5,13 +5,17 @@
     Create new event
 {% endblock subtitle %}
 
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock css %}
+
 {% block scripts %}
     <script defer src="{% static 'js/index.js' %}"></script>
 {% endblock scripts %}
 
-{% block content %}
+{% block main_content %}
     <div>
-        <h1>New Event</h1>
+        <h2>New Event</h2>
         <p>
             To create a new event, please fill out the form below with all available data and click the Create New Event button.
         </p>
@@ -21,9 +25,10 @@
         {% csrf_token %}
         {{ form.as_p }}
         <div class="form-actions">
-            <input onclick="return checkForMultipleListings()"
+            <input id="create_new_event"
+                   onclick="return checkForMultipleListings()"
                    type="submit"
                    value="Create New Event">
         </div>
     </form>
-{% endblock content %}
+{% endblock main_content %}

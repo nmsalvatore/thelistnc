@@ -5,13 +5,17 @@
     Edit event
 {% endblock subtitle %}
 
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock css %}
+
 {% block scripts %}
     <script defer src="{% static 'js/index.js' %}"></script>
 {% endblock scripts %}
 
-{% block content %}
+{% block main_content %}
     <div>
-        <h1>Edit Event</h1>
+        <h2>Edit Event</h2>
         <p>
             To edit the event data, please modify or add new values to the form below and click the Update Event button. To delete the event, click the Delete Event button.
         </p>
@@ -20,18 +24,19 @@
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <div class="form-actions">
-            <input onclick="return confirmUpdate()"
-                   id="updateButton"
-                   type="submit"
-                   value="Update Event">
-            <a href="{% url 'template_event_form' uuid=uuid %}">Use as template</a>
-        </div>
+        <input onclick="return confirmUpdate()"
+                id="update_event"
+                type="submit"
+                value="Update Event">
     </form>
-    <h2>Delete Event</h2>
-    <p>
-        If you would like to delete this event, click the Delete Event button below. You will be prompted to confirm the deletion of the listing. If you wish to proceed, click OK in the prompt.
-    </p>
-    <a onclick="return confirmDelete()"
-       href="{% url 'delete_event' uuid=uuid %}">Delete Event</a>
-{% endblock content %}
+
+    <section class="delete-event-container">
+        <h2>Delete Event</h2>
+        <p>
+            If you would like to delete this event, click the Delete Event button below. You will be prompted to confirm the deletion of the listing. If you wish to proceed, click OK in the prompt.
+        </p>
+        <a id="delete_event"
+            onclick="return confirmDelete()"
+            href="{% url 'delete_event' uuid=uuid %}">Delete Event</a>
+    </section>
+{% endblock main_content %}

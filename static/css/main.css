@@ -6,69 +6,10 @@
     --space-5: 8rem;
     --space-6: 13rem;
 
-    --color-1: hsl(205 10% 95%);
-    --color-2: hsl(160 15% 90%);
-    --color-3: hsl(160 15% 50%);
-    --color-4: hsl(205 30% 35%);
-}
-
-/* color schemes */
-.scheme-1 {
-    --color-1: hsl(205 10% 95%);
-    --color-2: hsl(160 15% 90%);
-    --color-3: hsl(160 15% 50%);
-    --color-4: hsl(205 30% 35%);
-}
-
-.scheme-2 {
-    --color-1: hsl(30 10% 95%);
-    --color-2: hsl(30 35% 90%);
-    --color-3: hsl(60 100% 25%);
-    --color-4: hsl(60 5% 25%);
-}
-
-.scheme-3 {
-    --color-1: hsl(70 10% 92% / 1);
-    --color-2: hsl(70 10% 87% / 1);
-    --color-3: hsl(160 50% 35% / 1);
-    --color-4: hsl(160 70% 20% / 1);
-}
-
-.scheme-4 {
-    --color-1: hsl(0 0% 100%);
-    --color-2: hsl(180 50% 95%);
-    --color-3: hsl(45 100% 40%);
-    --color-4: hsl(180 100% 20%);
-}
-
-.scheme-5 {
-    --color-1: hsl(0 0% 17%);
-    --color-2: hsl(0 0% 22%);
-    --color-3: hsl(160 40% 50% / 1);
-    --color-4: hsl(0 20% 85%);
-}
-
-.scheme-6 {
-    --color-1: hsl(215 10% 20%);
-    --color-2: hsl(180 30% 20%);
-    --color-3: hsl(35 40% 50%);
-    --color-4: hsl(35 20% 90%);
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --color-1: hsl(0 0% 17%);
-        --color-2: hsl(0 0% 22%);
-        --color-3: hsl(160 40% 50% / 1);
-        --color-4: hsl(0 20% 85%);
-    }
-}
-
-#colorCycle {
-    cursor: pointer;
-}
-› #colorCycle:focus {
-    outline: none;
+    --color-1: hsl(25 20% 97%);
+    --color-2: hsl(25 30% 92%);
+    --color-3: hsl(205 40% 45%);
+    --color-4: hsl(205 50% 25%);
 }
 
 *,
@@ -85,6 +26,8 @@ html {
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     font-size: 1.6rem;
     font-family: "IBM Plex Mono", Courier, monospace;
     color: var(--color-4);
@@ -92,13 +35,75 @@ body {
     background: var(--color-1);
 }
 
-.js-enabled body {
-    visibility: hidden;
+nav.admin-options {
+    background: var(--color-3);
+    color: var(--color-2);
+    padding: 0 var(--space-2);
+    font-size: 1.4rem;
 }
 
-body > .container {
+nav.admin-options .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-height: auto;
+}
+
+nav.admin-options span {
+    color: var(--color-2);
+}
+
+nav.admin-options a {
+    color: var(--color-1);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+nav.admin-options a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--color-2);
+}
+
+.menu {
+    cursor: pointer;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 4px;
+    background: none;
+    border: none;
+    width: 2rem;
+}
+
+.menu:focus {
+    background-color: red;
+}
+
+.menu .line {
+    width: 100%;
+    height: 2px;
+    background: var(--color-1);
+}
+
+.menu .line:first-child {
+    background: var(--color-2);
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     max-width: 720px;
-    margin: auto;
+    width: 100%;
+    margin: 2rem auto;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    margin: var(--space-5) 0 var(--space-3);
 }
 
 h1,
@@ -116,37 +121,65 @@ b {
 
 a {
     cursor: pointer;
-    color: var(--color-primary);
+    color: var(--color-4);
     font-weight: 600;
-    text-decoration-color: inherit;
+    text-decoration-color: var(--color-3);
     text-underline-offset: 2px;
     text-decoration-thickness: 2px;
 }
 
+a.button {
+    border: 1px solid var(--color-4);
+    box-shadow: 3px 3px var(--color-2);
+}
+
+input {
+    padding: var(--space-1);
+    border-radius: 4px;
+    border: 1px solid var(--color-4);
+    font-size: inherit;
+    font-family: inherit;
+    background: #fff;
+    box-shadow: 3px 3px var(--color-2);
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid var(--color-3);
+}
+
+input[type="submit"] {
+    cursor: pointer;
+    background: var(--color-3);
+    color: #fff;
+    border: 1px solid var(--color-4);
+}
+
+input#create_new_event,
+input#update_event {
+    width: 100%;
+}
+
 .site-header {
-    padding: var(--space-5) 0;
+    margin: var(--space-5) 0;
 }
 
 .site-header h1.logo {
     font-size: 3.6rem;
     font-weight: 600;
-    margin-bottom: var(--space-3);
 }
 
-.site-header h1.logo button {
-    font-size: inherit;
-    font-family: inherit;
-    font-weight: inherit;
-    border: none;
+.site-header h1.logo:has(+ p) {
+    margin-bottom: var(--space-2);
 }
 
 header .logo .accent {
-    background: var(--color-2);
     color: var(--color-3);
+    background: var(--color-2);
 }
 
 .site-description {
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 .featured-events {
@@ -179,16 +212,26 @@ header .logo .accent {
 
 .sort-options {
     font-weight: 600;
+    margin-bottom: var(--space-3);
 }
 
 .sort-options .option {
     display: inline-block;
-    padding-right: 1ch;
-    margin-right: var(--space-1);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    box-shadow: 3px 3px var(--color-2);
+    border: 1px solid var(--color-4);
+    font-size: 1.4rem;
+    margin-right: 0.5rem;
+}
+
+.sort-options .option:last-child {
+    margin-right: 0;
 }
 
 .sort-options span.option {
-    background: var(--color-4);
+    cursor: default;
+    background: var(--color-3);
     color: var(--color-1);
 }
 
@@ -200,6 +243,7 @@ header .logo .accent {
 
 .tags {
     margin-top: var(--space-3);
+    margin-bottom: var(--space-5);
     color: var(--color-3);
 }
 
@@ -237,7 +281,10 @@ header .logo .accent {
 }
 
 .event-group-header .back-to-top {
-    color: var(--color-3);
+    padding: 0.25rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1.2rem;
 }
 
 .event-group-header .back-to-top svg {
@@ -245,9 +292,20 @@ header .logo .accent {
     height: var(--space-2);
 }
 
+.event-group-heading .city {
+    display: inline-block;
+    color: var(--color-4);
+    font-style: italic;
+    margin-bottom: var(--space-1);
+}
+
 h2 {
     font-size: 2.8rem;
     margin-bottom: var(--space-2);
+}
+
+h2 + p {
+    margin-bottom: var(--space-3);
 }
 
 .heading-details {
@@ -264,12 +322,9 @@ h2 {
     font-style: italic;
 }
 
-section {
-    margin-bottom: var(--space-5);
-}
-
 .event-group {
-    margin-bottom: var(--space-5);
+    padding-top: var(--space-2);
+    margin-bottom: var(--space-4);
 }
 
 li.event-row {
@@ -282,7 +337,7 @@ li.event-row {
     width: 100%;
     padding: var(--space-1) 0;
     border-bottom: 1px solid var(--color-2);
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 li.event-row:last-child {
@@ -309,6 +364,12 @@ li.event-row .highlighted {
     background: var(--color-2);
 }
 
+li.event-row .city {
+    background: var(--color-2);
+    color: var(--color-4);
+    font-style: italic;
+}
+
 li.event-row .title {
     color: var(--color-4);
 }
@@ -327,21 +388,30 @@ li.event-row > div.start-date .month-year {
     font-weight: inherit;
 }
 
-@media only screen and (max-width: 540px) {
-    body {
+.event-admin-options {
+    margin: var(--space-1) 0;
+}
+
+.event-admin-options a {
+    padding: 0.25rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+.event-admin-options a.edit {
+    background: var(--color-3);
+    color: var(--color-1);
+}
+
+@media only screen and (max-width: calc(720px + 4rem)) {
+    .container:not(nav.admin-options .container) {
         padding: var(--space-2);
+        margin: 1rem auto;
     }
 
     .site-header {
-        padding: var(--space-3) 0 var(--space-5);
-    }
-
-    .tags.dates {
-        grid-template-columns: repeat(5, 1fr);
-    }
-
-    .tags.venues {
-        grid-template-columns: 1fr;
+        margin: var(--space-4) 0;
     }
 
     li.event-row > div.time,
@@ -351,5 +421,35 @@ li.event-row > div.start-date .month-year {
 
     li.event-row > div.start-date .month-year {
         display: block;
+    }
+}
+
+@media only screen and (max-width: 680px) {
+    .tags.dates {
+        grid-template-columns: repeat(9, 1fr);
+    }
+}
+
+@media only screen and (max-width: 640px) {
+    .tags.dates {
+        grid-template-columns: repeat(8, 1fr);
+    }
+}
+
+@media only screen and (max-width: 590px) {
+    .tags.dates {
+        grid-template-columns: repeat(7, 1fr);
+    }
+}
+
+@media only screen and (max-width: 530px) {
+    .tags.dates {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .tags.dates {
+        grid-template-columns: repeat(5, 1fr);
     }
 }

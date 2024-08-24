@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block subtitle %}
+    Dashboard
+{% endblock subtitle %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock css%}
+
+{% block main_content %}
+    <div class="buttons">
+        <a class="button" href="{% url 'new_event_form' %}">Add new event</a>
+        <a class="button" href="{% url 'send_invitation' %}">Send invitation</a>
+    </div>
+{% endblock main_content %}

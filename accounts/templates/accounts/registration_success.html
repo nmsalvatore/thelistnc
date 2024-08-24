@@ -1,15 +1,26 @@
 {% extends 'main.html' %}
+{% load static %}
 
 {% block subtitle %}
     Registration successful
 {% endblock subtitle %}
 
-{% block content %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock css %}
+
+{% block main_content %}
     <div>
-        <h1>Registration Success!</h1>
-        <p>
-            You've been successfully registered as a volunteer for The List NC. Click the Dashboard button at the top of the page to navigate to the Volunteer Dashboard.
-        </p>
+        <h2>Registration Success!</h2>
+        <div class="registration-intro">
+            <p>
+                You've been successfully registered as a volunteer for The List NC!
+            </p>
+            <p>
+                While logged in, you'll notice that events on the event list will have <strong>Edit</strong> or <strong>Use as template</strong> buttons grouped with them. If you need to edit an event, simply click the <strong>Edit</strong> button and update the relevant information in the form. If you'd like to create a new event using an event as a template, click the <strong>Use as template</strong> button next to the relevant event and you will navigate to a <strong>New event</strong> form with the selected event informated prepopulated in the form fields. For any other administrative tasks such as creating new events, creating recurring events, or generating Instagram posts, use the <strong>Admin Dashboard</strong> link at the top of the page.
+            </p>
+            <p>If you have any other questions, feel free to email me at <a href="mailto:nick@nmsalvatore.com">nick@nmsalvatore.com</a></p>
+        </div>
     </div>
 
-{% endblock content %}
+{% endblock main_content %}

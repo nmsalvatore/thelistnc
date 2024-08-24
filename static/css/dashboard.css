@@ -1,0 +1,18 @@
+.site-header h1.logo {
+    margin-bottom: 0;
+}
+
+.buttons {
+    display: grid;
+    gap: var(--space-1);
+}
+
+.buttons a.button {
+    background: var(--color-2);
+    border: 1px solid var(--color-4);
+    border-radius: 0.5rem;
+    padding: var(--space-2);
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 3px 3px var(--color-4);
+}

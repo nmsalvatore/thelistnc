@@ -23,14 +23,14 @@
 
     <section class="events">
         {% for date, events, num_events in grouped_events %}
-            <div class="event-group">
+            <div id="events_{{ date | date:'Ymd' }}" class="event-group">
                 <header class="event-group-header">
                     <div class="event-group-heading">
-                        <h2 id="events_{{ date | date:'Ymd' }}">{{ date | date:"D, M j" }}</h2>
+                        <h2>{{ date | date:"D, M j" }}</h2>
                         <div class="heading-details">
                             <p class="num-events">{{ num_events }} event{{ num_events|pluralize }}</p>
                             <span class="separator">|</span>
-                            <a href="#top" class="back-to-top">Top of page</a>
+                            <a href="#top" class="back-to-top button">Top of page</a>
                         </div>
                     </div>
                 </header>
