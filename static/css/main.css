@@ -368,6 +368,7 @@ li.event-row .city {
     background: var(--color-2);
     color: var(--color-4);
     font-style: italic;
+    font-weight: 600;
 }
 
 li.event-row .title {
