@@ -22,27 +22,31 @@ async function getAllEvents(sql) {
     );
 
     for (const event of upcomingEvents) {
-        const title = getTitle(event);
-        const venue = getVenue(event);
-        const city = "Grass Valley";
-        const startDate = getStartDate(event);
-        const startTime = getStartTime(event);
-        const endTime = getEndTime(event);
-        const admission = null;
-        const url = null;
+        try {
+            const title = getTitle(event);
+            const venue = getVenue(event);
+            const city = "Grass Valley";
+            const startDate = getStartDate(event);
+            const startTime = getStartTime(event);
+            const endTime = getEndTime(event);
+            const admission = null;
+            const url = null;
 
-        const eventData = {
-            title,
-            venue,
-            city,
-            startDate,
-            startTime,
-            endTime,
-            admission,
-            url,
-        };
+            const eventData = {
+                title,
+                venue,
+                city,
+                startDate,
+                startTime,
+                endTime,
+                admission,
+                url,
+            };
 
-        events.push(eventData);
+            events.push(eventData);
+        } catch (error) {
+            console.log("Failed to retrieve listing from Lucchesi's Vineyard");
+        }
     }
 
     console.log(
