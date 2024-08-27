@@ -41,7 +41,7 @@ async function getOnyxShowings() {
                     const startDate = movieDate;
                     const endTime = null;
                     const admission = null;
-                    const url = await getShowingUrl(showtimeData);
+                    const url = await getMovieUrlById(id);
 
                     const showing = {
                         title,
@@ -65,8 +65,9 @@ async function getOnyxShowings() {
 
 async function getMovieNodes() {
     const response = await fetch(
-        "https://cms-assets.webediamovies.pro/prod/the-onyx-theatre/669879108762661ea59669ae/public/page-data/sq/d/1443148036.json",
+        "https://cms-assets.webediamovies.pro/prod/the-onyx-theatre/66cd9638dded3ebeffd18240/public/page-data/sq/d/3415018673.json",
     );
+
     const data = await response.json();
     const nodes = await data.data.allMovie.nodes;
     return nodes;
@@ -102,8 +103,9 @@ async function getMovieTitleById(id) {
     return title;
 }
 
-async function getShowingUrl(data) {
-    const url = data.data.ticketing[0].urls[0];
+async function getMovieUrlById(id) {
+    const info = await getMovieInfoById(id);
+    const url = "https://www.theonyxtheatre.com" + info.path;
     return url;
 }
 
