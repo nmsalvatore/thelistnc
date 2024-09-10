@@ -93,12 +93,15 @@ def draw_site_title(draw, x, y, fill1, fill2, fill3):
     draw.text((x, y), text1, fill=fill1, font=font)
     text1_length = draw.textlength(text1, font)
     x = x + text1_length
-    draw_highlighted_text(draw, x, y, text2, font, fill2, fill3)
+    draw_highlighted_text(draw, x, y, text2, font, fill2, fill3, title=True)
 
 
-def draw_highlighted_text(draw, x, y, text, font, text_fill, highlight_fill):
+def draw_highlighted_text(draw, x, y, text, font, text_fill, highlight_fill, title=False):
     left, top, right, bottom = draw.textbbox((x, y), text, font=font)
-    draw.rectangle((left, y+3, right, y+32), fill=highlight_fill)
+    if title:
+        draw.rectangle((left, top-6, right, bottom+5), fill=highlight_fill)
+    else:
+        draw.rectangle((left, y+3, right, y+32), fill=highlight_fill)
     draw.text((x, y), text, fill=text_fill, font=font)
 
 
