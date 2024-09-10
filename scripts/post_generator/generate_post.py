@@ -197,7 +197,7 @@ def draw_title(draw, text, font, x, y, x_thresh, fill):
 
 
 def draw_venue(draw, text, x, y, x_start, x_thresh):
-    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold", 25)
+    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 25)
     fill = "#457aa1"
     highlight = "#f1eae4"
 
@@ -234,7 +234,7 @@ def draw_venue(draw, text, x, y, x_start, x_thresh):
 
 
 def test_event_depth(draw, text, x, y, x_thresh):
-    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold", 25)
+    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 25)
     words = text.split()
     lines = []
     current_line = ""
