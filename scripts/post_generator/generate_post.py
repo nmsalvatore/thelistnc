@@ -17,13 +17,14 @@ def get_todays_events():
         dbname=dbname
     ) as conn:
         with conn.cursor() as cur:
-            cur.execute("SELECT title, start_date, start_time, end_time, venue FROM events_event WHERE start_date = (CURRENT_TIMESTAMP AT TIME ZONE 'America/Los_Angeles')::date ORDER BY start_time ASC, end_time ASC, title ASC")
+            # cur.execute("SELECT title, start_date, start_time, end_time, venue FROM events_event WHERE start_date < (CURRENT_TIMESTAMP AT TIME ZONE 'America/Los_Angeles')::date ORDER BY start_time ASC, end_time ASC, title ASC")
+            cur.execute("SELECT title, start_date, start_time, end_time, venue FROM events_event WHERE start_date = '2024-09-7' ORDER BY start_time ASC, end_time ASC, title ASC")
             events = cur.fetchall()
     return events
 
 
 def create_event_image(events, page_num):
-    base_font_size = 30
+    base_font_size = 60
     regular_font = ImageFont.truetype("fonts/IBMPlexMono-Regular.ttf", base_font_size)
     bold_font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", base_font_size)
 
@@ -32,25 +33,24 @@ def create_event_image(events, page_num):
     color3 = "#457aa1"
     color4 = "#204560"
 
-    img = Image.new("RGB", (1080, 1080), color="#fff")
+    img = Image.new("RGB", (2160, 2700), color=color1)
     draw = ImageDraw.Draw(img)
-    draw_background(draw, color4, color3, 2, background_fill=color1)
 
     # draw site title
-    x = 17 + (base_font_size * 3)
-    y = 17 + (base_font_size * 3)
+    x = base_font_size * 3
+    y = base_font_size * 3
     draw_site_title(draw, x, y, color4, color3, color2)
 
     if page_num == 1:
-        y = y + 15 + (base_font_size * 3)
+        y = y + (base_font_size * 4)
         draw_date(draw, x, y, color4)
 
     # draw events
-    y = y + 30 + (base_font_size * 3)
+    y = y + (base_font_size * 5)
     remaining_events = draw_events(draw, x, y, events, time_fill=color4, event_fill=color4)
 
     if len(remaining_events) == 0:
-        draw_conclusion_text(draw, x, 948, color4)
+        draw_conclusion_text(draw, x, 2460, color4)
     else:
         paste_arrow_icon(img)
 
@@ -65,20 +65,15 @@ def create_event_image(events, page_num):
     return remaining_events
 
 
-def draw_background(draw, outline_fill, shadow_fill, outline_width, background_fill="#fff"):
-    draw.rounded_rectangle((23, 23, 1069, 1069), 8, shadow_fill)
-    draw.rounded_rectangle((17, 17, 1063, 1063), 8, fill=background_fill, outline=outline_fill, width=outline_width)
-
-
 def paste_arrow_icon(img):
     icon = Image.open("icons/arrow_right_dark_blue.png")
-    x_pos = (1063 - (90 + int(icon.width / 1.5)))
-    y_pos = (1063 - (90 + int(icon.height / 1.5)))
+    x_pos = (2160 - (180 + int(icon.width / 1.5)))
+    y_pos = (2700 - (180 + int(icon.height / 1.5)))
     img.paste(icon, (x_pos, y_pos), icon)
 
 
 def draw_conclusion_text(draw, x, y, fill):
-    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 25)
+    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 50)
     plain_text = "For more information, visit "
     draw.text((x, y), plain_text, font=font, fill=fill)
     plain_text_width = draw.textlength(plain_text, font)
@@ -87,7 +82,7 @@ def draw_conclusion_text(draw, x, y, fill):
 
 
 def draw_site_title(draw, x, y, fill1, fill2, fill3):
-    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 30)
+    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 60)
     text1 = "The List "
     text2 = "NC"
     draw.text((x, y), text1, fill=fill1, font=font)
@@ -99,25 +94,25 @@ def draw_site_title(draw, x, y, fill1, fill2, fill3):
 def draw_highlighted_text(draw, x, y, text, font, text_fill, highlight_fill, title=False):
     left, top, right, bottom = draw.textbbox((x, y), text, font=font)
     if title:
-        draw.rectangle((left, top-6, right, bottom+5), fill=highlight_fill)
+        draw.rectangle((left, top-12, right, bottom+10), fill=highlight_fill)
     else:
-        draw.rectangle((left, y+3, right, y+32), fill=highlight_fill)
+        draw.rectangle((left, y+6, right, y+64), fill=highlight_fill)
     draw.text((x, y), text, fill=text_fill, font=font)
 
 
 def draw_date(draw, x_pos, y_pos, fill):
-    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 45)
+    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 90)
     today = date.today().strftime("%a, %b %-d")
     draw.text((x_pos, y_pos), today, fill=fill, font=font)
 
 
 def draw_events(draw, x, y, events, time_fill, event_fill):
-    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 25)
+    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 50)
     remaining_events = []
 
-    time_x_thresh = x + 210
-    event_x_thresh = 973
-    event_x_start = x + 270
+    time_x_thresh = x + 420
+    event_x_thresh = 1980
+    event_x_start = x + 560
 
     for event in events:
         title = event[0]
@@ -127,7 +122,7 @@ def draw_events(draw, x, y, events, time_fill, event_fill):
         event_test_text = f"{title} {venue}"
         event_depth = test_event_depth(draw, event_test_text, event_x_start, y, event_x_thresh)
 
-        if event_depth < (1063 - (8 * 30)):
+        if event_depth < (2700 - (7 * 60)):
             draw_time(draw, event, x, y, time_x_thresh, time_fill)
             y = draw_event(draw, title, venue, font, event_x_start, y, event_x_thresh, event_fill)
         else:
@@ -137,7 +132,7 @@ def draw_events(draw, x, y, events, time_fill, event_fill):
 
 
 def draw_time(draw, event, x, y, x_thresh, fill):
-    font = ImageFont.truetype("fonts/IBMPlexMono-Regular.ttf", 25)
+    font = ImageFont.truetype("fonts/IBMPlexMono-Regular.ttf", 50)
     start_time = get_natural_time(event[2])
     end_time = get_natural_time(event[3])
 
@@ -150,7 +145,7 @@ def draw_time(draw, event, x, y, x_thresh, fill):
             draw.text((x, y), test_line, font=font, fill=fill)
         else:
            draw.text((x, y), start_time + "-", font=font, fill=fill)
-           y = y + 30
+           y = y + 70
            draw.text((x, y), end_time, font=font, fill=fill)
 
 
@@ -191,13 +186,13 @@ def draw_title(draw, text, font, x, y, x_thresh, fill):
         draw.text((x, y), line.strip(), font=font, fill=fill)
         last_line = index == len(lines)-1
         if not last_line:
-            y += 32
+            y += 70
 
     return (ending_x, y)
 
 
 def draw_venue(draw, text, x, y, x_start, x_thresh):
-    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 25)
+    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold", 50)
     fill = "#457aa1"
     highlight = "#f1eae4"
 
@@ -227,14 +222,14 @@ def draw_venue(draw, text, x, y, x_start, x_thresh):
             draw_highlighted_text(draw, x, y, line, font, fill, highlight)
         last_line = index == len(lines)-1
         if not last_line:
-            y += 32
+            y += 70
         else:
-            y += 60
+            y += 140
     return y
 
 
 def test_event_depth(draw, text, x, y, x_thresh):
-    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 25)
+    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold", 50)
     words = text.split()
     lines = []
     current_line = ""
@@ -251,9 +246,9 @@ def test_event_depth(draw, text, x, y, x_thresh):
 
     for index, line in enumerate(lines):
         if index != len(lines)-1:
-            y += 35
+            y += 70
 
-    return y
+    return y + 50
 
 
 if __name__ == "__main__":
