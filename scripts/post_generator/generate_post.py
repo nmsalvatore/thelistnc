@@ -34,10 +34,11 @@ def create_event_image(events, page_num):
 
     img = Image.new("RGB", (2160, 2700), color=color1)
     draw = ImageDraw.Draw(img)
+    draw.rectangle((0, 0, 2160, 60), fill=color3)
 
     # draw site title
     x = base_font_size * 3
-    y = base_font_size * 3
+    y = base_font_size * 4
     draw_site_title(draw, x, y, color4, color3, color2)
 
     if page_num == 1:
