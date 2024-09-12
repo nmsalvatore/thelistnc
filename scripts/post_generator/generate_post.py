@@ -112,18 +112,22 @@ def draw_events(draw, x, y, events, time_fill, event_fill):
     time_x_thresh = x + 420
     event_x_thresh = 1980
     event_x_start = x + 560
+    time_y, event_y = 0, 0
 
     for event in events:
         title = event[0]
         venue = event[4]
+
+        if time_y and event_y:
+            y = max(time_y, event_y)
 
         # test final y value
         event_test_text = f"{title} {venue}"
         event_depth = test_event_depth(draw, event_test_text, event_x_start, y, event_x_thresh)
 
         if event_depth < (2700 - (7 * 60)):
-            draw_time(draw, event, x, y, time_x_thresh, time_fill)
-            y = draw_event(draw, title, venue, font, event_x_start, y, event_x_thresh, event_fill)
+            time_y = draw_time(draw, event, x, y, time_x_thresh, time_fill)
+            event_y = draw_event(draw, title, venue, font, event_x_start, y, event_x_thresh, event_fill)
         else:
             remaining_events.append(event)
 
@@ -146,6 +150,9 @@ def draw_time(draw, event, x, y, x_thresh, fill):
            draw.text((x, y), start_time + "-", font=font, fill=fill)
            y = y + 70
            draw.text((x, y), end_time, font=font, fill=fill)
+
+    y = y + 140
+    return y
 
 
 def get_natural_time(time):
