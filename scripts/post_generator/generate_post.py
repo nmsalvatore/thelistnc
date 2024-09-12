@@ -229,7 +229,7 @@ def draw_venue(draw, text, x, y, x_start, x_thresh):
 
 
 def test_event_depth(draw, text, x, y, x_thresh):
-    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.tff", 50)
+    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 50)
     words = text.split()
     lines = []
     current_line = ""
