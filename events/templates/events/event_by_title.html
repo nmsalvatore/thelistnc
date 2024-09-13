@@ -25,9 +25,9 @@
 
         <!-- extra info -->
         {% if event.admission_price and event.extra_info %}
-            <span class="extras">{{ event.admission_price }}, {{ event.extra_info }}</span>
+            <span class="extras">{{ event.admission_price|lower }}, {{ event.extra_info }}</span>
         {% elif event.admission_price %}
-            <span class="extras">{{ event.admission_price }}</span>
+            <span class="extras">{{ event.admission_price|lower }}</span>
         {% elif event.extra_info %}
             <span class="extras">{{ event.extra_info }}</span>
         {% endif %}
