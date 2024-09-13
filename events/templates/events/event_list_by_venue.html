@@ -30,8 +30,6 @@
                         <h2>{{ venue }}</h2>
                         <div class="heading-details">
                             <p class="num-events">{{ num_events }} event{{ num_events|pluralize }}</p>
-                            <span class="separator">|</span>
-                            <a href="#top" class="back-to-top button">Top of page</a>
                         </div>
                     </div>
                 </header>
@@ -45,4 +43,10 @@
             </div>
         {% endfor %}
     </section>
+
+    <a href="#top" class="back-to-top">Back to top</a>
 {% endblock main_content %}
+
+{% block scripts %}
+    <script defer src="{% static 'js/events.js' %}"></script>
+{% endblock scripts %}

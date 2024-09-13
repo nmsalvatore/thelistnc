@@ -377,7 +377,6 @@ li.event-row .title {
 
 li.event-row .extras {
     font-style: italic;
-    text-transform: lowercase;
 }
 
 li.event-row .url {
@@ -403,6 +402,19 @@ li.event-row > div.start-date .month-year {
 .event-admin-options a.edit {
     background: var(--color-3);
     color: var(--color-1);
+}
+
+a.back-to-top {
+    position: fixed;
+    bottom: -38.5px;
+    font-size: 1.4rem;
+    right: var(--space-2);
+    background: var(--color-4);
+    border-radius: 4px 4px 0 0;
+    color: var(--color-1);
+    padding: var(--space-1);
+    text-decoration: none;
+    transition: bottom 200ms ease;
 }
 
 @media only screen and (max-width: calc(720px + 4rem)) {
