@@ -53,8 +53,21 @@ async function getAllEvents(sql) {
 }
 
 function getTitle(event) {
-    const title = event.querySelector("h1").textContent;
-    return capitalize(title);
+    const titleSrc = event.querySelector("h1").textContent;
+    const cleanTitle = cleanUpTitle(titleSrc);
+    const title = capitalize(cleanTitle);
+    return title;
+
+    function cleanUpTitle(str) {
+        const regex = /\d+\s?(?:am|pm)/i;
+        const matchIndex = str.match(regex).index;
+
+        if (matchIndex) {
+            return str.substring(0, matchIndex).trim();
+        }
+
+        return str.trim();
+    }
 }
 
 function getStartTimeElement(event) {
