@@ -3,15 +3,17 @@ import { getUTCDateString } from "./dates.js";
 async function filterOutModifiedEvents(events, venue, sql) {
     const modifiedEvents = await getModifiedEvents(venue, sql);
 
-    console.log(modifiedEvents);
-
     if (modifiedEvents.length > 0) {
         return events.filter((event) => {
             for (let modifiedEvent of modifiedEvents) {
-                console.log(modifiedEvent.title);
+                const index = modifiedEvents.indexOf(modifiedEvent);
                 const duplicate = checkDuplicate(event, modifiedEvent);
 
-                if (!duplicate) {
+                if (duplicate) {
+                    return;
+                }
+
+                if (!duplicate && index === modifiedEvents.length - 1) {
                     return event;
                 }
             }
@@ -24,9 +26,6 @@ async function filterOutModifiedEvents(events, venue, sql) {
 function checkDuplicate(sourceEvent, modifiedEvent) {
     const modifiedEventDate = getUTCDateString(modifiedEvent.start_date);
     const sameStartDate = sourceEvent.startDate === modifiedEventDate;
-
-    console.log(modifiedEventDate, sourceEvent.startDate);
-
     const similarTitle = checkSimilarTitle(
         sourceEvent.title,
         modifiedEvent.title,
