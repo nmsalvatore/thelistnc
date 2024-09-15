@@ -6,7 +6,7 @@ async function filterOutModifiedEvents(events, venue, sql) {
     if (modifiedEvents.length > 0) {
         return events.filter((event) => {
             for (let modifiedEvent of modifiedEvents) {
-                console.log(modifed.title);
+                console.log(modifiedEvent.title);
                 const duplicate = checkDuplicate(event, modifiedEvent);
 
                 if (!duplicate) {
