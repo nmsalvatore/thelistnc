@@ -21,6 +21,9 @@ async function filterOutModifiedEvents(events, venue, sql) {
 function checkDuplicate(sourceEvent, modifiedEvent) {
     const modifiedEventDate = getUTCDateString(modifiedEvent.start_date);
     const sameStartDate = sourceEvent.startDate === modifiedEventDate;
+
+    console.log(modifiedEventDate, sourceEvent.startDate);
+
     const similarTitle = checkSimilarTitle(
         sourceEvent.title,
         modifiedEvent.title,
