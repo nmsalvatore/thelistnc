@@ -1,9 +1,11 @@
 import jsdom from "jsdom";
 import getOnyxShowings from "./onyx.js";
 import { formatTime } from "../utils/dates.js";
+import { filterOutModifiedEvents } from "../utils/data_management.js";
 
 async function getAllEvents(sql) {
-    await sql`DELETE FROM events_event WHERE venue = 'Nevada Theatre' AND manual_upload = FALSE`;
+    const venue = "Nevada Theatre";
+    await sql`DELETE FROM events_event WHERE venue = ${venue} AND manual_upload = FALSE`;
 
     let events = [];
     let month = getCurrentMonth();
@@ -27,8 +29,9 @@ async function getAllEvents(sql) {
     const onyxEvents = await getOnyxShowings();
     events = events.concat(onyxEvents);
 
-    console.log(`Retrieved ${events.length} events from The Nevada Theatre`);
-    return events;
+    const filteredEvents = await filterOutModifiedEvents(events, venue, sql);
+    console.log(`Retrieved ${filteredEvents.length} events from ${venue}`);
+    return filteredEvents;
 }
 
 async function getMonthDocument(monthStr) {

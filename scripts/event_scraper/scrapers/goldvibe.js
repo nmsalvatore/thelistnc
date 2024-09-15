@@ -1,5 +1,8 @@
+import { filterOutModifiedEvents } from "../utils/data_management.js";
+
 async function getAllEvents(sql) {
-    await sql`DELETE FROM events_event WHERE venue = 'Gold Vibe Kombuchary' AND manual_upload = FALSE`;
+    const venue = "Gold Vibe Kombuchary";
+    await sql`DELETE FROM events_event WHERE venue = ${venue} AND manual_upload = FALSE`;
 
     let pageNum = 1;
     let nextPage;
@@ -13,8 +16,9 @@ async function getAllEvents(sql) {
         pageNum++;
     } while (nextPage);
 
-    console.log(`Retrieved ${events.length} events from Gold Vibe Kombuchary`);
-    return events;
+    const filteredEvents = await filterOutModifiedEvents(events, venue, sql);
+    console.log(`Retrieved ${filteredEvents.length} events from ${venue}`);
+    return filteredEvents;
 }
 
 async function getPageEventData(pageNum) {

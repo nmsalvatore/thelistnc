@@ -1,8 +1,10 @@
 import jsdom from "jsdom";
 import { extractTimes, formatTime } from "../utils/dates.js";
+import { filterOutModifiedEvents } from "../utils/data_management.js";
 
 async function getAllEvents(sql) {
-    await sql`DELETE FROM events_event WHERE venue = 'Crazy Horse Saloon' and manual_upload = FALSE`;
+    const venue = "Crazy Horse Saloon";
+    await sql`DELETE FROM events_event WHERE venue = ${venue} and manual_upload = FALSE`;
 
     let pageNum = 1;
     let pageEvents;
@@ -14,8 +16,9 @@ async function getAllEvents(sql) {
         pageNum++;
     } while (pageEvents.length > 0);
 
-    console.log(`Retrieved ${events.length} events from Crazy Horse Saloon`);
-    return events;
+    const filteredEvents = await filterOutModifiedEvents(events, venue, sql);
+    console.log(`Retrieved ${filteredEvents.length} events from ${venue}`);
+    return filteredEvents;
 }
 
 async function getPageDocument(pageNum) {

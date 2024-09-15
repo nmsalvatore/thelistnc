@@ -1,8 +1,11 @@
-import { months, formatTime, getUTCDateString } from "../utils/dates.js";
+import { months, formatTime } from "../utils/dates.js";
+import { filterOutModifiedEvents } from "../utils/data_management.js";
+
 import jsdom from "jsdom";
 
 async function getAllEvents(sql) {
-    await sql`DELETE FROM events_event WHERE venue = 'The Center for the Arts' AND manual_upload = FALSE`;
+    const venue = "The Center for the Arts";
+    await sql`DELETE FROM events_event WHERE venue = ${venue} AND manual_upload = FALSE`;
 
     let events = [];
     let num = 1;
@@ -14,53 +17,9 @@ async function getAllEvents(sql) {
         num++;
     } while (pageEvents.length !== 0);
 
-    const modifiedEvents = await getModifiedEvents(events, sql);
-    const filteredEvents = events.filter((event) => {
-        return filterOutModifiedEvents(event, modifiedEvents);
-    });
-
-    console.log(
-        `Retrieved ${events.length} events from The Center for the Arts`,
-    );
+    const filteredEvents = await filterOutModifiedEvents(events, venue, sql);
+    console.log(`Retrieved ${filteredEvents.length} events from ${venue}`);
     return filteredEvents;
-}
-
-function filterOutModifiedEvents(event, modifiedEvents) {
-    let duplicate;
-
-    for (let modifiedEvent of modifiedEvents) {
-        duplicate = checkDuplicate(modifiedEvent, event);
-        if (duplicate) break;
-    }
-
-    if (!duplicate) {
-        return event;
-    }
-}
-
-function checkDuplicate(event1, event2) {
-    const date1 = getUTCDateString(event1.start_date);
-    const sameStartDate = date1 === event2.startDate;
-    const sameTitle = event1.title === event2.title;
-    return sameStartDate && sameTitle;
-}
-
-async function getModifiedEvents(events, sql) {
-    const modifiedEvents = [];
-    for (let event of events) {
-        const dbEvent =
-            await sql`SELECT title, start_date FROM events_event WHERE title = ${event.title} AND manual_upload = TRUE`;
-        const dbTitle = await dbEvent[0]?.title;
-        const dbStartDate = await dbEvent[0]?.start_date;
-
-        if (dbTitle) {
-            const dateString = getUTCDateString(dbStartDate);
-            if (event.startDate === dateString) {
-                modifiedEvents.push(dbEvent[0]);
-            }
-        }
-    }
-    return modifiedEvents;
 }
 
 async function getPageEventData(pageNum) {

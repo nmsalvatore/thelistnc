@@ -15,8 +15,8 @@ const months = [
 
 function getUTCDateString(date) {
     const year = date.getUTCFullYear();
-    const month = date.getUTCMonth() + 1;
-    const day = date.getUTCDate();
+    const month = String(date.getUTCMonth() + 1).padStart(2, "0");
+    const day = String(date.getUTCDate()).padStart(2, "0");
     const dateString = `${year}-${month}-${day}`;
     return dateString;
 }

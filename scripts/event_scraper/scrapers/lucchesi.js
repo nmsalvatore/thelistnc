@@ -1,6 +1,7 @@
 import jsdom from "jsdom";
 import { formatTime } from "../utils/dates.js";
 import { capitalize } from "../utils/strings.js";
+import { filterOutModifiedEvents } from "../utils/data_management.js";
 
 async function getPageDocument() {
     const url = "https://lucchesivineyards.com/";
@@ -13,6 +14,7 @@ async function getPageDocument() {
 }
 
 async function getAllEvents(sql) {
+    const venue = "Lucchesi's Vineyard";
     await sql`DELETE FROM events_event WHERE (venue = 'Lucchesi''s Vineyard' OR venue = 'Lucchesi''s Tasting Room') AND manual_upload = FALSE`;
 
     const events = [];
@@ -49,10 +51,9 @@ async function getAllEvents(sql) {
         }
     }
 
-    console.log(
-        `Retrieved ${events.length} events from Lucchesi Tasting Room & Vineyard`,
-    );
-    return events;
+    const filteredEvents = await filterOutModifiedEvents(events, venue, sql);
+    console.log(`Retrieved ${filteredEvents.length} events from ${venue}`);
+    return filteredEvents;
 }
 
 function getTitle(event) {
