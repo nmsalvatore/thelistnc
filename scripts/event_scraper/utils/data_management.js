@@ -3,6 +3,8 @@ import { getUTCDateString } from "./dates.js";
 async function filterOutModifiedEvents(events, venue, sql) {
     const modifiedEvents = await getModifiedEvents(venue, sql);
 
+    console.log(modifiedEvents);
+
     if (modifiedEvents.length > 0) {
         return events.filter((event) => {
             for (let modifiedEvent of modifiedEvents) {
@@ -20,8 +22,6 @@ async function filterOutModifiedEvents(events, venue, sql) {
 }
 
 function checkDuplicate(sourceEvent, modifiedEvent) {
-    console.log("og date:", modifiedEvent.start_date);
-
     const modifiedEventDate = getUTCDateString(modifiedEvent.start_date);
     const sameStartDate = sourceEvent.startDate === modifiedEventDate;
 
