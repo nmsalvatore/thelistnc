@@ -126,7 +126,7 @@ def draw_events(draw, x, y, events, time_fill, event_fill):
         event_test_text = f"{title} {venue}"
         event_depth = test_event_depth(draw, event_test_text, event_x_start, y, event_x_thresh)
 
-        if event_depth < (2700 - (7 * 60)):
+        if event_depth < (2700 - (8 * 60)):
             time_y = draw_time(draw, event, x, y, time_x_thresh, time_fill)
             event_y = draw_event(draw, title, venue, font, event_x_start, y, event_x_thresh, event_fill)
         else:
