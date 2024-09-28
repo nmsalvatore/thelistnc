@@ -7,6 +7,8 @@ import datetime
 
 
 def the_list(request, sorting='by-date'):
+    request.session['last_visited'] = request.get_full_path()
+
     if sorting == 'by-date':
         grouped_events = group_events('date')
         dates = Event.objects.filter(start_date__gte=datetime.date.today()).values_list('start_date', flat=True).distinct().order_by('start_date')
