@@ -40,6 +40,12 @@ function formatTime(timeStr) {
     return String(hour).padStart(2, "0") + minutes;
 }
 
+function getTomorrow(dateString) {
+    const date = new Date(dateString);
+    date.setDate(date.getDate() + 1);
+    return date.toISOString().split("T")[0];
+}
+
 function extractTimes(timeString) {
     const patterns = [
         /(\d{1,2}:\d{2}\s*(?:am|pm)?)(?:\s*[-–—]?\s*(\d{1,2}:\d{2}\s*(?:am|pm)?))?/i,
@@ -66,4 +72,11 @@ function dateIsInvalid(date) {
     return String(date) === "Invalid Date";
 }
 
-export { months, formatTime, extractTimes, dateIsInvalid, getUTCDateString };
+export {
+    months,
+    formatTime,
+    extractTimes,
+    dateIsInvalid,
+    getUTCDateString,
+    getTomorrow,
+};
