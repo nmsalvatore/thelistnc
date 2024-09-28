@@ -1,5 +1,7 @@
-async function getSchedule() {
-    const movieIdsAsString = await getMovieIdsAsString();
+import { getAPIEndpointByKey } from "../utils/xhrCapture.js";
+
+async function getSchedule(nodes) {
+    const movieIdsAsString = await getMovieIdsAsString(nodes);
     const startDate = getStartDate();
     const endDate = getEndDate();
 
@@ -19,8 +21,20 @@ async function getSchedule() {
     return dates;
 }
 
+async function getMovieNodes() {
+    const endpoint = await getAPIEndpointByKey(
+        "https://www.theonyxtheatre.com/showtimes/",
+        "allMovie",
+    );
+    const response = await fetch(endpoint);
+    const data = await response.json();
+    const nodes = await data.data.allMovie.nodes;
+    return nodes;
+}
+
 async function getOnyxShowings() {
-    const schedule = await getSchedule();
+    const movieNodes = await getMovieNodes();
+    const schedule = await getSchedule(movieNodes);
     const showings = [];
 
     for (const id in schedule) {
@@ -34,14 +48,14 @@ async function getOnyxShowings() {
                     await checkIfNevadaTheatre(showtimeData);
 
                 if (isNevadaTheatre) {
-                    const title = await getMovieTitleById(id);
+                    const title = await getMovieTitleById(movieNodes, id);
                     const venue = "Nevada Theatre";
                     const city = "Nevada City";
                     const startTime = await getMovieTime(showtimeData);
                     const startDate = movieDate;
                     const endTime = null;
                     const admission = null;
-                    const url = await getMovieUrlById(id);
+                    const url = await getMovieUrlById(movieNodes, id);
 
                     const showing = {
                         title,
@@ -63,31 +77,18 @@ async function getOnyxShowings() {
     return showings;
 }
 
-async function getMovieNodes() {
-    const response = await fetch(
-        "https://cms-assets.webediamovies.pro/prod/the-onyx-theatre/66f655a83f3aa4cd38b70ae6/public/page-data/sq/d/3415018673.json",
-    );
-
-    const data = await response.json();
-    const nodes = await data.data.allMovie.nodes;
-    return nodes;
-}
-
-async function getMovieIds() {
-    const nodes = await getMovieNodes();
+async function getMovieIds(nodes) {
     const ids = await nodes.map((node) => node.id);
     return ids;
 }
 
-async function getMovieIdsAsString() {
-    const ids = await getMovieIds();
+async function getMovieIdsAsString(nodes) {
+    const ids = await getMovieIds(nodes);
     const idsAsString = JSON.stringify(ids);
     return idsAsString;
 }
 
-async function getMovieInfoById(id) {
-    const nodes = await getMovieNodes();
-
+async function getMovieInfoById(nodes, id) {
     for (const node of nodes) {
         if (node.id === id) {
             return node;
@@ -97,14 +98,14 @@ async function getMovieInfoById(id) {
     throw Error(`Could not find movie with id ${id}`);
 }
 
-async function getMovieTitleById(id) {
-    const info = await getMovieInfoById(id);
+async function getMovieTitleById(nodes, id) {
+    const info = await getMovieInfoById(nodes, id);
     const title = "The Onyx Downtown Presents: " + info.title;
     return title;
 }
 
-async function getMovieUrlById(id) {
-    const info = await getMovieInfoById(id);
+async function getMovieUrlById(nodes, id) {
+    const info = await getMovieInfoById(nodes, id);
     const url = "https://www.theonyxtheatre.com" + info.path;
     return url;
 }
