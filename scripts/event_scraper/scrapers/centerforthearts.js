@@ -55,13 +55,11 @@ async function getPageEvents(pageNum) {
     const data = await getPageEventData(pageNum);
     const html = await data.data.html;
     const document = getDOM(html);
-
     const events = [];
-
     const eventContainers = await getEventContainers(document);
+
     for (let containerElement of eventContainers) {
         const startDate = getStartDate(containerElement);
-
         events.push({
             title: getTitle(containerElement),
             venue: "The Center for the Arts",
@@ -73,7 +71,6 @@ async function getPageEvents(pageNum) {
             url: getUrl(containerElement),
         });
     }
-
     return events;
 }
 
