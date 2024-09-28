@@ -1,19 +1,24 @@
 import jsdom from "jsdom";
 import { extractTimes, formatTime } from "../utils/dates.js";
 import { filterOutModifiedEvents } from "../utils/data_management.js";
+import { getUTCDateString, getTomorrow } from "../utils/dates.js";
 
 async function getAllEvents(sql) {
     const venue = "Crazy Horse Saloon";
     await sql`DELETE FROM events_event WHERE venue = ${venue} and manual_upload = FALSE`;
 
-    let pageNum = 1;
+    let startDate = getUTCDateString(new Date());
     let pageEvents;
     let events = [];
 
     do {
-        pageEvents = await getPageEvents(pageNum);
-        events = events.concat(pageEvents);
-        pageNum++;
+        pageEvents = await getPageEvents(startDate);
+        if (pageEvents.length > 0) {
+            events = events.concat(pageEvents);
+            const lastEvent = pageEvents[pageEvents.length - 1];
+            const lastDate = lastEvent.startDate;
+            startDate = getTomorrow(lastDate);
+        }
     } while (pageEvents.length > 0);
 
     const filteredEvents = await filterOutModifiedEvents(events, venue, sql);
@@ -21,11 +26,9 @@ async function getAllEvents(sql) {
     return filteredEvents;
 }
 
-async function getPageDocument(pageNum) {
-    const response = await fetch(
-        `https://crazyhorsenc.com/shows/photo/page/${pageNum}/`,
-    );
-
+async function getPageDocument(startDate) {
+    const url = `https://crazyhorsenc.com/shows/list/?tribe-bar-date=${startDate}`;
+    const response = await fetch(url);
     const html = await response.text();
     const { JSDOM } = jsdom;
     const dom = new JSDOM(html);
@@ -33,29 +36,27 @@ async function getPageDocument(pageNum) {
     return document;
 }
 
-async function getPageArticles(pageNum) {
-    const pageDocument = await getPageDocument(pageNum);
-    const articles = pageDocument.querySelectorAll(
-        "article.tribe-common-g-col",
-    );
-
-    return articles;
+async function getEventRows(startDate) {
+    const pageDocument = await getPageDocument(startDate);
+    const selector =
+        ".tribe-common-g-row.tribe-events-calendar-list__event-row";
+    return pageDocument.querySelectorAll(selector);
 }
 
 async function getPageEvents(pageNum) {
-    const articles = await getPageArticles(pageNum);
     const events = [];
+    const rows = await getEventRows(pageNum);
 
-    for (let article of articles) {
+    for (let row of rows) {
         events.push({
-            title: getTitle(article),
+            title: getTitle(row),
             venue: "Crazy Horse Saloon",
             city: "Nevada City",
-            startDate: getStartDate(article),
-            startTime: getStartTime(article),
-            endTime: getEndTime(article),
-            admission: getAdmission(article),
-            url: getUrl(article),
+            startDate: getStartDate(row),
+            startTime: getStartTime(row),
+            endTime: getEndTime(row),
+            admission: getAdmission(row),
+            url: getUrl(row),
         });
     }
 
@@ -63,20 +64,19 @@ async function getPageEvents(pageNum) {
 }
 
 function getTitle(element) {
-    const title = element.querySelector("h3 a");
+    const selector = ".tribe-events-calendar-list__event-title-link";
+    const title = element.querySelector(selector);
     return title.textContent.trim();
 }
 
 function getStartDate(element) {
-    const datetimeElement = element.querySelector(
-        "time.tribe-events-pro-photo__event-date-tag-datetime",
-    );
-    const dateString = datetimeElement.getAttribute("datetime");
-    return dateString;
+    const selector = ".tribe-events-calendar-list__event-date-tag-datetime";
+    const datetime = element.querySelector(selector);
+    return datetime?.getAttribute("datetime") || null;
 }
 
 function getTimes(element) {
-    const selector = ".tribe-events-pro-photo__event-datetime";
+    const selector = ".tribe-events-calendar-list__event-datetime";
     const timeString = element.querySelector(selector).textContent;
     const times = extractTimes(timeString);
     return times;
@@ -95,14 +95,15 @@ function getEndTime(element) {
 }
 
 function getAdmission(element) {
-    const price = element.querySelector(".tribe-events-c-small-cta__price");
+    const selector = ".tribe-events-c-small-cta__price";
+    const price = element.querySelector(selector);
     return price?.textContent.trim() || null;
 }
 
 function getUrl(element) {
-    const selector = ".tribe-events-pro-photo__event-title-link";
-    const url = element.querySelector(selector).href;
-    return url;
+    const selector = ".tribe-events-calendar-list__event-title-link";
+    const link = element.querySelector(selector);
+    return link?.href || null;
 }
 
 export default getAllEvents;
