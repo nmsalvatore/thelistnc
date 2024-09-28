@@ -62,14 +62,9 @@ function getTitle(event) {
     return title;
 
     function cleanUpTitle(str) {
-        const regex = /\d+\s?(?:am|pm)/i;
-        const matchIndex = str.match(regex).index;
-
-        if (matchIndex) {
-            return str.substring(0, matchIndex).trim();
-        }
-
-        return str.trim();
+        const regex =
+            /\s*(?:\((?=.*\b(?:1[0-2]|0?[1-9])(?::[0-5][0-9])?\s*(?:am|pm)|(?:2[0-3]|[01]?[0-9]):[0-5][0-9]\b.*\))|(?:\b(?:1[0-2]|0?[1-9])(?::[0-5][0-9])?\s*(?:am|pm)|(?:2[0-3]|[01]?[0-9]):[0-5][0-9]\b)).*$/i;
+        return str.replace(regex, "").trim();
     }
 }
 
