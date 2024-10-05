@@ -19,7 +19,6 @@ def get_todays_events():
         with conn.cursor() as cur:
             cur.execute("SELECT title, start_date, start_time, end_time, venue FROM events_event WHERE start_date = (CURRENT_TIMESTAMP AT TIME ZONE 'America/Los_Angeles')::date ORDER BY start_time ASC, end_time ASC, title ASC")
             events = cur.fetchall()
-    print(events)
     return events
 
 
@@ -119,6 +118,8 @@ def draw_events(draw, x, y, events, time_fill, event_fill):
     for event in events:
         title = event[0]
         venue = event[4]
+
+        print(title)
 
         if time_y and event_y:
             y = max(time_y, event_y)
