@@ -19,6 +19,7 @@ def get_todays_events():
         with conn.cursor() as cur:
             cur.execute("SELECT title, start_date, start_time, end_time, venue FROM events_event WHERE start_date = (CURRENT_TIMESTAMP AT TIME ZONE 'America/Los_Angeles')::date ORDER BY start_time ASC, end_time ASC, title ASC")
             events = cur.fetchall()
+    print(events)
     return events
 
 
