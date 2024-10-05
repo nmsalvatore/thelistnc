@@ -115,7 +115,7 @@ def draw_events(draw, x, y, events, time_fill, event_fill):
     event_x_start = x + 560
     time_y, event_y = 0, 0
 
-    for event in events:
+    for index, event in enumerate(events):
         title = event[0]
         venue = event[4]
 
@@ -130,7 +130,7 @@ def draw_events(draw, x, y, events, time_fill, event_fill):
             time_y = draw_time(draw, event, x, y, time_x_thresh, time_fill)
             event_y = draw_event(draw, title, venue, font, event_x_start, y, event_x_thresh, event_fill)
         else:
-            remaining_events.append(event)
+            return events[index:]
 
     return remaining_events
 
@@ -168,7 +168,6 @@ def get_natural_time(time):
 
 
 def draw_event(draw, title, venue, font, x, y, x_thresh, fill):
-    print(title)
     x_venue_start, y = draw_title(draw, title, font, x, y, x_thresh, fill)
     y = draw_venue(draw, venue, x, y, x_venue_start, x_thresh)
     return y
