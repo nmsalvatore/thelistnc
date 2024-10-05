@@ -108,7 +108,6 @@ def draw_date(draw, x_pos, y_pos, fill):
 
 def draw_events(draw, x, y, events, time_fill, event_fill):
     font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 50)
-    remaining_events = []
 
     time_x_thresh = x + 420
     event_x_thresh = 1980
@@ -116,8 +115,7 @@ def draw_events(draw, x, y, events, time_fill, event_fill):
     time_y, event_y = 0, 0
 
     for index, event in enumerate(events):
-        title = event[0]
-        venue = event[4]
+        title, _, _, _, venue = event
 
         if time_y and event_y:
             y = max(time_y, event_y)
@@ -132,7 +130,7 @@ def draw_events(draw, x, y, events, time_fill, event_fill):
         else:
             return events[index:]
 
-    return remaining_events
+    return []
 
 
 def draw_time(draw, event, x, y, x_thresh, fill):
