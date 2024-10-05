@@ -119,8 +119,6 @@ def draw_events(draw, x, y, events, time_fill, event_fill):
         title = event[0]
         venue = event[4]
 
-        print(title)
-
         if time_y and event_y:
             y = max(time_y, event_y)
 
@@ -170,6 +168,7 @@ def get_natural_time(time):
 
 
 def draw_event(draw, title, venue, font, x, y, x_thresh, fill):
+    print(title)
     x_venue_start, y = draw_title(draw, title, font, x, y, x_thresh, fill)
     y = draw_venue(draw, venue, x, y, x_venue_start, x_thresh)
     return y
