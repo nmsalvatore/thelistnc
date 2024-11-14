@@ -31,6 +31,12 @@ async function getAllEvents(sql) {
         const venue = "Golden Era Lounge";
         const city = "Nevada City";
         const startDate = getStartDate(event);
+
+        if (!startDate) {
+            console.log(`Could not identify start date/time for ${title}`);
+            continue;
+        }
+
         const startTime = getStartTime(event);
         const endTime = getEndTime(event);
         const admission = null;
@@ -75,7 +81,7 @@ function getStartTimeElement(event) {
 
 function getStartDate(event) {
     const timeElement = getStartTimeElement(event);
-    const startDate = timeElement.getAttribute("datetime");
+    const startDate = timeElement?.getAttribute("datetime");
     return startDate;
 }
 
