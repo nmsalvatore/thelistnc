@@ -90,8 +90,11 @@ function getStartTime(element) {
 
 function getEndTime(element) {
     const times = getTimes(element);
-    const endTime = formatTime(times[1]);
-    return endTime;
+    try {
+        return formatTime(times[1]);
+    } catch (err) {
+        return null;
+    }
 }
 
 function getAdmission(element) {
