@@ -174,6 +174,8 @@ function getYear(month, day, eventDay) {
             weekday: "short",
         });
 
+        console.log(dateString, eventDay, calculatedDay);
+
         if (eventDay === calculatedDay) {
             return year + 1;
         }
