@@ -125,3 +125,6 @@ GitHub.sublime-settings
 
 # MacOS
 .DS_Store
+
+# Zed
+.ropeproject
