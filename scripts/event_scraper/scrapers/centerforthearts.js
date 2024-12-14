@@ -167,7 +167,7 @@ function getYear(month, day, eventDay) {
     if (date < today) {
         const paddedMonth = month.toString().padStart(2, "0");
         const paddedDay = day.toString().padStart(2, "0");
-        const newDateString = `${year + 1}-${paddedMonth}-${paddedDay}T00:00:00.000`;
+        const newDateString = `${year + 1}-${paddedMonth}-${paddedDay}T08:00:00.000`;
         const newDate = new Date(newDateString);
         const calculatedDay = newDate.toLocaleString("en-US", {
             timeZone: "America/Los_Angeles",
