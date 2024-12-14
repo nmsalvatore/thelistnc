@@ -85,7 +85,10 @@ function getTitle(containerElement) {
     }
 
     const title = headingElement.textContent.trim();
-    return title;
+    const regex =
+        /\s*–\s*\d+(?::\d+)?\s*(?:am|pm)(?:\s*and\s*\d+(?::\d+)?\s*(?:am|pm))?/i;
+    const cleanTitle = title.replace(regex, "");
+    return cleanTitle;
 }
 
 function getUrl(containerElement) {
