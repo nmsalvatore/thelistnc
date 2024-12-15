@@ -5,6 +5,7 @@ import getCFTAEvents from "./scrapers/centerforthearts.js";
 import getGoldenEraEvents from "./scrapers/goldenera.js";
 import getLucchesiEvents from "./scrapers/lucchesi.js";
 import getNevadaTheatreEvents from "./scrapers/nevadatheatre.js";
+import getFriarTucksEvents from "./scrapers/friartucks.js";
 
 import sql from "./db.js";
 import { v4 as uuid4 } from "uuid";
@@ -55,6 +56,7 @@ async function getAllEvents(sql) {
     const goldenEraEvents = await getGoldenEraEvents(sql);
     const lucchesiEvents = await getLucchesiEvents(sql);
     const nevadaTheatreEvents = await getNevadaTheatreEvents(sql);
+    const friarTucks = await getFriarTucksEvents(sql);
 
     events = events.concat(
         goldVibeEvents,
@@ -64,6 +66,7 @@ async function getAllEvents(sql) {
         goldenEraEvents,
         lucchesiEvents,
         nevadaTheatreEvents,
+        friarTucks,
     );
 
     return events;
