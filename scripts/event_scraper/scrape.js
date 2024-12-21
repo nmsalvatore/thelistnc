@@ -6,6 +6,7 @@ import getGoldenEraEvents from "./scrapers/goldenera.js";
 import getLucchesiEvents from "./scrapers/lucchesi.js";
 import getNevadaTheatreEvents from "./scrapers/nevadatheatre.js";
 import getFriarTucksEvents from "./scrapers/friartucks.js";
+import getMinersFoundryEvents from "./scrapers/minersfoundry.js";
 
 import sql from "./db.js";
 import { v4 as uuid4 } from "uuid";
@@ -57,6 +58,7 @@ async function getAllEvents(sql) {
     const lucchesiEvents = await getLucchesiEvents(sql);
     const nevadaTheatreEvents = await getNevadaTheatreEvents(sql);
     const friarTucks = await getFriarTucksEvents(sql);
+    const minersFoundry = await getMinersFoundryEvents(sql);
 
     events = events.concat(
         goldVibeEvents,
@@ -67,6 +69,7 @@ async function getAllEvents(sql) {
         lucchesiEvents,
         nevadaTheatreEvents,
         friarTucks,
+        minersFoundry,
     );
 
     return events;
