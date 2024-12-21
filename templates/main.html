@@ -52,6 +52,7 @@
         <script>
             htmx.config.scrollIntoViewOnBoost = false;
         </script>
+        <script src="{% static 'js/events.js' %}" defer></script>
         {% block scripts %}{% endblock scripts %}
     </head>
     <body>
@@ -83,6 +84,8 @@
             <footer>
                 <small>&copy; 2024 The List NC. All rights reserved.</small>
             </footer>
+
+            <a href="#top" class="back-to-top">Back to top</a>
         </div>
     </body>
 </html>

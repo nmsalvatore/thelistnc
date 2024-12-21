@@ -1,5 +1,4 @@
 {% extends 'main.html' %}
-{% load static %}
 
 {% block subtitle %}
     Events by title
@@ -11,9 +10,4 @@
 
 {% block main_content %}
     {% include 'events/partials/event_list_by_title.html' %}
-    <a href="#top" class="back-to-top">Back to top</a>
 {% endblock main_content %}
-
-{% block scripts %}
-    <script defer src="{% static 'js/events.js' %}"></script>
-{% endblock scripts %}
