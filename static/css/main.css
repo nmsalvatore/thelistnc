@@ -223,6 +223,14 @@ header .logo .accent {
     border: 1px solid var(--color-4);
     font-size: 1.4rem;
     margin-right: 0.5rem;
+    position: relative;
+}
+
+.sort-options a.option:active {
+    background: rgba(0, 0, 0, 0.01);
+    box-shadow: 2px 2px var(--color-2);
+    left: 1px;
+    top: 1px;
 }
 
 .sort-options .option:last-child {

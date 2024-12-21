@@ -10,40 +10,7 @@
 {% endblock header_content %}
 
 {% block main_content %}
-    <nav class="sort-options">
-        <a class="option" href="{% url 'the_list' sorting='by-date' %}">By Date</a>
-        <a class="option" href="{% url 'the_list' sorting='by-venue' %}">By Venue</a>
-        <span class="option">By Title</span>
-    </nav>
-
-    <section class="titles tags">
-        {% for title in titles %}
-            <a href="#events_{{ title|slugify }}" class="tag">{{ title }}</a>
-        {% endfor %}
-    </section>
-
-    <section class="events">
-        {% for title, events, num_events in grouped_events %}
-            <div id="events_{{ title|slugify }}" class="event-group">
-                <header class="event-group-header">
-                    <div class="event-group-heading">
-                        <h2>{{ title }}</h2>
-                        <div class="heading-details">
-                            <p class="num-events">{{ num_events }} event{{ num_events|pluralize }}</p>
-                        </div>
-                    </div>
-                </header>
-                <ul>
-                    {% for event in events %}
-                        <li class="event-row">
-                            {% include 'events/event_by_title.html' %}
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        {% endfor %}
-    </section>
-
+    {% include 'events/partials/event_list_by_title.html' %}
     <a href="#top" class="back-to-top">Back to top</a>
 {% endblock main_content %}
 

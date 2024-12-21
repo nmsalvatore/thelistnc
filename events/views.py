@@ -9,25 +9,28 @@ import datetime
 def the_list(request, sorting='by-date'):
     request.session['last_visited'] = request.get_full_path()
 
+    is_htmx = request.headers.get("HX-Request")
+    template_dir = "events/partials" if is_htmx else "events"
+
     if sorting == 'by-date':
         grouped_events = group_events('date')
         dates = Event.objects.filter(start_date__gte=datetime.date.today()).values_list('start_date', flat=True).distinct().order_by('start_date')
         context = {'grouped_events': grouped_events, 'dates': dates}
-        return render(request, 'events/event_list_by_date.html', context)
+        return render(request, f"{template_dir}/event_list_by_date.html", context)
 
     elif sorting == 'by-venue':
         grouped_events = group_events('venue')
         venues = Event.objects.filter(start_date__gte=datetime.date.today()).values_list('venue', flat=True).distinct().order_by('venue')
         sorted_venues = sorted(venues, key=natural_sort_key)
         context = {'grouped_events': grouped_events, 'venues': sorted_venues}
-        return render(request, 'events/event_list_by_venue.html', context)
+        return render(request, f"{template_dir}/event_list_by_venue.html", context)
 
     elif sorting == 'by-title':
         grouped_events = group_events('title')
         titles = Event.objects.filter(start_date__gte=datetime.date.today()).values_list('title', flat=True).distinct()
         sorted_titles = sorted(titles, key=natural_sort_key)
         context = {'grouped_events': grouped_events, 'titles': sorted_titles}
-        return render(request, 'events/event_list_by_title.html', context)
+        return render(request, f"{template_dir}/event_list_by_title.html", context)
 
 
 def group_events(field):

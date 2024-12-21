@@ -48,6 +48,10 @@
               content="{% static 'images/opengraph/og_image.png' %}" />
 
         <script>document.documentElement.classList.add("js-enabled")</script>
+        <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+        <script>
+            htmx.config.scrollIntoViewOnBoost = false;
+        </script>
         {% block scripts %}{% endblock scripts %}
     </head>
     <body>
