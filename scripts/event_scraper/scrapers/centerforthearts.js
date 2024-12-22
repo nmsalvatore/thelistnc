@@ -30,7 +30,7 @@ async function getPageEventData(pageNum) {
             "Accept-Language": "en-US,en;q=0.5",
             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
         },
-        body: `action=jet_engine_ajax&handler=listing_load_more&query%5Bpost_status%5D%5B%5D=publish&query%5Bpost_type%5D%5B%5D=events&query%5Bposts_per_page%5D=24&query%5Bpaged%5D=1&query%5Bignore_sticky_posts%5D=1&query%5Bmeta_query%5D%5Border_upnext%5D%5Bkey%5D=cfta_event_time_start&query%5Bmeta_query%5D%5Border_upnext%5D%5Bvalue%5D=1714574029&query%5Bmeta_query%5D%5Border_upnext%5D%5Bcompare%5D=%3E%3D&query%5Bmeta_query%5D%5Border_upnext%5D%5Btype%5D=NUMERIC&query%5Border%5D=ASC&query%5Borderby%5D=order_upnext&query%5Bsuppress_filters%5D=false&query%5Bjet_smart_filters%5D=jet-engine%2Fevent-filter&widget_settings%5Blisitng_id%5D=10816&page_settings%5Bqueried_id%5D=false&page_settings%5Belement_id%5D=false&page_settings%5Bpage%5D=${pageNum}`,
+        body: `action=jet_engine_ajax&handler=listing_load_more&query%5Bpost_type%5D%5B%5D=events&query%5Bposts_per_page%5D=24&query%5Bignore_sticky_posts%5D=1&query%5Bmeta_query%5D%5Border_upnext%5D%5Bkey%5D=cfta_event_time_start&query%5Bmeta_query%5D%5Border_upnext%5D%5Bvalue%5D=1714574029&query%5Bmeta_query%5D%5Border_upnext%5D%5Bcompare%5D=%3E%3D&query%5Border%5D=ASC&query%5Borderby%5D=order_upnext&widget_settings%5Blisitng_id%5D=10816&page_settings%5Bqueried_id%5D=false&page_settings%5Belement_id%5D=false&page_settings%5Bpage%5D=${pageNum}`,
         method: "POST",
         mode: "cors",
     });
@@ -60,6 +60,7 @@ async function getPageEvents(pageNum) {
 
     for (let containerElement of eventContainers) {
         const startDate = getStartDate(containerElement);
+
         events.push({
             title: getTitle(containerElement),
             venue: "The Center for the Arts",
@@ -84,7 +85,10 @@ function getTitle(containerElement) {
     }
 
     const title = headingElement.textContent.trim();
-    return title;
+    const regex =
+        /\s*–\s*\d+(?::\d+)?\s*(?:am|pm)(?:\s*and\s*\d+(?::\d+)?\s*(?:am|pm))?/i;
+    const cleanTitle = title.replace(regex, "");
+    return cleanTitle;
 }
 
 function getUrl(containerElement) {
@@ -142,18 +146,40 @@ function matchPrices(text) {
 function getStartDate(listing) {
     const month = getMonth(listing);
     const day = getDay(listing);
-    const year = getYear(month, day);
+    const eventDay = getEventDay(listing);
+    const year = getYear(month, day, eventDay);
     return `${year}-${month}-${day}`;
 }
 
-function getYear(month, day) {
+function getEventDay(listing) {
+    const regex = /^([A-Za-z]{3})\s*\|/;
+    const fieldContent = listing.querySelector(
+        ".elementor-element-c96a95b .jet-listing-dynamic-field__content",
+    ).textContent;
+    const match = fieldContent.match(regex);
+    const eventDay = match ? match[1] : null;
+    return eventDay;
+}
+
+function getYear(month, day, eventDay) {
     const year = new Date().getFullYear();
     const dateString = `${year}-${month}-${day}`;
     const date = new Date(dateString);
     const today = getToday();
 
     if (date < today) {
-        return year + 1;
+        const paddedMonth = month.toString().padStart(2, "0");
+        const paddedDay = day.toString().padStart(2, "0");
+        const newDateString = `${year + 1}-${paddedMonth}-${paddedDay}T08:00:00.000`;
+        const newDate = new Date(newDateString);
+        const calculatedDay = newDate.toLocaleString("en-US", {
+            timeZone: "America/Los_Angeles",
+            weekday: "short",
+        });
+
+        if (eventDay === calculatedDay) {
+            return year + 1;
+        }
     }
 
     return year;
