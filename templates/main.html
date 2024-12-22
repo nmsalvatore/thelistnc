@@ -55,7 +55,7 @@
         <script src="{% static 'js/events.js' %}" defer></script>
         {% block scripts %}{% endblock scripts %}
     </head>
-    <body>
+    <body hx-history-elt>
         {% if user.is_authenticated %}
             <nav class="admin-options">
                 <div class="container">
