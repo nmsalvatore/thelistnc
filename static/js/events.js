@@ -13,7 +13,7 @@ document.addEventListener("scroll", (e) => {
 });
 
 document.addEventListener("click", (e) => {
-    if (e.target.matches("a.delete.button")) {
+    if (e.target.closest("a.delete")) {
         const details = e.target.closest(".details");
         if (details) {
             const title = details.querySelector(".title").textContent;

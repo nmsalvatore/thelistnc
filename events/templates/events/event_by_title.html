@@ -39,10 +39,6 @@
     </div>
 
     {% if user.is_authenticated %}
-        <div class="event-admin-options">
-            <a class="edit button" href="{% url 'edit_event_form' uuid=event.uuid %}">Edit</a>
-            <a class="template button" href="{% url 'template_event_form' uuid=event.uuid %}">Use as template</a>
-            <a class="delete button" href="{% url 'delete_event' uuid=event.uuid %}">Delete</a>
-        </div>
+        {% include 'events/event_admin_options.html' %}
     {% endif %}
 </div>

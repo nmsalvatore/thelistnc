@@ -35,34 +35,54 @@ body {
     background: var(--color-1);
 }
 
+body:has(nav.admin-options) > .container {
+    padding-top: 59.5px;
+}
+
 nav.admin-options {
-    background: var(--color-3);
+    background: var(--color-1);
     color: var(--color-2);
     padding: 0 var(--space-2);
     font-size: 1.4rem;
+    position: fixed;
+    width: 100%;
+    box-shadow: 0px 4px 8px -8px var(--color-4);
+    z-index: 2;
 }
 
 nav.admin-options .container {
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     min-height: auto;
+    gap: var(--space-1);
 }
 
-nav.admin-options span {
-    color: var(--color-2);
+nav.admin-options .container span.username {
+    color: var(--color-4);
+}
+
+nav.admin-options .container span.separator {
+    color: var(--color-3);
+}
+
+nav.admin-options .left,
+nav.admin-options .right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+nav.admin-options .left > a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
 }
 
 nav.admin-options a {
-    color: var(--color-1);
+    color: var(--color-4);
     font-weight: 600;
-    text-decoration: none;
-}
-
-nav.admin-options a:hover {
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-decoration-color: var(--color-2);
+    text-decoration-color: var(--color-4);
 }
 
 .menu {
@@ -126,6 +146,15 @@ a {
     text-decoration-color: var(--color-3);
     text-underline-offset: 2px;
     text-decoration-thickness: 2px;
+}
+
+a > svg {
+    position: relative;
+    top: 3px;
+}
+
+a:has(svg) {
+    z-index: 1;
 }
 
 a.button {
@@ -287,18 +316,6 @@ header .logo .accent {
     justify-content: space-between;
 }
 
-.event-group-header .back-to-top {
-    padding: 0.25rem 1rem;
-    border-radius: 4px;
-    text-decoration: none;
-    font-size: 1.2rem;
-}
-
-.event-group-header .back-to-top svg {
-    margin-right: 1ch;
-    height: var(--space-2);
-}
-
 .event-group-heading .city {
     display: inline-block;
     color: var(--color-4);
@@ -396,24 +413,13 @@ li.event-row > div.start-date .month-year {
 }
 
 .event-admin-options {
+    display: flex;
+    gap: var(--space-1);
     margin: var(--space-1) 0;
 }
 
 .event-admin-options a {
-    padding: 0.25rem 1rem;
-    border-radius: 4px;
     text-decoration: none;
-    font-size: 1.2rem;
-}
-
-.event-admin-options a.edit {
-    background: var(--color-3);
-    color: var(--color-1);
-}
-
-.event-admin-options a.delete {
-    background: hsl(25 40% 50%);
-    color: var(--color-1);
 }
 
 a.back-to-top {
@@ -430,9 +436,18 @@ a.back-to-top {
 }
 
 @media only screen and (max-width: calc(720px + 4rem)) {
-    .container:not(nav.admin-options .container) {
+    body:has(nav.admin-options) > .container {
+        padding-top: calc(2rem + 59.5px);
+    }
+
+    body > .container {
         padding: var(--space-2);
         margin: 1rem auto;
+    }
+
+    nav.admin-options .left,
+    nav.admin-options .right {
+        gap: var(--space-1);
     }
 
     .site-header {
