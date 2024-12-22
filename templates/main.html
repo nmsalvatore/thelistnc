@@ -68,9 +68,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#204560"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg> Home
                             </a>
                         {% else %}
-                            <a href="{% url 'dashboard' %}">Dashboard</a>
-                            <span class="separator">|</span>
-                            <a class="new-event" href="{% url 'new_event_form' %}">New event</a>
+                            <a href="{% url 'dashboard' %}" class="dashboard-button">Dashboard</a>
                         {% endif %}
                     </div>
                     <div class="right">
