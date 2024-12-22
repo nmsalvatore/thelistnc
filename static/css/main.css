@@ -227,8 +227,7 @@ header .logo .accent {
 }
 
 .sort-options a.option:active {
-    background: rgba(0, 0, 0, 0.01);
-    box-shadow: 2px 2px var(--color-2);
+    box-shadow: 2px 2px hsl(25 30% 87%);
     left: 1px;
     top: 1px;
 }
