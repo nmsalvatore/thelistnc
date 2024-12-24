@@ -74,14 +74,24 @@ nav.admin-options .right {
     gap: var(--space-2);
 }
 
-nav.admin-options .left > a {
+nav.admin-options .left a {
     display: flex;
     align-items: center;
     gap: var(--space-1);
 }
 
-nav.admin-options a.dashboard-button {
-    text-decoration: none;
+nav.admin-options a.dashboard-button::after {
+    content: "Admin Dashboard";
+}
+
+nav.admin-options a.new-event-button {
+    padding: 0.25rem 1rem;
+    background: var(--color-2);
+    border-radius: 4px;
+}
+
+nav.admin-options a.new-event-button::after {
+    content: "New Event";
 }
 
 nav.admin-options a {
@@ -414,7 +424,7 @@ li.event-row > div.start-date .month-year {
 
 .event-admin-options {
     display: flex;
-    gap: var(--space-1);
+    gap: var(--space-2);
     margin: var(--space-1) 0;
 }
 
@@ -448,6 +458,14 @@ a.back-to-top {
     nav.admin-options .left,
     nav.admin-options .right {
         gap: var(--space-1);
+    }
+
+    nav.admin-options a.dashboard-button::after {
+        content: "Admin";
+    }
+
+    nav.admin-options a.new-event-button::after {
+        content: "New";
     }
 
     .site-header {
