@@ -5,9 +5,13 @@
 {% endblock subtitle %}
 
 {% block header_content %}
-    {% include 'events/heading.html' %}
+    {% include 'events/partials/heading.html' %}
 {% endblock header_content %}
 
 {% block main_content %}
-    {% include 'events/partials/event_list_by_date.html' %}
+    {% include 'events/partials/navigation.html' %}
+
+    <section class="event-data">
+        {% include 'events/partials/event_list_by_date.html' %}
+    </section>
 {% endblock main_content %}

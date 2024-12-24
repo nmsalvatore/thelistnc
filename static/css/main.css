@@ -200,7 +200,7 @@ input#update_event {
 }
 
 .site-header {
-    margin: var(--space-5) 0;
+    margin: var(--space-5) 0 var(--space-4);
 }
 
 .site-header h1.logo {
@@ -251,7 +251,7 @@ header .logo .accent {
 
 .sort-options {
     font-weight: 600;
-    margin-bottom: var(--space-3);
+    margin-bottom: var(--space-4);
 }
 
 .sort-options .option {
@@ -265,20 +265,20 @@ header .logo .accent {
     position: relative;
 }
 
-.sort-options a.option:active {
-    box-shadow: 2px 2px hsl(25 30% 87%);
-    left: 1px;
-    top: 1px;
-}
-
 .sort-options .option:last-child {
     margin-right: 0;
 }
 
+.sort-options a.option:focus,
 .sort-options span.option {
     cursor: default;
     background: var(--color-3);
     color: var(--color-1);
+}
+
+.sort-options:has(a.option:focus) span.option {
+    background: none;
+    color: var(--color-4);
 }
 
 .sort-options a.option {
@@ -289,7 +289,7 @@ header .logo .accent {
 
 .tags {
     margin-top: var(--space-3);
-    margin-bottom: var(--space-5);
+    margin-bottom: var(--space-4);
     color: var(--color-3);
 }
 
@@ -443,6 +443,39 @@ a.back-to-top {
     padding: var(--space-1);
     text-decoration: none;
     transition: bottom 200ms ease;
+}
+
+form#active-search {
+    margin-bottom: var(--space-3);
+    position: relative;
+}
+
+form#active-search svg {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+form#active-search input {
+    padding-left: 44px;
+    width: 100%;
+}
+
+section.event-data {
+    opacity: 1;
+}
+
+section.event-data.htmx-request {
+    opacity: 0;
+}
+
+main:has(section.event-data.htmx-request) p.loading {
+    display: block;
+}
+
+p.loading {
+    margin-top: var(--space-3);
+    display: none;
 }
 
 @media only screen and (max-width: calc(720px + 4rem)) {

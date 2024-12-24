@@ -1,34 +1,40 @@
-<nav class="sort-options" hx-boost="true" hx-target="main">
-    <a class="option" href="{% url 'the_list' sorting='by-date' %}">By Date</a>
-    <span class="option">By Venue</span>
-    <a class="option" href="{% url 'the_list' sorting='by-title' %}">By Title</a>
-</nav>
+{% if is_hx_request %}
+    <nav id="sort-options" hx-swap-oob="innerHTML">
+        <a class="option" href="{% url 'the_list' sorting='by-date' %}">By Date</a>
+        <span class="option">By Venue</span>
+        <a class="option" href="{% url 'the_list' sorting='by-title' %}">By Title</a>
+    </nav>
+{% endif %}
 
-<section class="venues tags">
-    {% for venue in venues %}
-        <a href="#events_{{ venue|slugify }}" class="tag">{{ venue }}</a>
-    {% endfor %}
-</section>
+{% if grouped_events|length == 0 %}
+    <p>No events matching "{{ search_query }}"</p>
+{% else %}
+    <section class="venues tags">
+        {% for venue in venues %}
+            <a href="#events_{{ venue|slugify }}" class="tag">{{ venue }}</a>
+        {% endfor %}
+    </section>
 
-<section class="events">
-    {% for venue, events, num_events, city in grouped_events %}
-        <div id="events_{{ venue|slugify }}" class="event-group">
-            <header class="event-group-header">
-                <div class="event-group-heading">
-                    <p class="city">{{ city }}</p>
-                    <h2>{{ venue }}</h2>
-                    <div class="heading-details">
-                        <p class="num-events">{{ num_events }} event{{ num_events|pluralize }}</p>
+    <section class="events">
+        {% for venue, events, num_events, city in grouped_events %}
+            <div id="events_{{ venue|slugify }}" class="event-group">
+                <header class="event-group-header">
+                    <div class="event-group-heading">
+                        <p class="city">{{ city }}</p>
+                        <h2>{{ venue }}</h2>
+                        <div class="heading-details">
+                            <p class="num-events">{{ num_events }} event{{ num_events|pluralize }}</p>
+                        </div>
                     </div>
-                </div>
-            </header>
-            <ul>
-                {% for event in events %}
-                    <li class="event-row">
-                        {% include 'events/event_by_venue.html' %}
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endfor %}
-</section>
+                </header>
+                <ul>
+                    {% for event in events %}
+                        <li class="event-row">
+                            {% include 'events/partials/single_event_by_venue.html' %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    </section>
+{% endif %}

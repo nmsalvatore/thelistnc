@@ -8,8 +8,11 @@
 
 <div class="details">
     <div>
-        <!-- title -->
-        <a href="{% url 'the_list' sorting='by-title' %}#events_{{ event.title|slugify }}" class="title">{{ event }}</a>
+        <!-- venue -->
+        <a href="{% url 'the_list' sorting='by-venue' %}#events_{{ event.venue|slugify }}" class="title">{{ event.venue }}</a>
+
+        <!-- city -->
+        <span class="city">{{ event.city }}</span>
 
         <!-- time -->
         {% if not event.end_time %}
@@ -36,6 +39,6 @@
     </div>
 
     {% if user.is_authenticated %}
-        {% include 'events/event_admin_options.html' %}
+        {% include 'events/partials/event_admin_options.html' %}
     {% endif %}
 </div>
