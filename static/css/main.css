@@ -250,41 +250,29 @@ header .logo .accent {
 }
 
 .sort-options {
-    font-weight: 600;
+    display: flex;
+    gap: var(--space-1);
     margin-bottom: var(--space-4);
 }
 
-.sort-options .option {
+.sort-options a.option {
     display: inline-block;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     box-shadow: 3px 3px var(--color-2);
     border: 1px solid var(--color-4);
     font-size: 1.4rem;
-    margin-right: 0.5rem;
+    font-weight: 600;
     position: relative;
+    text-decoration: none;
 }
 
-.sort-options .option:last-child {
-    margin-right: 0;
-}
-
-html[data-js-enabled="true"] .sort-options a.option:focus,
-.sort-options span.option {
+.sort-options a.option[data-active-sort="true"] {
     cursor: default;
     background: var(--color-3);
     color: var(--color-1);
-}
-
-html[data-js-enabled="true"] .sort-options:has(a.option:focus) span.option {
-    background: none;
-    color: var(--color-4);
-}
-
-.sort-options a.option {
-    text-decoration: none;
-    color: inherit;
-    font-weight: inherit;
+    pointer-events: none;
+    user-select: none;
 }
 
 .tags {
@@ -356,6 +344,8 @@ h2 + p {
     font-style: italic;
 }
 
+/* event styles */
+
 .event-group {
     padding-top: var(--space-2);
     margin-bottom: var(--space-4);
@@ -422,6 +412,8 @@ li.event-row > div.start-date .month-year {
     font-weight: inherit;
 }
 
+/* event admin options */
+
 .event-admin-options {
     display: flex;
     gap: var(--space-2);
@@ -432,9 +424,18 @@ li.event-row > div.start-date .month-year {
     text-decoration: none;
 }
 
+/* back to top button */
+
+html[data-js-enabled="true"] a.back-to-top {
+    bottom: -38.5px;
+}
+
+html[data-js-enabled="false"] a.back-to-top {
+    bottom: 0;
+}
+
 a.back-to-top {
     position: fixed;
-    bottom: -38.5px;
     font-size: 1.4rem;
     right: var(--space-2);
     background: var(--color-4);
@@ -444,6 +445,8 @@ a.back-to-top {
     text-decoration: none;
     transition: bottom 200ms ease;
 }
+
+/* active search form */
 
 html[data-js-enabled="true"] form#active-search {
     display: block;
@@ -471,10 +474,7 @@ form#active-search input {
     width: 100%;
 }
 
-p.enable-js-alert {
-    font-size: 1.2rem;
-    margin-bottom: var(--space-1);
-}
+/* htmx loading styles  */
 
 section.event-data {
     opacity: 1;
@@ -492,6 +492,8 @@ p.loading {
     margin-top: var(--space-3);
     display: none;
 }
+
+/* mobile styles */
 
 @media only screen and (max-width: calc(720px + 4rem)) {
     body:has(nav.admin-options) > .container {

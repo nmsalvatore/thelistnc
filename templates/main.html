@@ -1,23 +1,10 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-js-enabled="false">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>{% block subtitle %}{% endblock %} - The List NC</title>
-
-        <!-- preloads -->
-        <link rel="preload" href="{% static 'fonts/IBMPlexMono-Regular.woff2' %}" type="font/woff2" as="font" crossorigin>
-        <link rel="preload" href="{% static 'fonts/IBMPlexMono-SemiBold.woff2' %}" type="font/woff2" as="font" crossorigin>
-        <link rel="preload" href="{% static 'css/main.css' %}" as="style">
-
-        <!-- stylesheets -->
-        <link rel="stylesheet" href="{% static 'css/fonts.css' %}" />
-        <link rel="stylesheet" href="{% static 'css/main.css' %}" />
-        {% block css %}{% endblock css %}
-        <link rel="icon" href="{% static 'images/favicons/favicon.png' %}" />
-
         <meta name="theme-color" content="#457aa1" />
         <meta name="description"
               content="Find events in Nevada County with The List NC! Our volunteer-run database features everything from festivals and farmer's markets to trivia nights and live shows." />
@@ -38,6 +25,19 @@
               content="Find events in Nevada County with The List NC! Our volunteer-run database features everything from festivals and farmer's markets to trivia nights and live shows." />
         <meta name="twitter:image"
               content="{% static 'images/opengraph/og_image.png' %}" />
+
+        <title>{% block subtitle %}{% endblock %} - The List NC</title>
+
+        <!-- preloads -->
+        <link rel="preload" href="{% static 'fonts/IBMPlexMono-Regular.woff2' %}" type="font/woff2" as="font" crossorigin>
+        <link rel="preload" href="{% static 'fonts/IBMPlexMono-SemiBold.woff2' %}" type="font/woff2" as="font" crossorigin>
+        <link rel="preload" href="{% static 'css/main.css' %}" as="style">
+
+        <!-- stylesheets -->
+        <link rel="stylesheet" href="{% static 'css/fonts.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+        {% block css %}{% endblock css %}
+        <link rel="icon" href="{% static 'images/favicons/favicon.png' %}" />
 
         <!-- simple analytics -->
         <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>

@@ -26,3 +26,11 @@ document.addEventListener("click", (e) => {
         }
     }
 });
+
+const sortOptions = document.querySelectorAll("a.option");
+sortOptions.forEach((option) => {
+    option.addEventListener("click", () => {
+        sortOptions.forEach((option) => (option.dataset.activeSort = false));
+        option.dataset.activeSort = true;
+    });
+});

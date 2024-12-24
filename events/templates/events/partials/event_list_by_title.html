@@ -1,11 +1,3 @@
-{% if is_hx_request %}
-    <nav id="sort-options" hx-swap-oob="innerHTML">
-        <a class="option" href="{% url 'the_list' sorting='by-date' %}">By Date</a>
-        <a class="option" href="{% url 'the_list' sorting='by-venue' %}">By Venue</a>
-        <span class="option">By Title</span>
-    </nav>
-{% endif %}
-
 {% if grouped_events|length == 0 %}
     <p>No events matching "{{ search_query }}"</p>
 {% else %}
