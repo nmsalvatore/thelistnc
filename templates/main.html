@@ -39,16 +39,9 @@
         <meta name="twitter:image"
               content="{% static 'images/opengraph/og_image.png' %}" />
 
-        <!-- analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-74KMVNTK53"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag("js", new Date());
-            gtag("config", "G-74KMVNTK53");
-        </script>
+        <!-- simple analytics -->
+        <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+        <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
 
         <!-- htmx -->
         <script src="https://unpkg.com/htmx.org@2.0.4"></script>
