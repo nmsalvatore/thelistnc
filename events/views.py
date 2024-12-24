@@ -51,10 +51,12 @@ def the_list(request, sorting='by-date'):
         sorted_titles = sorted(titles, key=natural_sort_key)
         context["titles"] = sorted_titles
 
-
     context["grouped_events"] = grouped_events
-    by_sorting_option = sorting.replace("-", "_")
-    return render(request, f"{template_dir}/event_list_{by_sorting_option}.html", context)
+    template = f"{template_dir}/event_list_{sorting.replace('-', '_')}.html"
+
+    response = render(request, template, context)
+    response["Vary"] = "HX-Request"
+    return response
 
 
 def get_events(search_query):
