@@ -82,17 +82,12 @@ nav.admin-options .left > a {
 
 nav.admin-options a.dashboard-button {
     text-decoration: none;
-    padding: 0.5rem 1rem;
-    background: var(--color-2);
-    border: 1px solid var(--color-4);
-    border-radius: 4px;
-    box-shadow: 2px 2px var(--color-4);
 }
 
 nav.admin-options a {
     color: var(--color-4);
     font-weight: 600;
-    text-decoration-color: var(--color-4);
+    text-decoration: none;
 }
 
 .menu {
@@ -156,11 +151,6 @@ a {
     text-decoration-color: var(--color-3);
     text-underline-offset: 2px;
     text-decoration-thickness: 2px;
-}
-
-a > svg {
-    position: relative;
-    top: 3px;
 }
 
 a:has(svg) {
