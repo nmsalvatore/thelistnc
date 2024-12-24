@@ -269,14 +269,14 @@ header .logo .accent {
     margin-right: 0;
 }
 
-.sort-options a.option:focus,
+html[data-js-enabled="true"] .sort-options a.option:focus,
 .sort-options span.option {
     cursor: default;
     background: var(--color-3);
     color: var(--color-1);
 }
 
-.sort-options:has(a.option:focus) span.option {
+html[data-js-enabled="true"] .sort-options:has(a.option:focus) span.option {
     background: none;
     color: var(--color-4);
 }
@@ -445,9 +445,19 @@ a.back-to-top {
     transition: bottom 200ms ease;
 }
 
+html[data-js-enabled="true"] form#active-search {
+    display: block;
+}
+
 form#active-search {
+    display: none;
     margin-bottom: var(--space-3);
     position: relative;
+}
+
+form#active-search:has(input:disabled) {
+    display: block;
+    opacity: 0.5;
 }
 
 form#active-search svg {
@@ -459,6 +469,11 @@ form#active-search svg {
 form#active-search input {
     padding-left: 44px;
     width: 100%;
+}
+
+p.enable-js-alert {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-1);
 }
 
 section.event-data {
