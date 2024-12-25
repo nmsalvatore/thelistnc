@@ -32,5 +32,7 @@ sortOptions.forEach((option) => {
     option.addEventListener("click", () => {
         sortOptions.forEach((option) => (option.dataset.activeSort = false));
         option.dataset.activeSort = true;
+        const activeSearch = document.getElementById("active_search");
+        activeSearch.value = "";
     });
 });

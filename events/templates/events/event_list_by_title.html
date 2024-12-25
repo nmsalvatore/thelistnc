@@ -9,7 +9,10 @@
 {% endblock header_content %}
 
 {% block main_content %}
-    {% include 'events/partials/navigation.html' %}
+    {% include 'events/components/navigation.html' %}
+    {% include 'events/components/search.html' %}
+
+    <p class="loading">Loading event data...</p>
 
     <section class="event-data">
         {% include 'events/partials/event_list_by_title.html' %}

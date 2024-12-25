@@ -11,25 +11,18 @@ import re
 def the_list(request, sorting='by-date'):
     full_path = request.get_full_path()
     request.session['last_visited'] = full_path
-    search_query = ""
+    search_query = request.GET.get("search", "").strip()
 
-    if request.method == "GET":
-        search_query = request.session.get("search_query", "")
-        sort_match = re.search(r'by-[a-zA-Z]+', full_path)
-        if sort_match:
-            request.session["sorting"] = sort_match.group()
-
-    if request.method == "POST":
-        search_query = request.POST.get("search", "")
-        request.session["search_query"] = search_query
-        sorting = request.session.get("sorting")
+    sort_match = re.search(r'by-[a-zA-Z]+', full_path)
+    if sort_match:
+        sorting = sort_match.group()
 
     events = get_events(search_query)
-    is_hx_request = request.headers.get("HX-Request")
-    template_dir = "events/partials" if is_hx_request else "events"
+    hx_request = request.headers.get("HX-Request")
+    template_dir = "events/partials" if hx_request else "events"
 
     context = {
-        "is_hx_request": is_hx_request,
+        "hx_request": hx_request,
         "sorting": sorting,
         "search_query": search_query
     }
@@ -53,7 +46,6 @@ def the_list(request, sorting='by-date'):
 
     context["grouped_events"] = grouped_events
     template = f"{template_dir}/event_list_{sorting.replace('-', '_')}.html"
-
     response = render(request, template, context)
     response["Vary"] = "HX-Request"
     return response

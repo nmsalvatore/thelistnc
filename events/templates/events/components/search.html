@@ -1,0 +1,18 @@
+{% load static %}
+
+<div id="active_search_container" hx-swap-oob="true">
+    <img src="{% static 'icons/search.svg' %}" alt="Magnifying class icon">
+    <input
+        id="active_search"
+        type="search" name="search"
+        placeholder="Filter events by keyword(s)"
+        hx-get="{% url 'the_list' sorting %}"
+        hx-target=".event-data"
+        hx-trigger="input changed delay:500ms, search"
+        hx-push-url="true"
+        hx-indicator="#spinner"
+        autocomplete="off"
+        value="{{ search_query }}"
+    >
+    <div id="spinner"></div>
+</div>
