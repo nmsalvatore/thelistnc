@@ -54,24 +54,24 @@
     <body>
         {% if user.is_authenticated %}
             <nav class="admin-bar">
-            <section class="admin-nav">
-                <div class="left">
-                    {% if "/dashboard/" in request.path %}
-                        <a href="{% url 'home' %}">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#204560"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg> Home
-                        </a>
-                    {% else %}
-                        <a href="{% url 'dashboard' %}" class="dashboard-button"></a>
+                <div class="container">
+                    <div class="left">
+                        {% if "/dashboard/" in request.path %}
+                            <a href="{% url 'home' %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#204560"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/></svg> Home
+                            </a>
+                        {% else %}
+                            <a href="{% url 'dashboard' %}" class="dashboard-button"></a>
+                            <span class="separator">|</span>
+                            <a href="{% url 'new_event_form' %}" class="new-event-button"></a>
+                        {% endif %}
+                    </div>
+                    <div class="right">
+                        <span class="username">{{ user }}</span>
                         <span class="separator">|</span>
-                        <a href="{% url 'new_event_form' %}" class="new-event-button"></a>
-                    {% endif %}
+                        <a href="{% url 'logout' %}">Log Out</a>
+                    </div>
                 </div>
-                <div class="right">
-                    <span class="username">{{ user }}</span>
-                    <span class="separator">|</span>
-                    <a href="{% url 'logout' %}">Log Out</a>
-                </div>
-            </section>
             </nav>
         {% endif %}
 

@@ -35,7 +35,7 @@ body {
     background: var(--color-1);
 }
 
-body:has(section.admin-nav) > .container {
+body:has(nav.admin-bar) > .container {
     padding-top: 59.5px;
 }
 
@@ -53,7 +53,7 @@ body > nav > .container {
     margin: 1rem auto;
 }
 
-section.admin-nav {
+nav.admin-bar {
     background: var(--color-1);
     color: var(--color-2);
     padding: 0 var(--space-2);
@@ -64,7 +64,7 @@ section.admin-nav {
     z-index: 2;
 }
 
-section.admin-nav .container {
+nav.admin-bar .container {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -73,42 +73,42 @@ section.admin-nav .container {
     margin: 1.5rem auto;
 }
 
-section.admin-nav .container span.username {
+nav.admin-bar .container span.username {
     color: var(--color-4);
 }
 
-section.admin-nav .container span.separator {
+nav.admin-bar .container span.separator {
     color: var(--color-3);
 }
 
-section.admin-nav .left,
-section.admin-nav .right {
+nav.admin-bar .left,
+nav.admin-bar .right {
     display: flex;
     align-items: center;
     gap: var(--space-2);
 }
 
-section.admin-nav .left a {
+nav.admin-bar .left a {
     display: flex;
     align-items: center;
     gap: var(--space-1);
 }
 
-section.admin-nav a.dashboard-button::after {
+nav.admin-bar a.dashboard-button::after {
     content: "Admin Dashboard";
 }
 
-section.admin-nav a.new-event-button {
+nav.admin-bar a.new-event-button {
     padding: 0.25rem 1rem;
     background: var(--color-2);
     border-radius: 4px;
 }
 
-section.admin-nav a.new-event-button::after {
+nav.admin-bar a.new-event-button::after {
     content: "New Event";
 }
 
-section.admin-nav a {
+nav.admin-bar a {
     color: var(--color-4);
     font-weight: 600;
     text-decoration: none;
@@ -290,7 +290,7 @@ header .logo .accent {
 }
 
 .tags {
-    margin: var(--space-4) 0;
+    margin-bottom: var(--space-4);
     color: var(--color-3);
 }
 
@@ -530,6 +530,7 @@ html[data-js-enabled="true"] #active_search_container {
 
 section.event-data {
     opacity: 1;
+    margin-top: var(--space-4);
 }
 
 section.event-data.htmx-request {
@@ -541,14 +542,14 @@ main:has(section.event-data.htmx-request) p.loading {
 }
 
 p.loading {
-    margin-top: var(--space-3);
+    margin-top: var(--space-4);
     display: none;
 }
 
 /* mobile styles */
 
 @media only screen and (max-width: calc(720px + 4rem)) {
-    body:has(section.admin-nav) > .container {
+    body:has(nav.admin-bar) > .container {
         padding-top: calc(2rem + 59.5px);
     }
 
@@ -557,16 +558,16 @@ p.loading {
         margin: 1rem auto;
     }
 
-    section.admin-nav .left,
-    section.admin-nav .right {
+    nav.admin-bar .left,
+    nav.admin-bar .right {
         gap: var(--space-1);
     }
 
-    section.admin-nav a.dashboard-button::after {
+    nav.admin-bar a.dashboard-button::after {
         content: "Admin";
     }
 
-    section.admin-nav a.new-event-button::after {
+    nav.admin-bar a.new-event-button::after {
         content: "New";
     }
 
