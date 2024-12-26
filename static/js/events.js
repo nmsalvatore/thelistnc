@@ -27,12 +27,34 @@ document.addEventListener("click", (e) => {
     }
 });
 
-const sortOptions = document.querySelectorAll("a.option");
+const sortOptions = document.querySelectorAll("#sort_options > a.option");
 sortOptions.forEach((option) => {
     option.addEventListener("click", () => {
         sortOptions.forEach((option) => (option.dataset.activeSort = false));
         option.dataset.activeSort = true;
+
+        const p = document.createElement("p");
+        p.id = "loading_event_data";
+        p.textContent = "Loading event data...";
+
         const activeSearch = document.getElementById("active_search");
-        activeSearch.value = "";
+        if (activeSearch) {
+            activeSearch.value = "";
+            activeSearch.parentElement.after(p);
+        }
     });
 });
+
+const eventData = document.getElementById("event_data");
+function callback(mutationsList) {
+    mutationsList.forEach((mutation) => {
+        if (mutation.target.classList.length === 0) {
+            const loading = document.getElementById("loading_event_data");
+            if (loading) {
+                loading.remove();
+            }
+        }
+    });
+}
+const mutationObserver = new MutationObserver(callback);
+mutationObserver.observe(eventData, { attributes: true });
