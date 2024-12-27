@@ -1,5 +1,9 @@
 {% load static %}
 
+{% if hx_request %}
+    {% include 'events/search.html' %}
+{% endif %}
+
 {% if grouped_events|length == 0 %}
     <p>No events matching "{{ search_query }}"</p>
 {% else %}
