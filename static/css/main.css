@@ -208,7 +208,6 @@ header:has(h1.site-title) h1.site-title .accent {
 #sort_options {
     display: flex;
     gap: var(--space-1);
-    margin-bottom: var(--space-3);
 }
 
 #sort_options a.option {
@@ -413,6 +412,7 @@ html[data-js-enabled="true"] #active_search_container {
 #active_search_container {
     display: none;
     position: relative;
+    margin-top: var(--space-3);
 }
 
 #active_search_container img {
