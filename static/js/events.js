@@ -69,12 +69,15 @@ sortOptions.forEach((option) => {
         const activeSearch = document.getElementById("active_search");
         if (activeSearch) {
             activeSearch.value = "";
-            activeSearch.parentElement.after(p);
+
+            const loading = document.getElementById("loading_event_data");
+            if (!loading) {
+                activeSearch.parentElement.after(p);
+            }
         }
     });
 });
 
-// remove loading message after event data completes loading
 function callback(mutationsList) {
     mutationsList.forEach((mutation) => {
         if (mutation.target.classList.length === 0) {
