@@ -232,7 +232,7 @@ header:has(h1.site-title) h1.site-title .accent {
 }
 
 .tags {
-    margin-bottom: var(--space-2);
+    margin-bottom: calc(var(--space-4) + var(--space-1));
     color: var(--color-3);
 }
 
