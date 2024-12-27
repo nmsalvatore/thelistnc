@@ -1,0 +1,13 @@
+{% load static %}
+
+<div class="admin-options">
+    <a class="edit" href="{% url 'edit_event_form' uuid=event.uuid %}" title="Edit event">
+        <img src="{% static 'icons/edit.svg' %}">
+    </a>
+    <a class="template" href="{% url 'template_event_form' uuid=event.uuid %}" title="Duplicate event">
+        <img src="{% static 'icons/duplicate.svg' %}">
+    </a>
+    <a class="delete" href="{% url 'delete_event' uuid=event.uuid %}" title="Delete event">
+        <img src="{% static 'icons/delete.svg' %}">
+    </a>
+</div>

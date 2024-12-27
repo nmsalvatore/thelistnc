@@ -1,0 +1,34 @@
+{% load custom_filters %}
+
+<div class="details">
+    <a href="{% url 'the_list' sorting='by-title' %}#events_{{ event.title|slugify }}" class="title">{{ event }}</a>
+
+    {% if not event.end_time %}
+        <time class="start-time" datetime="{{ event.start_time|date:'H:i' }}">
+            {{ event.start_time|date:"fa"|remove_periods }}
+        </time>
+    {% elif "12am" in event.start_time|date:"fa"|remove_periods and "12am" in event.end_time|date:"fa"|remove_periods %}
+        <span class="start-time">TBD</span>
+    {% else %}
+        <span class="time-range">
+            <time datetime="{{ event.start_time|date:'H:i' }}" class="start-time">
+                {{ event.start_time|date:"fa"|remove_periods }}
+            </time>-
+            <time datetime="{{ event.end_time|date:'H:i' }}" class="end-time">
+                {{ event.end_time|date:"fa"|remove_periods }}
+            </time>
+        </span>
+    {% endif %}
+
+    {% if event.admission_price and event.extra_info %}
+        <span class="extras">{{ event.admission_price|lower }}, {{ event.extra_info }}</span>
+    {% elif event.admission_price %}
+        <span class="extras">{{ event.admission_price|lower }}</span>
+    {% elif event.extra_info %}
+        <span class="extras">{{ event.extra_info }}</span>
+    {% endif %}
+
+    {% if event.url %}
+        - <a href="{{ event.url }}" target="_blank" class="url">more info</a>
+    {% endif %}
+</div>

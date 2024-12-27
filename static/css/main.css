@@ -33,109 +33,11 @@ body {
     color: var(--color-4);
     min-height: 100dvh;
     background: var(--color-1);
+    padding-top: var(--space-5);
 }
 
-body:has(nav.admin-bar) > .container {
-    padding-top: 59.5px;
-}
-
-body > nav {
-    background: var(--color-1);
-    box-shadow: 0px 4px 8px -8px var(--color-4);
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1;
-}
-
-body > nav > .container {
-    margin: 1rem auto;
-}
-
-nav.admin-bar {
-    background: var(--color-1);
-    color: var(--color-2);
-    padding: 0 var(--space-2);
-    font-size: 1.4rem;
-    position: fixed;
-    width: 100%;
-    box-shadow: 0px 4px 8px -8px var(--color-4);
-    z-index: 2;
-}
-
-nav.admin-bar .container {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    min-height: auto;
-    gap: var(--space-2);
-    margin: 1.5rem auto;
-}
-
-nav.admin-bar .container span.username {
-    color: var(--color-4);
-}
-
-nav.admin-bar .container span.separator {
-    color: var(--color-3);
-}
-
-nav.admin-bar .left,
-nav.admin-bar .right {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-}
-
-nav.admin-bar .left a {
-    display: flex;
-    align-items: center;
-    gap: var(--space-1);
-}
-
-nav.admin-bar a.dashboard-button::after {
-    content: "Admin Dashboard";
-}
-
-nav.admin-bar a.new-event-button {
-    padding: 0.25rem 1rem;
-    background: var(--color-2);
-    border-radius: 4px;
-}
-
-nav.admin-bar a.new-event-button::after {
-    content: "New Event";
-}
-
-nav.admin-bar a {
-    color: var(--color-4);
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.menu {
-    cursor: pointer;
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    gap: 4px;
-    background: none;
-    border: none;
-    width: 2rem;
-}
-
-.menu:focus {
-    background-color: red;
-}
-
-.menu .line {
-    width: 100%;
-    height: 2px;
-    background: var(--color-1);
-}
-
-.menu .line:first-child {
-    background: var(--color-2);
+body:has(.admin-bar) {
+    padding-top: calc(var(--space-5) + 63.5px);
 }
 
 .container {
@@ -144,7 +46,8 @@ nav.admin-bar a {
     flex-direction: column;
     max-width: 720px;
     width: 100%;
-    margin: 2rem auto;
+    margin: 0 auto;
+    padding: var(--space-2) 0;
 }
 
 main {
@@ -168,6 +71,15 @@ b {
     font-size: 1.6rem;
 }
 
+h2 {
+    font-size: 2.8rem;
+    margin-bottom: var(--space-1);
+}
+
+h2 + p {
+    margin-bottom: var(--space-3);
+}
+
 a {
     cursor: pointer;
     color: var(--color-4);
@@ -177,7 +89,7 @@ a {
     text-decoration-thickness: 2px;
 }
 
-a:has(svg) {
+a:has(img) {
     z-index: 1;
 }
 
@@ -213,20 +125,76 @@ input#update_event {
     width: 100%;
 }
 
-.site-header {
-    margin: var(--space-5) 0 var(--space-4);
+/* admin bar */
+
+nav.admin-bar {
+    background: var(--color-1);
+    box-shadow: 0px 4px 8px -8px var(--color-4);
+    color: var(--color-2);
+    font-size: 1.4rem;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2;
 }
 
-.site-header h1.logo {
+nav.admin-bar > .container {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-height: auto;
+    gap: var(--space-2);
+}
+
+nav.admin-bar a {
+    text-decoration: none;
+}
+
+nav.admin-bar .actions,
+nav.admin-bar .user-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+nav.admin-bar .actions a:has(img) {
+    display: flex;
+    align-items: center;
+    gap: 1ch;
+}
+
+nav.admin-bar span.username {
+    color: var(--color-4);
+}
+
+nav.admin-bar span.separator {
+    color: var(--color-3);
+}
+
+nav.admin-bar a.dashboard-button::after {
+    content: "Admin Dashboard";
+}
+
+nav.admin-bar a.new-event-button {
+    padding: 0.25rem 1rem;
+    background: var(--color-2);
+    border-radius: 4px;
+}
+
+nav.admin-bar a.new-event-button::after {
+    content: "New Event";
+}
+
+/* header */
+
+header:has(h1.site-title) h1.site-title {
     font-size: 3.6rem;
     font-weight: 600;
-}
-
-.site-header h1.logo:has(+ p) {
     margin-bottom: var(--space-2);
 }
 
-header .logo .accent {
+header:has(h1.site-title) h1.site-title .accent {
     color: var(--color-3);
     background: var(--color-2);
 }
@@ -235,41 +203,15 @@ header .logo .accent {
     line-height: 1.6;
 }
 
-.featured-events {
-    display: flex;
-    justify-content: space-between;
-}
+/* sort options */
 
-.featured-event {
-    border: 1px solid;
-}
-
-.featured-event .poster {
-    width: 172px;
-    height: 240px;
-    object-fit: cover;
-    border-bottom: 1px solid;
-}
-
-.featured-event .details {
-    padding: var(--space-1);
-}
-
-.featured-event .details h3 {
-    margin-bottom: var(--space-1);
-}
-
-.featured-event .details p {
-    font-size: 1.4rem;
-}
-
-.sort-options {
+#sort_options {
     display: flex;
     gap: var(--space-1);
     margin-bottom: var(--space-3);
 }
 
-.sort-options a.option {
+#sort_options a.option {
     display: inline-block;
     padding: 0.5rem 1rem;
     border-radius: 4px;
@@ -281,7 +223,7 @@ header .logo .accent {
     text-decoration: none;
 }
 
-.sort-options a.option[data-active-sort="true"] {
+#sort_options a.option[data-active-sort="true"] {
     cursor: default;
     background: var(--color-3);
     color: var(--color-1);
@@ -290,7 +232,7 @@ header .logo .accent {
 }
 
 .tags {
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-2);
     color: var(--color-3);
 }
 
@@ -322,12 +264,18 @@ header .logo .accent {
     cursor: pointer;
 }
 
-.event-group-header {
-    display: flex;
-    justify-content: space-between;
+/* event styles */
+
+body:has(nav.admin-bar) .sort-group {
+    scroll-margin-top: calc(var(--space-4) + 63.5px);
 }
 
-.event-group-heading .city {
+.sort-group {
+    margin: var(--space-4) 0;
+    scroll-margin-top: var(--space-4);
+}
+
+.sort-group hgroup .city {
     display: inline-block;
     color: var(--color-4);
     font-size: 1.4rem;
@@ -335,41 +283,21 @@ header .logo .accent {
     text-transform: uppercase;
 }
 
-h2 {
-    font-size: 2.8rem;
-    margin-bottom: var(--space-1);
-}
-
-h2 + p {
-    margin-bottom: var(--space-3);
-}
-
-.heading-details {
-    display: flex;
+.sort-group hgroup .event-count {
     font-size: 1.4rem;
-    margin-bottom: var(--space-3);
-}
-
-.heading-details .separator {
-    margin: 0 1ch;
-}
-
-.heading-details .num-events {
     font-style: italic;
 }
 
-/* event styles */
-
-.event-group {
-    padding-top: var(--space-2);
-    margin-bottom: var(--space-4);
+.sort-group.by-title li.event .details time,
+.sort-group.by-venue li.event .details time,
+.sort-group.by-date li.event .details .venue {
+    font-weight: 600;
+    color: var(--color-3);
+    background: var(--color-2);
 }
 
-li.event-row {
-    list-style-type: none;
-}
-
-li.event-row {
+li.event {
+    align-items: flex-start;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -378,64 +306,80 @@ li.event-row {
     line-height: 1.6;
 }
 
-li.event-row:last-child {
+li.event:last-child {
     border-bottom: none;
 }
 
-li.event-row > div.time,
-li.event-row > div.start-date {
+li.event .time-range,
+li.event > div.date,
+li.event > .start-time {
+    display: inline-flex;
+}
+
+li.event > div.time-range,
+li.event > div.date,
+li.event > .start-time {
     flex: 0 0 180px;
     padding-right: 4ch;
 }
 
-li.event-row .details {
-    flex: 1;
-}
-
-li.event-row .title,
-li.event-row .highlighted {
-    font-weight: 600;
-}
-
-li.event-row .highlighted {
-    color: var(--color-3);
-    background: var(--color-2);
-}
-
-li.event-row .city {
-    background: var(--color-2);
-    color: var(--color-4);
-    font-style: italic;
-    font-weight: 600;
-}
-
-li.event-row .title {
-    color: var(--color-4);
-}
-
-li.event-row .extras {
-    font-style: italic;
-}
-
-li.event-row .url {
-    color: var(--color-3);
+li.event time a,
+li.event a:has(time) {
+    display: block;
     font-weight: inherit;
 }
 
-li.event-row > div.start-date .month-year {
+li.event .details time {
+    display: inline-block;
+}
+
+li.event div.date,
+li.event div.time-range {
+    flex-wrap: wrap;
+}
+
+li.event div.date .weekday {
+    white-space: pre;
+}
+
+li.event .details {
+    flex: 1;
+}
+
+li.event .city {
+    background: var(--color-2);
+    color: var(--color-4);
+    font-style: italic;
+    font-weight: 600;
+}
+
+li.event .title {
+    color: var(--color-4);
+}
+
+li.event .extras {
+    font-style: italic;
+}
+
+li.event .url {
+    color: var(--color-3);
     font-weight: inherit;
 }
 
 /* event admin options */
 
-.event-admin-options {
+.admin-options {
     display: flex;
     gap: var(--space-2);
-    margin: var(--space-1) 0;
+    margin-top: var(--space-1);
 }
 
-.event-admin-options a {
+.admin-options a {
     text-decoration: none;
+}
+
+.admin-options a:has(img) {
+    line-height: 1;
 }
 
 /* back to top button */
@@ -528,20 +472,20 @@ html[data-js-enabled="true"] #active_search_container {
 
 /* htmx loading styles  */
 
-section.event-data {
+#event_data {
     opacity: 1;
     margin-top: var(--space-4);
 }
 
-section.event-data.htmx-request {
+#event_data.htmx-request {
     opacity: 0;
 }
 
-main:has(section.event-data.htmx-request) p.loading {
+main:has(#event_data.htmx-request) #loading_event_data {
     display: block;
 }
 
-p.loading {
+#loading_event_data {
     margin-top: var(--space-4);
     display: none;
 }
@@ -549,17 +493,20 @@ p.loading {
 /* mobile styles */
 
 @media only screen and (max-width: calc(720px + 4rem)) {
-    body:has(nav.admin-bar) > .container {
-        padding-top: calc(2rem + 59.5px);
+    body {
+        padding-top: var(--space-4);
     }
 
-    body > .container {
+    body:has(.admin-bar) {
+        padding-top: calc(var(--space-4) + 63.5px);
+    }
+
+    .container {
         padding: var(--space-2);
-        margin: 1rem auto;
     }
 
-    nav.admin-bar .left,
-    nav.admin-bar .right {
+    nav.admin-bar .actions,
+    nav.admin-bar .user-info {
         gap: var(--space-1);
     }
 
@@ -571,17 +518,10 @@ p.loading {
         content: "New";
     }
 
-    .site-header {
-        margin: var(--space-3) 0 var(--space-4);
-    }
-
-    li.event-row > div.time,
-    li.event-row > div.start-date {
+    li.event > div.time-range,
+    li.event > div.date,
+    li.event > .start-time {
         flex: 0 0 120px;
-    }
-
-    li.event-row > div.start-date .month-year {
-        display: block;
     }
 }
 

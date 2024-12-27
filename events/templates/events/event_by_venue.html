@@ -1,0 +1,15 @@
+<div class="date">
+    <span class="weekday">{{ event.start_date|date:"D, " }}</span>
+    <a href="{% url 'the_list' sorting='by-date' %}#events_{{ event.start_date|date:'Ymd' }}">
+        <time datetime="{{ event.start_date|date:'m-d-Y' }}">{{ event.start_date | date:"M j" }}</time>
+    </a>
+</div>
+
+{% if user.is_authenticated %}
+    <div>
+        {% include 'events/event_details_by_venue.html' %}
+        {% include 'events/admin_options.html' %}
+    </div>
+{% else %}
+    {% include 'events/event_details_by_venue.html' %}
+{% endif %}

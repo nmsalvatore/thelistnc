@@ -13,17 +13,46 @@ document.addEventListener("scroll", (e) => {
 });
 
 document.addEventListener("click", (e) => {
-    if (e.target.closest("a.delete")) {
-        const details = e.target.closest(".details");
-        if (details) {
-            const title = details.querySelector(".title").textContent;
+    try {
+        const deleteButton = e.target.closest("a.delete");
+        if (deleteButton) {
+            const sortGroup = deleteButton.closest(".sort-group");
+            const event = deleteButton.closest("li.event");
+
+            let titleElement;
+            if (sortGroup.classList.contains("by-title")) {
+                titleElement = sortGroup.querySelector("hgroup h2.title");
+            } else {
+                titleElement = event.querySelector(".title");
+            }
+
+            let dateElement;
+            if (sortGroup.classList.contains("by-date")) {
+                dateElement = sortGroup.querySelector("hgroup time.date");
+            } else {
+                dateElement = event.querySelector(".date > a");
+            }
+
+            const timeElement = event.querySelector(".start-time");
+            const time = timeElement?.textContent.trim();
+            const title = titleElement?.textContent.trim();
+            const date = dateElement?.textContent.trim();
+
             const confirmation = confirm(
-                `Are you sure that you want to delete the following event:\n\n${title}\n\nThis operation cannot be reversed.`,
+                `Are you sure that you want to delete the following event:
+
+                "${title.trim()}" on ${date.trim()} at ${time.trim()}
+
+                This operation cannot be reversed.`,
             );
+
             if (!confirmation) {
                 e.preventDefault();
             }
         }
+    } catch (error) {
+        e.preventDefault();
+        throw new Error("Failed to delete event:", error);
     }
 });
 
@@ -45,7 +74,7 @@ sortOptions.forEach((option) => {
     });
 });
 
-const eventData = document.getElementById("event_data");
+// remove loading message after event data completes loading
 function callback(mutationsList) {
     mutationsList.forEach((mutation) => {
         if (mutation.target.classList.length === 0) {
@@ -56,5 +85,10 @@ function callback(mutationsList) {
         }
     });
 }
+
 const mutationObserver = new MutationObserver(callback);
-mutationObserver.observe(eventData, { attributes: true });
+const eventData = document.getElementById("event_data");
+
+if (eventData) {
+    mutationObserver.observe(eventData, { attributes: true });
+}

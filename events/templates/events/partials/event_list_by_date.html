@@ -1,13 +1,13 @@
 {% load static %}
 
 {% if hx_request %}
-    {% include 'events/components/search.html' %}
+    {% include 'events/search.html' %}
 {% endif %}
 
 {% if grouped_events|length == 0 %}
     <p>No events matching "{{ search_query }}"</p>
 {% else %}
-    <section class="dates tags">
+    <section class="tags dates">
         {% for date in dates %}
             <a href="#events_{{ date | date:'Ymd' }}" class="tag">{{ date | date:"n/j" }}</a>
         {% endfor %}
@@ -15,19 +15,18 @@
 
     <section class="events">
         {% for date, events, num_events in grouped_events %}
-            <div id="events_{{ date | date:'Ymd' }}" class="event-group">
-                <header class="event-group-header">
-                    <div class="event-group-heading">
-                        <h2>{{ date | date:"D, M j" }}</h2>
-                        <div class="heading-details">
-                            <p class="num-events">{{ num_events }} event{{ num_events|pluralize }}</p>
-                        </div>
-                    </div>
-                </header>
-                <ul>
+            <div id="events_{{ date | date:'Ymd' }}" class="sort-group by-date">
+                <hgroup>
+                    <h2>
+                        {{ date|date:"D" }},
+                        <time datetime="{{ date|date:'m-d-Y' }}" class="date">{{ date|date:"M j" }}</time>
+                    </h2>
+                    <p class="event-count">{{ num_events }} event{{ num_events|pluralize }}</p>
+                </hgroup>
+                <ul class="sort-group__events">
                     {% for event in events %}
-                        <li class="event-row">
-                            {% include 'events/partials/single_event_by_date.html' %}
+                        <li class="event">
+                            {% include 'events/event_by_date.html' %}
                         </li>
                     {% endfor %}
                 </ul>

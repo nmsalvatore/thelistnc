@@ -1,0 +1,13 @@
+{% load custom_filters %}
+
+<nav
+    id="sort_options"
+    hx-boost="true"
+    hx-target="#event_data"
+    hx-indicator="#event_data"
+    hx-swap="show:none"
+>
+    <a class="option" data-active-sort="{{ request.path|contains:'by-date' }}" href="{% url 'the_list' sorting='by-date' %}">By Date</a>
+    <a class="option" data-active-sort="{{ request.path|contains:'by-venue' }}" href="{% url 'the_list' sorting='by-venue' %}">By Venue</a>
+    <a class="option" data-active-sort="{{ request.path|contains:'by-title' }}" href="{% url 'the_list' sorting='by-title' %}">By Title</a>
+</nav>

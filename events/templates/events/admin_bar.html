@@ -1,0 +1,23 @@
+{% load static %}
+
+<nav class="admin-bar">
+    <div class="container">
+        <div class="actions">
+            {% if "/dashboard/" in request.path %}
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'icons/back.svg' %}" alt="Back arrow">
+                    Home
+                </a>
+            {% else %}
+                <a href="{% url 'dashboard' %}" class="dashboard-button"></a>
+                <span class="separator">|</span>
+                <a href="{% url 'new_event_form' %}" class="new-event-button"></a>
+            {% endif %}
+        </div>
+        <div class="user-info">
+            <span class="username">{{ user }}</span>
+            <span class="separator">|</span>
+            <a href="{% url 'logout' %}">Log Out</a>
+        </div>
+    </div>
+</nav>

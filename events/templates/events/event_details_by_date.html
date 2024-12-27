@@ -1,0 +1,19 @@
+{% load custom_filters %}
+
+<div class="details">
+    <a href="{% url 'the_list' sorting='by-title' %}#events_{{ event.title|slugify }}" class="title">{{ event }}</a>
+    <a href="{% url 'the_list' sorting='by-venue' %}#events_{{ event.venue|slugify }}" class="venue">{{ event.venue }}</a>
+    <span class="city">{{ event.city }}</span>
+
+    {% if event.admission_price and event.extra_info %}
+        <span class="extras">{{ event.admission_price|lower }}, {{ event.extra_info }}</span>
+    {% elif event.admission_price %}
+        <span class="extras">{{ event.admission_price|lower }}</span>
+    {% elif event.extra_info %}
+        <span class="extras">{{ event.extra_info }}</span>
+    {% endif %}
+
+    {% if event.url %}
+        - <a href="{{ event.url }}" target="_blank" class="url">more info</a>
+    {% endif %}
+</div>

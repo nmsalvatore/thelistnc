@@ -1,20 +1,11 @@
-{% extends 'main.html' %}
+{% extends 'events/base.html' %}
 
-{% block subtitle %}
-    Events by venue
-{% endblock subtitle %}
+{% block subtitle %}Events by venue{% endblock subtitle %}
 
-{% block header_content %}
-    {% include 'events/partials/heading.html' %}
-{% endblock header_content %}
+{% block event_list %}
 
-{% block main_content %}
-    {% include 'events/components/navigation.html' %}
-    {% include 'events/components/search.html' %}
-
-    <p class="loading">Loading event data...</p>
-
-    <section class="event-data">
+    <div id="event_data">
         {% include 'events/partials/event_list_by_venue.html' %}
-    </section>
-{% endblock main_content %}
+    </div>
+
+{% endblock %}

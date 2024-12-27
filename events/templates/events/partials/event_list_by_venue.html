@@ -1,13 +1,13 @@
 {% load static %}
 
 {% if hx_request %}
-    {% include 'events/components/search.html' %}
+    {% include 'events/search.html' %}
 {% endif %}
 
 {% if grouped_events|length == 0 %}
     <p>No events matching "{{ search_query }}"</p>
 {% else %}
-    <section class="venues tags">
+    <section class="tags venues">
         {% for venue in venues %}
             <a href="#events_{{ venue|slugify }}" class="tag">{{ venue }}</a>
         {% endfor %}
@@ -15,20 +15,16 @@
 
     <section class="events">
         {% for venue, events, num_events, city in grouped_events %}
-            <div id="events_{{ venue|slugify }}" class="event-group">
-                <header class="event-group-header">
-                    <div class="event-group-heading">
-                        <p class="city">{{ city }}</p>
-                        <h2>{{ venue }}</h2>
-                        <div class="heading-details">
-                            <p class="num-events">{{ num_events }} event{{ num_events|pluralize }}</p>
-                        </div>
-                    </div>
-                </header>
-                <ul>
+            <div id="events_{{ venue|slugify }}" class="sort-group by-venue">
+                <hgroup>
+                    <p class="city">{{ city }}</p>
+                    <h2 class="venue">{{ venue }}</h2>
+                    <p class="event-count">{{ num_events }} event{{ num_events|pluralize }}</p>
+                </hgroup>
+                <ul class="sort-group__events">
                     {% for event in events %}
-                        <li class="event-row">
-                            {% include 'events/partials/single_event_by_venue.html' %}
+                        <li class="event">
+                            {% include 'events/event_by_venue.html' %}
                         </li>
                     {% endfor %}
                 </ul>
