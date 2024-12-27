@@ -62,6 +62,7 @@ sortOptions.forEach((option) => {
         sortOptions.forEach((option) => (option.dataset.activeSort = false));
         option.dataset.activeSort = true;
 
+        // set loading message
         const p = document.createElement("p");
         p.id = "loading_event_data";
         p.textContent = "Loading event data...";
@@ -75,6 +76,12 @@ sortOptions.forEach((option) => {
                 activeSearch.parentElement.after(p);
             }
         }
+
+        // set search hx-get attribute
+        const searchInput = document.getElementById("active_search");
+        const url = new URL(option.href).pathname;
+        searchInput.setAttribute("hx-get", url);
+        htmx.process(searchInput);
     });
 });
 

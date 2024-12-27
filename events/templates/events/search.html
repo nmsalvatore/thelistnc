@@ -1,6 +1,6 @@
 {% load static %}
 
-<search id="active_search_container" hx-swap-oob="true">
+<search id="active_search_container">
     <img src="{% static 'icons/search.svg' %}" alt="Magnifying class icon">
     <input
         id="active_search"
@@ -12,7 +12,6 @@
         hx-push-url="true"
         hx-indicator="#spinner"
         autocomplete="off"
-        value="{{ search_query }}"
     >
     <div id="spinner"></div>
 </search>
