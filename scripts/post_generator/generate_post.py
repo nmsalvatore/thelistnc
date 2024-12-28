@@ -5,6 +5,10 @@ from PIL import Image, ImageDraw, ImageFont
 from decouple import config
 
 
+script_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(os.path.dirname(script_dir))
+
+
 def get_todays_events():
     dbname = config("DB_NAME")
     dbuser = config("DB_USER")
@@ -24,8 +28,6 @@ def get_todays_events():
 
 def create_event_image(events, page_num):
     base_font_size = 60
-    regular_font = ImageFont.truetype("fonts/IBMPlexMono-Regular.ttf", base_font_size)
-    bold_font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", base_font_size)
 
     color1 = "#f9f7f6"
     color2 = "#f1eae4"
@@ -56,7 +58,7 @@ def create_event_image(events, page_num):
 
     today = date.today()
     today_id = today.strftime("%Y%m%d")
-    path = os.path.join("ig_posts", today_id)
+    path = os.path.join(project_root, "ig_posts", today_id)
 
     if not os.path.exists(path):
         os.makedirs(path, exist_ok=True)
@@ -66,14 +68,14 @@ def create_event_image(events, page_num):
 
 
 def paste_arrow_icon(img):
-    icon = Image.open("icons/arrow_right_dark_blue.png")
+    icon = Image.open(os.path.join(project_root, "scripts", "post_generator", "icons", "arrow_right.png"))
     x_pos = (2160 - (180 + int(icon.width / 1.5)))
     y_pos = (2700 - (180 + int(icon.height / 1.5)))
     img.paste(icon, (x_pos, y_pos), icon)
 
 
 def draw_conclusion_text(draw, x, y, fill):
-    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 50)
+    font = ImageFont.truetype(os.path.join(project_root, "static", "fonts", "IBMPlexMono-SemiBold.ttf"), 50)
     plain_text = "For more information, visit "
     draw.text((x, y), plain_text, font=font, fill=fill)
     plain_text_width = draw.textlength(plain_text, font)
@@ -82,7 +84,7 @@ def draw_conclusion_text(draw, x, y, fill):
 
 
 def draw_site_title(draw, x, y, fill1, fill2, fill3):
-    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 60)
+    font = ImageFont.truetype(os.path.join(project_root, "static", "fonts", "IBMPlexMono-SemiBold.ttf"), 60)
     text1 = "The List "
     text2 = "NC"
     draw.text((x, y), text1, fill=fill1, font=font)
@@ -101,13 +103,13 @@ def draw_highlighted_text(draw, x, y, text, font, text_fill, highlight_fill, tit
 
 
 def draw_date(draw, x_pos, y_pos, fill):
-    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 90)
+    font = ImageFont.truetype(os.path.join(project_root, "static", "fonts", "IBMPlexMono-SemiBold.ttf"), 90)
     today = date.today().strftime("%a, %b %-d")
     draw.text((x_pos, y_pos), today, fill=fill, font=font)
 
 
 def draw_events(draw, x, y, events, time_fill, event_fill):
-    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 50)
+    font = ImageFont.truetype(os.path.join(project_root, "static", "fonts", "IBMPlexMono-SemiBold.ttf"), 50)
 
     time_x_thresh = x + 420
     event_x_thresh = 1980
@@ -134,7 +136,7 @@ def draw_events(draw, x, y, events, time_fill, event_fill):
 
 
 def draw_time(draw, event, x, y, x_thresh, fill):
-    font = ImageFont.truetype("fonts/IBMPlexMono-Regular.ttf", 50)
+    font = ImageFont.truetype(os.path.join(project_root, "static", "fonts", "IBMPlexMono-Regular.ttf"), 50)
     start_time = get_natural_time(event[2])
     end_time = get_natural_time(event[3])
 
@@ -197,7 +199,7 @@ def draw_title(draw, text, font, x, y, x_thresh, fill):
 
 
 def draw_venue(draw, text, x, y, x_start, x_thresh):
-    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 50)
+    font = ImageFont.truetype(os.path.join(project_root, "static", "fonts", "IBMPlexMono-SemiBold.ttf"), 50)
     fill = "#457aa1"
     highlight = "#f1eae4"
 
@@ -234,7 +236,7 @@ def draw_venue(draw, text, x, y, x_start, x_thresh):
 
 
 def test_event_depth(draw, text, x, y, x_thresh):
-    font = ImageFont.truetype("fonts/IBMPlexMono-SemiBold.ttf", 50)
+    font = ImageFont.truetype(os.path.join(project_root, "static", "fonts", "IBMPlexMono-SemiBold.ttf"), 50)
     words = text.split()
     lines = []
     current_line = ""
