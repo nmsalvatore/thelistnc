@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 from decouple import config
 
@@ -151,3 +152,10 @@ EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 EMAIL_HOST_USER = config('EMAIL_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
+
+
+# Instagram Post GeneratorExit
+
+POST_GENERATOR_PYTHON = os.path.join(BASE_DIR, "scripts", "post_generator", ".venv", "bin", "python")
+POST_GENERATOR_SCRIPT = os.path.join(BASE_DIR, "scripts", "post_generator", "generate_post.py")
+IG_POST_DIR  = os.path.join(BASE_DIR, "ig_posts")

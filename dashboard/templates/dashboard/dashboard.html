@@ -13,5 +13,10 @@
     <div class="buttons">
         <a class="button" href="{% url 'new_event_form' %}">Add new event</a>
         <a class="button" href="{% url 'send_invitation' %}">Send invitation</a>
+
+        <form method="POST" action="{% url 'generate_post' %}" onsubmit="event.preventDefault(); this.submit();">
+            {% csrf_token %}
+            <button type="submit">Download Today's Instagram Post</button>
+        </form>
     </div>
 {% endblock main_content %}
