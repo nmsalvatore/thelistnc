@@ -56,10 +56,10 @@ def create_event_image(events, page_num):
 
     today = date.today()
     today_id = today.strftime("%Y%m%d")
-    path = f"../../ig_posts/{today_id}"
+    path = os.path.join("ig_posts", today_id)
 
     if not os.path.exists(path):
-        os.mkdir(path)
+        os.makedirs(path, exist_ok=True)
 
     img.save(f"{path}/{today_id}_{page_num}.png")
     return remaining_events
