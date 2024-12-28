@@ -11,12 +11,21 @@
 
 {% block main_content %}
     <div class="buttons">
-        <a class="button" href="{% url 'new_event_form' %}">Add new event</a>
-        <a class="button" href="{% url 'send_invitation' %}">Send invitation</a>
+        <a class="button" href="{% url 'new_event_form' %}">
+            <img src="{% static 'icons/add.svg' %}" alt="Plus icon">
+            Add new event
+        </a>
+        <a class="button" href="{% url 'send_invitation' %}">
+            <img src="{% static 'icons/send.svg' %}" alt="Send icon">
+            Send invitation
+        </a>
 
-        <form method="POST" action="{% url 'generate_post' %}" onsubmit="event.preventDefault(); this.submit();">
+        <form method="POST" action="{% url 'generate_post' %}">
             {% csrf_token %}
-            <button type="submit">Download Today's Instagram Post</button>
+            <button type="submit">
+                <img src="{% static 'icons/download.svg' %}" alt="Download icon">
+                Download Instagram Post
+            </button>
         </form>
     </div>
 {% endblock main_content %}
