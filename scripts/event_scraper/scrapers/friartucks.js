@@ -22,8 +22,8 @@ async function getEvents() {
     let year = new Date().getFullYear();
 
     let monthEvents = await getMonthEvents(month, year);
+    let events = [].concat(monthEvents);
 
-    const events = [].concat(monthEvents);
     while (monthEvents.length !== 0) {
         month = Number(month);
         month += 1;
@@ -35,7 +35,7 @@ async function getEvents() {
 
         month = month.toString().padStart(2, "0");
         monthEvents = await getMonthEvents(month, year);
-        events.concat(monthEvents);
+        events = events.concat(monthEvents);
     }
 
     return events;
