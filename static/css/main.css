@@ -212,7 +212,7 @@ header:has(h1.site-title) h1.site-title .accent {
 
 #sort_options a.option {
     display: inline-block;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1rem;
     border-radius: 4px;
     box-shadow: 3px 3px var(--color-2);
     border: 1px solid var(--color-4);
