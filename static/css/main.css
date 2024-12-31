@@ -287,8 +287,9 @@ body:has(nav.admin-bar) .sort-group {
     font-style: italic;
 }
 
-.sort-group.by-title li.event .details time,
-.sort-group.by-venue li.event .details time,
+.sort-group:not(.sort-group.by-date) .time-range,
+.sort-group:not(.sort-group.by-date) time.start-time,
+.sort-group:not(.sort-group.by-date) span.start-time,
 .sort-group.by-date li.event .details .venue {
     font-weight: 600;
     color: var(--color-3);
