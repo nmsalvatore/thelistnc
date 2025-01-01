@@ -1,5 +1,9 @@
 {% load static %}
 
+{% if hx_request %}
+    <title hx-swap-oob="true">Events by date - The List NC</title>
+{% endif %}
+
 {% if grouped_events|length == 0 %}
     <p>No events matching "{{ search_query }}"</p>
 {% else %}

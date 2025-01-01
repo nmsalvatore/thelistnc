@@ -26,7 +26,7 @@
         <meta name="twitter:image"
               content="{% static 'images/opengraph/og_image.png' %}" />
 
-        <title>{% block subtitle %}{% endblock %} - The List NC</title>
+        <title hx-swap-oob="true">{% block subtitle %}{% endblock %} - The List NC</title>
 
         <!-- preloads -->
         <link rel="preload" href="{% static 'fonts/IBMPlexMono-Regular.woff2' %}" type="font/woff2" as="font" crossorigin>
