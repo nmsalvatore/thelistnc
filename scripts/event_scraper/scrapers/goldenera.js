@@ -37,6 +37,10 @@ async function getAllEvents(sql) {
             continue;
         }
 
+        const SKIP_TEXTS = ["closed", "open"];
+        if (SKIP_TEXTS.some((text) => title.toLowerCase().startsWith(text)))
+            continue;
+
         const startTime = getStartTime(event);
         const endTime = getEndTime(event);
         const admission = null;
