@@ -1,11 +1,12 @@
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 
-from .views import home, RobotsTxtView
+from .views import FarewellView, RobotsTxtView, catch_all
 
 
 urlpatterns = [
-    path('', home, name='home'),
+    re_path(r'^(?!$).+', catch_all),
+    path('', FarewellView.as_view(), name="farewell"),
     path('django-admin/', admin.site.urls),
     path('admin/', include('accounts.urls')),
     path('events/', include('events.urls')),

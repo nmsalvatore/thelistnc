@@ -89,6 +89,10 @@ a {
     text-decoration-thickness: 2px;
 }
 
+p {
+    margin-bottom: var(--space-2);
+}
+
 a:has(img) {
     z-index: 1;
 }
